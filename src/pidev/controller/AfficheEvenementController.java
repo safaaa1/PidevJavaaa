@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import static java.nio.file.Files.list;
 import static java.rmi.Naming.list;
@@ -13,7 +14,9 @@ import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -88,6 +91,11 @@ public class AfficheEvenementController implements Initializable {
     }
   
     
-    
+    @FXML
+    public void getAllEvent(ActionEvent actionEvent) throws IOException {
+        System.out.println("afficher liste des evenements");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/afficheEvenement.fxml"));
+        Parent root = loader.load();
+    }
     
 }

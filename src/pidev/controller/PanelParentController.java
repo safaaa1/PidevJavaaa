@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 public class PanelParentController implements Initializable {
 
     @FXML
-    private AnchorPane container_client;
+    private AnchorPane container_parent;
     @FXML
     private Label idUtilisateur;
 
@@ -36,12 +36,6 @@ public class PanelParentController implements Initializable {
         // TODO
     }
 
-    @FXML
-    public void afficherEvenement(ActionEvent actionEvent) throws IOException {
-        System.out.println("afficher liste des evenements");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/listeDesevenements.fxml"));
-        Parent root = loader.load();
-        container_client.getChildren().setAll(root);
-    }
+    
     
 }

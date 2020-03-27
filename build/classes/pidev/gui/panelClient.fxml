@@ -20,9 +20,9 @@
                            <children>
                               <MenuButton mnemonicParsing="false" text="Produits">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#afficherProduit" text="Liste des produits" />
-                                    <MenuItem mnemonicParsing="false" onAction="#afficherPanier" text="Panier" />
-                                    <MenuItem mnemonicParsing="false" onAction="#afficherCommandes" text="Mes Commandes" />
+                                  <MenuItem mnemonicParsing="false" onAction="#afficher" text="Liste des events" />
+                                    <MenuItem mnemonicParsing="false" onAction="#afficher" text="" />
+                                    <MenuItem mnemonicParsing="false" onAction="#afficher" text="Mes event" />
                                 </items>
                               </MenuButton>
                            </children>

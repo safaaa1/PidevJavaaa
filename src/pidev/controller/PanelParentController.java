@@ -16,11 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author Mohamed
- */
+
 public class PanelParentController implements Initializable {
 
     @FXML

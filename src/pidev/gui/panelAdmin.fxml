@@ -18,7 +18,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <MenuButton mnemonicParsing="false" text="Les commandes">
+                              <MenuButton mnemonicParsing="false" text="Les events">
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#" text="" />
                                 </items>

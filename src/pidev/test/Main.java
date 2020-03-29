@@ -12,6 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pidev.entites.Enfant;
+import pidev.entites.Medecin;
+import pidev.services.ServiceEnfant;
+import pidev.services.ServiceMedecin;
 
 /**
  *
@@ -32,7 +36,23 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
-    }
-    
+        //launch(args);
+        
+        //Test Medecin
+        ServiceMedecin se = new ServiceMedecin();
+        Medecin m = new Medecin(0,"anis","aniiis","anis@gmail.com", 1);
+        //se.ajouter(new Medecin(0,"anis","aniiis","anis@gmail.com", 1));
+        se.supprimer(m);
+        se.afficher().forEach(System.out::println); 
+       
+       //Test Enfant
+      /* ServiceEnfant sf = new ServiceEnfant();
+       Enfant f = new Enfant(7,"flenmodifier",5);
+       //sf.ajouter(f);
+       sf.modifier(f);
+       sf.afficher().forEach(System.out::println); */
+      
+      
+
+}
 }

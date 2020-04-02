@@ -22,13 +22,13 @@ import pidev.utils.ConnectionBD;
  */
 public class CoursServices implements IService<Cours> {
     Connection cnx = ConnectionBD.getInstance().getCnx();
-    @Override
+    
     public void ajouter(Cours t) {
-       String req="insert into cours (id,idcl,nomcours,duree,listeens,idenfant,idenseignant) values(?,?,?,?,?,?,?);";
+       String req="insert into cours (idcl,nomcours,duree,listeens,idenfant,idenseignant) values(?,?,?,?,?,?);";
         
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1, t.getId());
+          
             pst.setInt(2, t.getIdcl());
             pst.setString(3, t.getNomcours());
             pst.setString(4, t.getDuree());
@@ -41,7 +41,7 @@ public class CoursServices implements IService<Cours> {
             Logger.getLogger(CoursServices.class.getName()).log(Level.SEVERE, null, ex);
         }  }
 
-    @Override
+    
     public void supprimer(Cours t) {
        String req ="delete from cours where id=?";
         try {
@@ -54,7 +54,7 @@ public class CoursServices implements IService<Cours> {
         }
     }
 
-    @Override
+    
     public void modifier(Cours t) {
         try {
             String requete = "UPDATE cours SET idcl=?,nomcours=?,duree=?,listeens=?,idenfant=?,idenseignant=? WHERE id=?";
@@ -73,10 +73,10 @@ public class CoursServices implements IService<Cours> {
             System.err.println(ex.getMessage());
         } }
 
-    @Override
+   
     public List<Cours> afficher() {
         List<Cours> list = new ArrayList<>();
-       String req ="select * from grade";
+       String req ="select * from cours";
            
         try {
             PreparedStatement pst = cnx.prepareStatement(req);

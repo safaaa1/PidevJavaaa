@@ -19,6 +19,11 @@ public class Grade {
     private String nomgr;
 
     @Override
+    public String toString() {
+        return nomgr;
+    }
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + this.idgr;
@@ -95,4 +100,5 @@ public class Grade {
     public void setNomgr(String nomgr) {
         this.nomgr = nomgr;
     }
+    
 }

@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 import pidev.entites.Classe;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pidev.utils.ConnectionBD;
 
 /**
@@ -25,22 +27,30 @@ import pidev.utils.ConnectionBD;
 public class ClasseServices implements IService<Classe> {
 
     Connection cnx = ConnectionBD.getInstance().getCnx();
-    @Override
+        
     public void ajouter(Classe t) {
         
-    String req="insert into classe (idcl,nbrenfcl,idgr,nomclasse) values('"+t.getIdcl()+"','"+t.getNbrenfcl()+"','"+t.getIdgr()+"','"+t.getNomclasse()+"');";
+   
     
-    try { 
-        Statement st = cnx.createStatement() ;
-        st.executeUpdate(req);
+    
+    try{
+         String req ="insert into classe (nbrenfcl,idgr,nomclasse) values(?,?,?);";
+        PreparedStatement pst = cnx.prepareStatement(req);
+        
+        pst.setInt(1,t.getNbrenfcl());
+        pst.setInt(2,t.getIdgr());
+        pst.setString(3,t.getNomclasse());
+        pst.executeUpdate();
         System.err.println("Classe Ajoutee ...");
+        
+       
     
     }   catch (SQLException ex) {
             Logger.getLogger(ClasseServices.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @Override
+    
     public void supprimer(Classe t) {
         
     String req="delete from classe where idcl=?";
@@ -56,7 +66,7 @@ public class ClasseServices implements IService<Classe> {
         } 
     }
 
-    @Override
+    
     public void modifier(Classe t) {
         
     try {
@@ -75,17 +85,20 @@ public class ClasseServices implements IService<Classe> {
     }
     
 
-    @Override
+    
     public List<Classe> afficher() 
     {
-       List<Classe> list = new ArrayList<>();
-       String req ="select * from classe";
+       ObservableList <Classe> list =FXCollections.observableArrayList();
+
+        //List<Classe> list=new ArrayList<>();
+      // List<Classe> list = new ArrayList<>();
+       String req ="select idcl,nbrenfcl,idgr,nomclasse from classe";
            
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-            Classe c = new Classe(rs.getInt(1),rs.getInt(2), rs.getString(3),rs.getInt(4));
+            Classe c = new Classe(rs.getInt(1),rs.getInt(2), rs.getString(4),rs.getInt(3));
              list.add(c);
             }
         } catch (SQLException ex) {

@@ -23,7 +23,7 @@ import pidev.utils.ConnectionBD;
 public class GradeServices implements IService<Grade> {
 Connection cnx = ConnectionBD.getInstance().getCnx();
 
-    @Override
+
     public void ajouter(Grade g) {
          String req="insert into grade (idgr,nbrclasse,nbrenfgr,nomgr) values(?,?,?,?);";
         
@@ -42,7 +42,7 @@ Connection cnx = ConnectionBD.getInstance().getCnx();
     
      }
 
-    @Override
+
     public void supprimer(Grade g) {
        String req ="delete from grade where idgr=?";
         try {
@@ -54,7 +54,7 @@ Connection cnx = ConnectionBD.getInstance().getCnx();
             Logger.getLogger(GradeServices.class.getName()).log(Level.SEVERE, null, ex);
         }  }
 
-    @Override
+    
     public void modifier(Grade g) {
        try {
             String requete = "UPDATE Grade SET nbrclasse=?,nbrenfgr=?,nomgr=? WHERE idgr=?";
@@ -70,7 +70,6 @@ Connection cnx = ConnectionBD.getInstance().getCnx();
             System.err.println(ex.getMessage());
         }  }
 
-    @Override
     public List<Grade> afficher() {
        List<Grade> list = new ArrayList<>();
        String req ="select * from grade";

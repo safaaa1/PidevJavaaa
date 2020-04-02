@@ -80,6 +80,27 @@ public class Cours {
         this.idenseignant = idenseignant;
     }
 
+public Cours(int idcl, String nomcours, String duree, String listeens, int idenfant, int idenseignant) {
+        
+        this.idcl = idcl;
+        this.nomcours = nomcours;
+        this.duree = duree;
+        this.listeens = listeens;
+        this.idenfant = idenfant;
+        this.idenseignant = idenseignant;
+    }
+     public Cours(int id) {
+        
+       this.id = id;
+       
+        
+  }
+     public Cours() {
+        
+      
+       
+        
+  }
     public int getId() {
         return id;
     }

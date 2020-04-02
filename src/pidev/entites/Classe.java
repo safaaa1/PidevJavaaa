@@ -14,10 +14,9 @@ import java.util.Objects;
 public class Classe {
     
      private int idcl;
-    private int nbrenfcl; 
-    private String nomclasse;
-    private int idgr;
-
+     private int nbrenfcl; 
+     private int idgr;
+     private String nomclasse;
     @Override
     public int hashCode() {
         int hash = 7;
@@ -60,6 +59,22 @@ public class Classe {
         this.nbrenfcl = nbrenfcl;
         this.nomclasse = nomclasse;
         this.idgr = idgr;
+    }
+    public Classe(int nbrenfcl, String nomclasse, int idgr) {
+        
+        this.nbrenfcl = nbrenfcl;
+        this.nomclasse = nomclasse;
+        this.idgr = idgr;
+    }
+    
+   
+    public Classe() {
+        
+     
+    }
+    public Classe(int idcl) {
+        this.idcl = idcl;
+        
     }
 
     public int getIdcl() {

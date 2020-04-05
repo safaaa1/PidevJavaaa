@@ -8,11 +8,15 @@ package pidev.controller;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,12 +24,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pidev.entites.Enseignant;
+import pidev.entites.Salaire;
 import pidev.services.EnseignantService;
 import pidev.utils.ConnectionBD;
 
@@ -55,7 +61,7 @@ public class EnseignantController implements Initializable {
     @FXML
     private Button saveedit;
    @FXML
-    private TextField recherchetxt;
+    private TextField filterField;
 
     @FXML
     private Button viewEnseignant;
@@ -77,7 +83,13 @@ public class EnseignantController implements Initializable {
 
     @FXML
     private TableColumn<Enseignant, Integer> coltelephone;
-      public ObservableList<Enseignant> data=FXCollections.observableArrayList();
+        @FXML
+    private ComboBox<Salaire> cbsalaire;
+    
+     public ObservableList<Enseignant> data=FXCollections.observableArrayList();
+             public ObservableList<Salaire> data2=FXCollections.observableArrayList();
+
+     
     @FXML
     private Button reset;
     @FXML
@@ -93,8 +105,40 @@ public class EnseignantController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         viewEnseignant();
-    }    
-
+        viewSalaire();
+    
+       filter();
+    }
+        
+    public void filter(){
+     EnseignantService se = new EnseignantService();
+         data = FXCollections.observableArrayList(se.read());
+            FilteredList<Enseignant> filterdata = new FilteredList<>(data, e -> true);
+            filterField.setOnKeyReleased(e -> {
+                filterField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                    filterdata.setPredicate((Predicate<? super Enseignant>) type -> {
+                        if (newValue == null || newValue.isEmpty()) {
+                            return true;
+                        }
+                        if((type.getNom().contains(newValue)) || (type.getNom().toLowerCase().contains(newValue) )|| 
+                                (type.getPrenom().contains(newValue)) || (type.getPrenom().toLowerCase().contains(newValue)) ||
+                                ((type.getSalaire_montant()+"").contains(newValue)))  {
+                            return true;
+                        }
+                        return false;
+                    });
+                });
+                SortedList<Enseignant> sorteddata = new SortedList<>(filterdata);
+                data = sorteddata;  
+                table.setItems(data);
+       
+  
+            });
+    }
+               
+        
+    
+    
         public void viewEnseignant(){
     EnseignantService se = new EnseignantService();
     table.setItems((ObservableList<Enseignant>) se.read());
@@ -107,6 +151,26 @@ public class EnseignantController implements Initializable {
     
     
   table.setItems((ObservableList<Enseignant>) se.read());
+  
+
+    }
+    public void viewSalaire(){
+    try{
+      Connection cnx = ConnectionBD.getInstance().getCnx();
+      String sql="SELECT * from salaire";
+      PreparedStatement stat = cnx.prepareStatement(sql);
+      ResultSet rs = stat.executeQuery();
+      while (rs.next()){
+      data2.add(new Salaire(rs.getInt(1), rs.getInt(2)));
+
+      }
+      
+
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+    cbsalaire.setItems(data2);
 
     }
     @FXML
@@ -114,8 +178,8 @@ public class EnseignantController implements Initializable {
            
         if(!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")&&!emailtxt.getText().equals("")&&!teltxt.getText().equals("")){
             EnseignantService se = new EnseignantService();
-           
-      //  se.add(new Enseignant(nomtxt.getText(),prenomtxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText())),0);
+           Salaire s = cbsalaire.getSelectionModel().getSelectedItem();
+        se.add(new Enseignant(nomtxt.getText(),prenomtxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText()),s.getId()));
            
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
@@ -197,7 +261,7 @@ public class EnseignantController implements Initializable {
              Connection cnx = ConnectionBD.getInstance().getCnx();
              
          try {
-            String requete = "UPDATE Enseignant SET nom=?,prenom=?,email=?,tel=?,salaire_id WHERE id=?";
+            String requete = "UPDATE Enseignant SET nom=?,prenom=?,email=?,tel=?,salaire_id=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
                        
 
@@ -206,6 +270,8 @@ public class EnseignantController implements Initializable {
             pst.setString(2, prenomtxt.getText());
             pst.setString(3, emailtxt.getText());
             pst.setInt(4, Integer.parseInt(teltxt.getText()));
+            pst.setInt(5, Integer.parseInt(teltxt.getText()));
+
            //salaire
             
             pst.executeUpdate();

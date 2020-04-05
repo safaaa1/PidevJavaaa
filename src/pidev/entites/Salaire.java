@@ -57,6 +57,12 @@ public class Salaire {
         this.prime = prime;
         this.date = date;
     }
+        public Salaire( int chiffre, int prime) {
+        this.id = id;
+        this.chiffre = chiffre;
+        this.prime = prime;
+      
+    }
 
     @Override
     public int hashCode() {
@@ -94,11 +100,17 @@ public class Salaire {
         }
         return true;
     }
-
+/*
     @Override
     public String toString() {
         return "Salaire{" + "id=" + id + ", chiffre=" + chiffre + ", prime=" + prime + ", date=" + date + '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return "chiffre=" + chiffre;
     }
+    
     
     
     

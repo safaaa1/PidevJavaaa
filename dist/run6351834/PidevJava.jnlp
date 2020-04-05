@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PidevJava.jar" size="681307" download="eager" />
+    <jar href="PidevJava.jar" size="681628" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
     <jar href="lib\client-5.2.1-javadoc.jar" size="1420439" download="eager" />
     <jar href="lib\gradle-wrapper.jar" size="56177" download="eager" />

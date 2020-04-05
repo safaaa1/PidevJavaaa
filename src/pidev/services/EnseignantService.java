@@ -25,7 +25,7 @@ public class EnseignantService {
     
      public void add(Enseignant e){
         
-        String req = "insert into enseignant (nom, prenom, email, tel,salaire_id) values(?, ?, ?, ?, ?);";
+        String req = "insert into enseignant (nom, prenom, email, tel,salaire_id) values(?, ?, ?, ?, ?)";
         try {
                 PreparedStatement pst = cnx.prepareStatement(req); 
                 pst.setString(1, e.getNom());
@@ -41,14 +41,15 @@ public class EnseignantService {
     }
          public void Update(Enseignant e) {
         try {
-            String req = "UPDATE Enseignant SET nom=?,prenom=?,email=?,tel=?,salaire_id=? WHERE id=?";
+            String req = "UPDATE Enseignant SET nom=?,prenom=?,email=?,tel=?,salaire_id=?,salaire_montant=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(6, e.getId());
+            pst.setInt(7, e.getId());
             pst.setString(1, e.getNom());
             pst.setString(2, e.getPrenom());
             pst.setString(3, e.getEmail());
             pst.setInt(4, e.getTel());
             pst.setInt(5, e.getSalaire_id());
+            pst.setInt(6, e.getSalaire_montant());
            
             pst.executeUpdate();
             System.out.println("Enseignant modifiÃ©e !");

@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/controller/SeConnecterController.java</file>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/controller/PanelParentController.java</file>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/utils/Mail.java</file>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/controller/PanelAdminController.java</file>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/controller/SinscrireController.java</file>
-            <file>file:/C:/Users/safa/Desktop/PidevJavaaa/src/pidev/controller/AccueilController.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/entites/Reclamations.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/test/Main.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/entites/Paiement.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/services/EnseignantService.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/controller/EnseignantController.java</file>
         </group>
     </open-files>
 </project-private>

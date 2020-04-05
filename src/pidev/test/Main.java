@@ -36,8 +36,9 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        /*
         EnseignantService se=new EnseignantService();
-        se.read();
+        se.read();*/
         
     
     }
@@ -46,7 +47,7 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      launch(args);
+         launch(args);
      //
      
       /*
@@ -66,8 +67,8 @@ public class Main extends Application {
        
        //test enseignant
        EnseignantService sp1 = new EnseignantService();
-       Enseignant e = new Enseignant(18,"islem","salouma","iiiisleeeem@gmail.com",26745678,12);
-       sp1.delete(e);
+       Enseignant e = new Enseignant("youssef","lou","iem@gmail.com",26745678,12,3000);
+       sp1.add(e);
        sp1.read().forEach(System.out::println);
        
        
@@ -77,8 +78,8 @@ public class Main extends Application {
         sp.add(s,12);
         //sp1.Update(s);
        //sp1.delete(s);
-       sp.read().forEach(System.out::println);*/
+       sp.read().forEach(System.out::println);
        
-       
+       */
     
 }}

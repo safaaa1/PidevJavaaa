@@ -22,6 +22,13 @@ public class DossierMedical {
         this.titre=titre;
         this.contenu=contenu;
     }
+    public DossierMedical(int idDM){
+    this.idDM=idDM;
+    }
+    public DossierMedical(String titre,String contenu){
+    this.titre=titre;
+    this.contenu=contenu;
+    }
     public DossierMedical(){}
 
     public int getIdDM() {
@@ -83,7 +90,7 @@ public class DossierMedical {
 
     @Override
     public String toString() {
-        return "DossierMedical{" + "idDM=" + idDM + ", contenu=" + contenu + ", titre=" + titre + '}';
+        return titre;
     }
 
 }

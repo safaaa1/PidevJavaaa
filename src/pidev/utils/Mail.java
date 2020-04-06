@@ -20,6 +20,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author safa
  */
+
 public class Mail {
      public static void sendMail(String recepient) throws MessagingException {
         System.out.println("begin mail send");

@@ -6,7 +6,6 @@
 package pidev.controller;
 
 
-import pidev.controller.PanelParentController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -69,7 +68,7 @@ public class SeConnecterController implements Initializable {
             if (utilisateur.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}")) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/panelParent.fxml"));
                 Parent root = loader.load();
-                PanelParentController panelClientController = loader.getController();
+                EnfantController panelClientController = loader.getController();
                 mdp.getScene().setRoot(root);
             }else if(testRole.equals(responsable)){
                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev/gui/accueil.fxml"));

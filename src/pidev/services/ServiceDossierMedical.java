@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pidev.entites.DossierMedical;
 import pidev.utils.ConnectionBD;
 
@@ -65,7 +67,7 @@ public class ServiceDossierMedical implements IService<DossierMedical>{
 
     @Override
     public List<DossierMedical> afficher() {
-        List<DossierMedical> list = new ArrayList<>();
+ObservableList <DossierMedical> list =FXCollections.observableArrayList();
 
         try {
             String requete = "SELECT * FROM dossier_medical";

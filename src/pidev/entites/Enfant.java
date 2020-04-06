@@ -11,21 +11,32 @@ import java.util.Objects;
  *
  * @author yanisinfo
  */
-public class Enfant extends DossierMedical{
+public class Enfant{
     private int idEnfant;
     private String nom;
     private int age;
+    private int id_dossier;
 
-    public Enfant(int idEnfant,String nom, int age)
+    public Enfant(int idEnfant,String nom, int age,int id_dossier)
     {
-        super();
         this.idEnfant=idEnfant;
         this.nom=nom;
         this.age=age;
+        this.id_dossier=id_dossier;
+    }
+    public Enfant(String nom, int age,int id_dossier)
+    {
+     
+        this.nom=nom;
+        this.age=age;
+        this.id_dossier=id_dossier;
+    }
+    public Enfant(int idEnfant)
+    {
+        this.idEnfant=idEnfant;
     }
     public Enfant()
     {
-        super();
     }
 
     public int getIdEnfant() {
@@ -50,6 +61,14 @@ public class Enfant extends DossierMedical{
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getId_dossier() {
+        return id_dossier;
+    }
+
+    public void setId_dossier(int id_dossier) {
+        this.id_dossier = id_dossier;
     }
 
     @Override
@@ -87,7 +106,7 @@ public class Enfant extends DossierMedical{
 
     @Override
     public String toString() {
-        return "Enfant{" + "idEnfant=" + idEnfant + ", nom=" + nom + ", age=" + age + '}';
+        return nom;
     }
     
 }

@@ -18,14 +18,26 @@ public class Medecin extends Utilisateur{
     private String prenom;
     private String email;
     
-    public Medecin(int idMedecin,String nom,String prenom,String email ,int tel)
+    public Medecin(int idMedecin,String nom,int tel,String prenom,String email )
     {
         this.idMedecin=idMedecin;
         this.nom=nom;
+        this.tel=tel;
         this.prenom=prenom;
         this.email=email;
-        this.tel=tel;
+        
     
+    }
+        public Medecin(String nom,int tel,String prenom,String email )
+    {
+       
+        this.nom=nom;
+        this.tel=tel;
+        this.prenom=prenom;
+        this.email=email;
+    }
+    public Medecin(int idMedecin){
+    this.idMedecin=idMedecin;
     }
     public Medecin(){}
 
@@ -112,7 +124,7 @@ public class Medecin extends Utilisateur{
 
     @Override
     public String toString() {
-        return "Medecin{" + "idMedecin=" + idMedecin + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + '}';
+        return nom;
     }
     
 }

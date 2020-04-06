@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pidev.entites.Medecin;
 import pidev.utils.ConnectionBD;
 
@@ -43,7 +45,7 @@ public class ServiceMedecin implements IService<Medecin>{
         try {
             String requete = "DELETE FROM medcin WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, t.getId());
+            pst.setInt(1, t.getIdMedecin());
             pst.executeUpdate();
             System.out.println("Medecin supprimée !");
 
@@ -56,7 +58,7 @@ public class ServiceMedecin implements IService<Medecin>{
         try {
             String requete = "UPDATE medcin SET nom=?,tel=?,prenom=?,email=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(5, t.getId());
+            pst.setInt(5, t.getIdMedecin());
             pst.setString(1, t.getNom());
             pst.setInt(2, t.getTel());
             pst.setString(3, t.getPrenom());
@@ -70,14 +72,16 @@ public class ServiceMedecin implements IService<Medecin>{
 
     @Override
     public List<Medecin> afficher() {
-        List<Medecin> list = new ArrayList<>();
+       // List<Medecin> list = new ArrayList<>();
+       ObservableList <Medecin> list =FXCollections.observableArrayList();
+
 
         try {
             String requete = "SELECT * FROM medcin";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+                list.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
             }
 
         } catch (SQLException ex) {

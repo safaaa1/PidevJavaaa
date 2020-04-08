@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -88,6 +89,7 @@ public class EnseignantController implements Initializable {
     
      public ObservableList<Enseignant> data=FXCollections.observableArrayList();
              public ObservableList<Salaire> data2=FXCollections.observableArrayList();
+              //  ObservableList<PieChart> pieChartData = FXCollections.observableArrayList();
 
      
     @FXML
@@ -135,7 +137,8 @@ public class EnseignantController implements Initializable {
   
             });
     }
-               
+         
+    
         
     
     
@@ -161,7 +164,7 @@ public class EnseignantController implements Initializable {
       PreparedStatement stat = cnx.prepareStatement(sql);
       ResultSet rs = stat.executeQuery();
       while (rs.next()){
-      data2.add(new Salaire(rs.getInt(1), rs.getInt(2)));
+     data2.add(new Salaire(rs.getInt(1), rs.getInt(2)));
 
       }
       
@@ -179,7 +182,7 @@ public class EnseignantController implements Initializable {
         if(!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")&&!emailtxt.getText().equals("")&&!teltxt.getText().equals("")){
             EnseignantService se = new EnseignantService();
            Salaire s = cbsalaire.getSelectionModel().getSelectedItem();
-        se.add(new Enseignant(nomtxt.getText(),prenomtxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText()),s.getId()));
+        se.add(new Enseignant(nomtxt.getText(),prenomtxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText()),0));
            
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");

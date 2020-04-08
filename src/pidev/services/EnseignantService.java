@@ -25,14 +25,14 @@ public class EnseignantService {
     
      public void add(Enseignant e){
         
-        String req = "insert into enseignant (nom, prenom, email, tel,salaire_id) values(?, ?, ?, ?, ?)";
+        String req = "insert into enseignant (nom, prenom, email, tel) values(?, ?, ?, ? )";
         try {
                 PreparedStatement pst = cnx.prepareStatement(req); 
                 pst.setString(1, e.getNom());
                 pst.setString(2, e.getPrenom());
                 pst.setString(3, e.getEmail());
                 pst.setInt(4, e.getTel());
-                pst.setInt(5, e.getSalaire_id());
+          //      pst.setInt(5, e.getSalaire_id());
                 pst.executeUpdate();
                 System.out.println("enseignant crée!");
             } catch (SQLException ex) {
@@ -130,5 +130,6 @@ public class EnseignantService {
 
         return list;
     }
+    
     
 }

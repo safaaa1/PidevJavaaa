@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import static jdk.nashorn.internal.runtime.Debug.id;
 
 import pidev.entites.Reponse;
 import pidev.utils.ConnectionBD;
@@ -29,7 +32,7 @@ import pidev.utils.ConnectionBD;
         String req = "insert into reponse ( nom, titre, email, tel, description) values( ?, ?, ?, ?, ?);";
         try {
             PreparedStatement pst = cnx.prepareStatement(req);               
-         //   pst.setInt(1, rp.getId());
+           // pst.setInt(1, rp.getId());
             pst.setString(1, rp.getNom());
             pst.setString(2, rp.getTitre());
             pst.setString(3, rp.getEmail());
@@ -39,17 +42,17 @@ import pidev.utils.ConnectionBD;
     
                 System.out.println("reponse crée!");
             //    System.out.println("recl"+id+"idreclam"+;
-                
+                /*
                  String req2 = "UPDATE reclamations SET reponse_id=? WHERE id=?";
                  PreparedStatement pst2 = cnx.prepareStatement(req2);  
                  pst2.setInt(1, read().get(read().size()-1).getId());
                  pst2.setInt(2, id);
-                 pst2.executeUpdate();
+                 pst2.executeUpdate();*/
         } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        
         /*
+        
         try {
             String req2 = "UPDATE reclamations SET reponse_id=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
@@ -60,8 +63,8 @@ import pidev.utils.ConnectionBD;
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        }*/
-   
+        }
+   */
     }
      
     /**
@@ -100,17 +103,30 @@ import pidev.utils.ConnectionBD;
     }
     
     public List<Reponse> read() {
-        List<Reponse> list = new ArrayList<>();
+          ObservableList <Reponse> list =FXCollections.observableArrayList();
 
         try {
-            String req = "SELECT * FROM Reponse";
+            String req = "SELECT rp.id,rp.nom,rp.titre,rp.email,rp.tel,rp.description FROM reponse rp ";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
              while (rs.next()) {
-                list.add(new Reponse(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4), rs.getInt(5),  rs.getString(6)));
-            }
-
-        } catch (SQLException ex) {
+             
+               
+                 int id=rs.getInt("rp.id");
+                 String nom=rs.getString("rp.nom");
+                 String titre=rs.getString("rp.titre");
+                 String email=rs.getString("rp.email");
+                 int tel=rs.getInt("rp.tel");
+                 String description=rs.getString("rp.description");
+        
+                 Reponse rp=new Reponse(id,nom,titre,email,tel,description);
+                 System.out.println(rp.toString());
+                list.add(rp);
+                        
+            
+       } 
+        }
+             catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
@@ -120,5 +136,9 @@ import pidev.utils.ConnectionBD;
     public void Delete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
+
+
     
 }

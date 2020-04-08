@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.gui.ReponseController">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReponseController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -79,7 +79,7 @@
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="save" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="sauvegarder" textFill="#f8f6f6">
+            <Button fx:id="save" mnemonicParsing="false" onAction="#insertReponse" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="sauvegarder" textFill="#f8f6f6">
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin>
@@ -87,7 +87,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="saveedit" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Modifier" textFill="#f2eeee">
+            <Button fx:id="saveedit" mnemonicParsing="false" onAction="#saveedit" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Modifier" textFill="#f2eeee">
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
@@ -125,17 +125,18 @@
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
                 <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
-                <TableColumn fx:id="colnom" prefWidth="100.0" text="Nom" />
-                  <TableColumn fx:id="coltitre" prefWidth="100.0" text="Titre" />
-                  <TableColumn fx:id="colemail" prefWidth="149.0" text="E-mail" />
-                  <TableColumn fx:id="coltel" prefWidth="115.0" text="Téléphone" />
-                  <TableColumn fx:id="coldesc" prefWidth="166.0" text="Description" />
+                <TableColumn fx:id="colnom" text="Nom" />
+                  <TableColumn fx:id="coltitre" text="Titre" />
+                  <TableColumn fx:id="colemail" prefWidth="150.0" text="E-mail" />
+                  <TableColumn fx:id="coltel" prefWidth="100.0" text="Téléphone" />
+                  <TableColumn fx:id="coldesc" prefWidth="120.0" text="Description" />
+                 
               </columns>
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem fx:id="supprimer" mnemonicParsing="false" text="Supprimer" />
-                      <MenuItem fx:id="modifier" mnemonicParsing="false" text="modifier" />
+                      <MenuItem fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                      <MenuItem fx:id="modifier" mnemonicParsing="false" onAction="#modifier" text="modifier" />
                     </items>
                   </ContextMenu>
                </contextMenu>

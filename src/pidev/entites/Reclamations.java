@@ -20,7 +20,8 @@ public class Reclamations{
   private int tel;
   private String email;
   private String description;
-private Integer reponseid;
+   private int reponseid;
+   private String reponse;
 
     public Reclamations(String nom, String titre, int tel, String email, String description, int reponseid) {
         this.nom = nom;
@@ -31,6 +32,52 @@ private Integer reponseid;
         this.reponseid = reponseid;
     }
 
+    public Reclamations(int id, String nom, String titre, int tel, String email, String description, int reponseid, String reponse) {
+        this.id = id;
+        this.nom = nom;
+        this.titre = titre;
+        this.tel = tel;
+        this.email = email;
+        this.description = description;
+        this.reponseid = reponseid;
+        this.reponse = reponse;
+    }
+
+    public Reclamations( String nom, String titre, int tel, String email, String description, String reponse) {
+
+        this.nom = nom;
+        this.titre = titre;
+        this.tel = tel;
+        this.email = email;
+        this.description = description;
+        this.reponse = reponse;
+    }
+
+    public Reclamations(int id) {
+      this.id = id;
+    }
+
+  
+    
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String desc) {
+        this.reponse = reponse;
+    }
+
+
+
+   /* public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+*/
     public int getReponseid() {
         return reponseid;
     }
@@ -46,13 +93,13 @@ private Integer reponseid;
         this.tel = tel;
         this.email = email;
         this.description = description;
-/*       if(reponseid==NULL)
+ /*       if(reponseid==NULL)
         {
             this.reponseid=-1;
-        }*/
+        }
             
         this.reponseid = reponseid;
-        
+        */
     }
     
         public Reclamations(int id, String nom, String titre, int tel, String email, String description) {

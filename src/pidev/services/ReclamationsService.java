@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import pidev.entites.Enseignant;
 import pidev.entites.Reclamations;
 import pidev.utils.ConnectionBD;
 
@@ -24,22 +27,24 @@ import pidev.utils.ConnectionBD;
  */
 public class ReclamationsService {
     Connection cnx = ConnectionBD.getInstance().getCnx();
+  
     
      public void add(Reclamations reclamations){
       
                 
             
-        String req = "insert into reclamations (nom, titre, email, tel, description,reponse_id) values(?, ?, ?, ?, ?, ?);";
+        String req = "insert into reclamations (nom, titre, email, tel, description) values(?, ?, ?, ?, ?);";
         
         try {
                 PreparedStatement pst = cnx.prepareStatement(req);
                
-                pst.setObject(6, null);
+               // pst.setObject(6, null);
                 pst.setString(1, reclamations.getNom());
                 pst.setString(2, reclamations.getTitre());
                 pst.setString(3, reclamations.getEmail());
                 pst.setInt(4, reclamations.getTel());
                 pst.setString(5, reclamations.getDescription());
+             //   pst.setInt(6, reclamations.getReponseid());
                 pst.executeUpdate();
                 System.out.println("reclamations crée!");
             } catch (SQLException ex) {
@@ -83,7 +88,9 @@ public class ReclamationsService {
     }
     
     public List<Reclamations> read() {
-        List<Reclamations> list = new ArrayList<>();
+       // List<Reclamations> list = new ArrayList<>();
+       ObservableList <Reclamations> list =FXCollections.observableArrayList();
+ObservableList <Reclamations> list2 =FXCollections.observableArrayList();
 
         try {
             String req = "SELECT id,nom,titre,email,tel,description,reponse_id FROM reclamations";
@@ -99,7 +106,51 @@ public class ReclamationsService {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+            for(Reclamations r:list){
+                if(r.getReponseid()==0){
+                    r.setReponse("Pas du Reponse");
+                    System.out.println(r);
+                }
+                list2.add(r);
+            }
+        return list2;
+    }
+/*
+              ObservableList <Reclamations> list =FXCollections.observableArrayList();
+
+
+        try {
+            String req = "SELECT r.id,r.nom,r.titre.email,r.tel,r.reponseid FROM Reclamations r ";
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+             while (rs.next()) {
+                String descrition=null;
+               
+                 int id=rs.getInt("r.id");
+                 String nom=rs.getString("r.nom");
+                 String titre=rs.getString("r.titre");
+                 int tel=rs.getInt("r.tel");
+                 String email=rs.getString("r.email");
+                 int reponseid=rs.getInt("r.reponseid");
+                 if(reponseid !=0)
+                 {
+                      String req2="Select description from reponse where id="+reponseid;
+                   PreparedStatement pst2 = cnx.prepareStatement(req2);
+                    ResultSet rs2 = pst2.executeQuery();
+                    while(rs2.next())
+                    {
+                     descrition=rs2.getString("description");   
+                    }
+                 }
+                 Reclamations r=new Reclamations(id,nom,titre,tel,email,descrition,reponseid);
+                 System.out.println(r.toString());
+                list.add(r);
+            }
+                     } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
 
         return list;
-    }
+    }*/
 }
+    

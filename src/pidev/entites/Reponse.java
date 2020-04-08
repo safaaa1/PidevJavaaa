@@ -19,6 +19,8 @@ public class Reponse {
   private int tel;
   private String description;
 
+
+
     public int getId() {
         return id;
     }
@@ -82,6 +84,25 @@ public class Reponse {
         this.description = description;
     }
 
+    public Reponse(String nom, String titre, String email, int tel, String description) {
+        this.nom = nom;
+        this.titre = titre;
+        this.email = email;
+        this.tel = tel;
+        this.description = description;
+    }
+
+
+    
+
+    public Reponse(int id) {
+        this.id = id;
+    }
+
+    public Reponse() {
+    }
+
+    
     @Override
     public String toString() {
         return "Reponse{" + "id=" + id + ", nom=" + nom + ", titre=" + titre + ", email=" + email + ", tel=" + tel + ", description=" + description + '}';

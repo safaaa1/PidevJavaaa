@@ -5,6 +5,7 @@
  */
 package pidev.entites;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,6 +18,17 @@ public class Salaire {
     private int chiffre;
     private int prime;
     private Date date;
+
+    public Salaire(int id) {
+this.id=id;    }
+
+
+
+ 
+
+ 
+
+  
     
 
     public int getId() {
@@ -57,12 +69,19 @@ public class Salaire {
         this.prime = prime;
         this.date = date;
     }
-        public Salaire( int chiffre, int prime) {
-        this.id = id;
+        public Salaire( int chiffre, int prime, Date date) {
+       
         this.chiffre = chiffre;
         this.prime = prime;
+        this.date = date;
       
     }
+
+    public Salaire(int chiffre, int prime) {
+        this.chiffre = chiffre;
+        this.prime = prime;
+    }
+        
 
     @Override
     public int hashCode() {
@@ -100,16 +119,13 @@ public class Salaire {
         }
         return true;
     }
-/*
+    
+    
     @Override
     public String toString() {
         return "Salaire{" + "id=" + id + ", chiffre=" + chiffre + ", prime=" + prime + ", date=" + date + '}';
-    }*/
-
-    @Override
-    public String toString() {
-        return "chiffre=" + chiffre;
     }
+
     
     
     

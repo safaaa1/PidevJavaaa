@@ -28,7 +28,7 @@ public class SalaireService {
     Connection cnx = ConnectionBD.getInstance().getCnx();
     java.util.Date dt = new java.util.Date();
     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-
+      
     
      public void add(Salaire s , int idens){
         /*
@@ -94,13 +94,16 @@ public class SalaireService {
          
     public List<Salaire> read() {
         List<Salaire> list = new ArrayList<>();
-
+Salaire s;
         try {
             String req = "SELECT * FROM salaire";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
              while (rs.next()) {
-                list.add(new Salaire(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4)));
+                  s= new Salaire(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4));
+                list.add(s);
+                       
+                 System.out.println(s+"aaaaaa");
             }
 
         } catch (SQLException ex) {

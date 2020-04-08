@@ -13,8 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,6 +61,9 @@ public class EnfantController implements Initializable {
     private TableColumn<Enfant,Integer> coldm;
     @FXML
     private MenuItem supprimer;
+    
+    @FXML
+    private TextField filterField;
     @FXML
     private Button saveedit;
     public ObservableList<Enfant> data=FXCollections.observableArrayList();
@@ -69,6 +75,32 @@ public class EnfantController implements Initializable {
         // TODO
         viewEnfant();
         viewDossier();
+        filter();
+    }
+        public void filter(){
+     ServiceEnfant se = new ServiceEnfant();
+         data = FXCollections.observableArrayList(se.afficher());
+            FilteredList<Enfant> filterdata = new FilteredList<>(data, t -> true);
+            filterField.setOnKeyReleased(t -> {
+                filterField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                    filterdata.setPredicate((Predicate<? super Enfant>) type -> {
+                        if (newValue == null || newValue.isEmpty()) {
+                            return true;
+                        }
+                        if((type.getNom().contains(newValue)) || (type.getNom().toLowerCase().contains(newValue) )||
+                                ((type.getAge()+"").contains(newValue)))
+                                 {
+                            return true;
+                        }
+                        return false;
+                    });
+                });
+                SortedList<Enfant> sorteddata = new SortedList<>(filterdata);
+                data = sorteddata;  
+                table.setItems(data);
+       
+  
+            });
     }
     
     public void viewEnfant(){
@@ -205,9 +237,34 @@ public class EnfantController implements Initializable {
           return  id=data.get(0).getIdEnfant();
     }
 
-
-    
- 
+/*
+    public void filter(){
+     ServiceEnfant se = new ServiceEnfant();
+         data = FXCollections.observableArrayList(se.afficher());
+            FilteredList<Enfant> filterdata = new FilteredList<>(data, e -> true);
+            filterField.setOnKeyReleased(e -> {
+                filterField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+                    filterdata.setPredicate((Predicate<? super Enfant>) type -> {
+                        if (newValue == null || newValue.isEmpty()) {
+                            return true;
+                        }
+                         if((type.getNom().contains(newValue)) || (type.getNom().toLowerCase().contains(newValue))) 
+                                  
+                                {
+                            return true;
+                            
+                        }
+                        return false;
+                    });
+                });
+                SortedList<Enfant> sorteddata = new SortedList<>(filterdata);
+                data = sorteddata;  
+                table.setItems(data);
+       
+  
+            });
+    }    
+ */
 
     
     }

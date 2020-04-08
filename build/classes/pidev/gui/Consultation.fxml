@@ -43,7 +43,7 @@
    <left>
       <VBox prefHeight="570.0" prefWidth="300.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Ajouter Enfant" textFill="#f8f6f6">
+            <Label text="Consulter" textFill="#f8f6f6">
                <VBox.margin>
                   <Insets bottom="10.0" left="20.0" top="30.0" />
                </VBox.margin>

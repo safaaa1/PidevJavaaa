@@ -13,15 +13,15 @@
    <children>
       <ImageView fitHeight="402.0" fitWidth="699.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.5999755859375" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../../../Jardin-enfant.jpg" />
+            <Image url="@../images/blog-2.jpg" />
          </image>
       </ImageView>
       <Label fx:id="numTelTest" layoutX="277.0" layoutY="221.0" text="Label" />
-      <AnchorPane layoutX="114.0" layoutY="15.0" opacity="0.83" prefHeight="373.0" prefWidth="413.0" style="-fx-background-color: #d9cccc#d9cccc75 #d9cccc#d9cccc75; -fx-background-radius: 50;">
+      <AnchorPane layoutX="14.0" layoutY="13.0" opacity="0.83" prefHeight="373.0" prefWidth="413.0" style="-fx-background-color: #d9cccc#d9cccc75 #d9cccc#d9cccc75; -fx-background-radius: 50;">
          <children>
             <ImageView fitHeight="53.0" fitWidth="83.0" layoutX="180.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../person_add.png" />
+                  <Image url="@../images/person_add.png" />
                </image>
             </ImageView>
             <TextField fx:id="nom" layoutX="14.0" layoutY="89.0" onKeyReleased="#controlNom" promptText="Nom" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" />
@@ -42,7 +42,7 @@
                   <Font name="Comic Sans MS" size="15.0" />
                </font>
             </Button>
-            <ChoiceBox layoutX="298.0" layoutY="234.0" prefHeight="25.0" prefWidth="104.0" />
+            <ChoiceBox fx:id="rolesBox" layoutX="298.0" layoutY="234.0" prefHeight="25.0" prefWidth="104.0" />
             <Label layoutX="229.0" layoutY="238.0" prefHeight="17.0" prefWidth="61.0" text="Vous êtes:" />
          </children>
       </AnchorPane>

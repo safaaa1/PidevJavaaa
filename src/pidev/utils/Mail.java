@@ -15,12 +15,22 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import pidev.entites.Utilisateur;
 
 /**
  *
  * @author safa
  */
 public class Mail {
+      Utilisateur utilisateur;
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
      public static void sendMail(String recepient) throws MessagingException {
         System.out.println("begin mail send");
 
@@ -31,9 +41,10 @@ public class Mail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String monEmail = "safa.doghmani@esprit.tn";
-        String mdp = "";
-
+        
+   String monEmail = "safadoghmani1@gmail.com";
+        //test jjjj ok hhh
+        String mdp = "safamyself1";
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -48,12 +59,12 @@ public class Mail {
     }
     
     private static Message prepareMessage(Session session, String monMail) throws AddressException, MessagingException{
-        
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(monMail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(monMail));
         message.setSubject("");
-        message.setText("!");
+        
+        message.setText("Votre reservation est validee");
         return message;
     }
 }

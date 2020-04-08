@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -14,12 +15,12 @@
    <children>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button layoutX="5.0" layoutY="140.0" mnemonicParsing="false" onAction="#dashboard" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="140.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="evenement" layoutX="5.0" layoutY="185.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="185.0">
+            <Button fx:id="evenement" layoutX="16.0" layoutY="204.0" mnemonicParsing="false" onAction="#ListerEvent" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="204.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -47,14 +48,34 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="23.0" layoutY="201.0">
+            <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="23.0" layoutY="218.0">
                <image>
                   <Image url="@../images/event.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="23.0" layoutY="149.0">
+            <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="23.0" layoutY="155.0">
                <image>
                   <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="-4.0" layoutY="263.0" mnemonicParsing="false" onAction="#goToParents" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parents" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="button" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" onAction="#GoToReserv" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Reservations" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="24.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/account.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="27.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/exit.png" />
                </image>
             </ImageView>
          </children>
@@ -68,22 +89,17 @@
             </Button>
             <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0" />
             <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0" />
-            <Button fx:id="userName" layoutX="269.0" layoutY="4.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="252.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="-39.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="215.0" layoutY="11.0">
+            <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="198.0" layoutY="11.0">
                <image>
                   <Image url="@../images/favoris.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="242.0" layoutY="6.0">
+            <ImageView fitHeight="44.0" fitWidth="38.0" layoutX="228.0" layoutY="6.0">
                <image>
                   <Image url="@../images/fleche.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="29.0" layoutX="281.0" layoutY="12.0">
+            <ImageView fitHeight="28.0" fitWidth="29.0" layoutX="267.0" layoutY="12.0">
                <image>
                   <Image url="@../images/account.png" />
                </image>
@@ -140,5 +156,23 @@
          </children>
       </AnchorPane>
       <Label layoutX="396.0" layoutY="391.0" text="DressCode" />
+      <Button fx:id="annonceBtn" layoutX="10.0" layoutY="386.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Avis" textFill="WHITE">
+         <font>
+            <Font name="Baskerville" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="35.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/favoris.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_goBack" layoutX="551.0" layoutY="5.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="LogOut">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

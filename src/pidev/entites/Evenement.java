@@ -32,7 +32,7 @@ public class Evenement {
         this.image = image;
     }
 
-    public Evenement(String nom, String type, Date date, int nbrPlace, String dressCode, String image) {
+   public Evenement(String nom, String type, Date date, int nbrPlace, String dressCode, String image) {
         this.nom = nom;
         this.type = type;
         this.date = date;
@@ -43,6 +43,16 @@ public class Evenement {
     
  public Evenement() {
     }
+
+    public Evenement(String string, String string0, int aInt, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Evenement(int idEvent) {
+    }
+
+    
+   
 
     public int getIdEvent() {
         return idEvent;

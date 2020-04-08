@@ -64,7 +64,7 @@ public class EvenementService {
             }
         } catch (SQLException ex) {
         }
-        System.out.println("liste commandes admin recherche recupere");
+        System.out.println("evenement trouve ");
         return list;
     }
     
@@ -224,7 +224,7 @@ public class EvenementService {
                
                 PreparedStatement pst = cnx.prepareStatement(req);
              
-                pst.setInt(1, getQtOfProduct2(eventId) - 1);
+                pst.setInt(1, getNbr(eventId) - 1);
                 pst.setInt(2, eventId);
  
                 pst.executeUpdate();
@@ -261,7 +261,7 @@ public class EvenementService {
            
                
         }
-    public int getQtOfProduct2(int eventId) throws SQLException {
+    public int getNbr(int eventId) throws SQLException {
         int qt = 0 ;
        
         String req = "select nbrPlace from evenement where id_event = ?";

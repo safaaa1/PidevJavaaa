@@ -34,7 +34,7 @@ public class GestionUtilisateur {
             pst.setInt(9, 1);
 
             pst.executeUpdate();
-            System.out.println("Insertion effectué avec succés");
+            System.out.println("success");
         } catch (SQLException ex) {
         }
     }

@@ -188,7 +188,7 @@ public String handle(){
                     if (empty) {
                         setGraphic(null);
                         setText(null);
-                    } else {//if(4>9){
+                    } else {
                         final Button test = new Button("Supprimer");
                         test.setOnAction(event -> {
                             Evenement p = getTableView().getItems().get(getIndex());
@@ -240,7 +240,6 @@ public String handle(){
                                 // } catch (IOException ex) {
                                 //Logger.getLogger(ModifierEventController.class.getName()).log(Level.SEVERE, null, ex);
                                 //  }
-                                //panierService.addProduct(SingninController.userIden, p.getId());
                             } catch (IOException ex) {
                                 Logger.getLogger(AfficheEvenementController.class.getName()).log(Level.SEVERE, null, ex);
                             }

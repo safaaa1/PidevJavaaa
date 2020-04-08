@@ -68,7 +68,7 @@ private ChoiceBox rolesBox;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println("S'inscrire");
+        System.out.println("Sign in");
         numTelTest.setVisible(false);
         rolesBox.setItems(rolesList);
     }
@@ -133,7 +133,7 @@ private ChoiceBox rolesBox;
             gestionUtilisateur.ajouterClient(utilisateur);
             
             TrayNotification tray = new TrayNotification("Successfully",
-                    "Inscription Effectuée avec Succés", NotificationType.INFORMATION);
+                    "Sign in done", NotificationType.INFORMATION);
             tray.setAnimationType(AnimationType.SLIDE);
             tray.showAndDismiss(Duration.seconds(10));
 

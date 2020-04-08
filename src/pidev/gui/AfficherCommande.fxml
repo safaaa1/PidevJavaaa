@@ -87,7 +87,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="parc" layoutX="15.0" layoutY="215.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evenements" textFill="WHITE">
+                  <Button fx:id="parc" layoutX="15.0" layoutY="215.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evenements" textFill="WHITE">
                      <font>
                         <Font name="Baskerville" size="20.0" />
                      </font>

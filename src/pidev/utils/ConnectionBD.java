@@ -25,7 +25,7 @@ public class ConnectionBD {
             String pwd = "";
 
             connection = DriverManager.getConnection(url, login, pwd);
-            System.out.println("Connexion Etablie ! ");
+            System.out.println("Connexion Succes ! ");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }

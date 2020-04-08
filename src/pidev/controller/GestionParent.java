@@ -251,7 +251,7 @@ se.supprimer(String.valueOf(m.getId()));
             pst.setString(4, input_mdp.getText());
             pst.setInt(5, Integer.parseInt(input_tel.getText()));
             pst.executeUpdate();
-            System.out.println("Event modified !");
+            System.out.println("Parent modified !");
             viewParent();
 
         } catch (SQLException ex) {

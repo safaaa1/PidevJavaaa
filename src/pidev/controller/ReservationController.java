@@ -36,7 +36,6 @@ import pidev.entites.Utilisateur;
 import pidev.services.EvenementService;
 import pidev.services.ReservationService;
 import pidev.utils.Mail;
-import pidev.utils.SendMail;
 import pidev.utils.Session;
 import pidev.utils.alertHelper;
 import tray.animations.AnimationType;
@@ -151,25 +150,19 @@ Utilisateur utilisateur;
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
-    @FXML
-    private void AfficherPromenade(ActionEvent event) {
-    }
+   
 
-    @FXML
-    private void AfficherRefugeAction(ActionEvent event) {
-    }
+    
         public ObservableList<ReservationUtilisateur> data=FXCollections.observableArrayList();
 
     @FXML
     private void onClickEvenementAction(ActionEvent event) {
     }
 
-    @FXML
-    private void goToAnn(ActionEvent event) {
-    }
+   
 
     @FXML
-    private void AfficherParc(ActionEvent event) throws IOException {
+    private void Afficher(ActionEvent event) throws IOException {
         System.out.println(" liste events ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
         Parent root = loader.load();
@@ -268,12 +261,7 @@ Utilisateur utilisateur;
                         test.setOnAction((ActionEvent event) -> {
                             ReservationUtilisateur p = getTableView().getItems().get(getIndex());
                             EvenementService evenementService1 = new EvenementService();
-               // Utilisateur u = Session.getLoggedInUser();
-               // String to = utilisateur.getEmail();
-               // String subject = "Votre Commande Zanimaux";
-                //String message =  "Bonjour "+utilisateur.getNomUser()+" Vous trouverez ci-joint votre facture";
-               // String user = "zanimo.esprit@gmail.com";
-               // String pass = "esprit2018";
+               
                             try {
                                 se.annuler(p.getIdReser(),utilisateur);
                                 TrayNotification tray = new TrayNotification("Done",

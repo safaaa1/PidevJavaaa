@@ -16,6 +16,11 @@ public class Classe {
      private int idcl;
      private int nbrenfcl; 
      private int idgr;
+
+    @Override
+    public String toString() {
+        return nomclasse;
+    }
      private String nomclasse;
     @Override
     public int hashCode() {

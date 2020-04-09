@@ -17,7 +17,7 @@ public class Cours {
     private int idcl;
     private String nomcours;
     private String duree;
-    private String listeens;
+    
     private int idenfant;
     private int idenseignant;
 
@@ -28,7 +28,6 @@ public class Cours {
         hash = 67 * hash + this.idcl;
         hash = 67 * hash + Objects.hashCode(this.nomcours);
         hash = 67 * hash + Objects.hashCode(this.duree);
-        hash = 67 * hash + Objects.hashCode(this.listeens);
         hash = 67 * hash + this.idenfant;
         hash = 67 * hash + this.idenseignant;
         return hash;
@@ -64,28 +63,26 @@ public class Cours {
         if (!Objects.equals(this.duree, other.duree)) {
             return false;
         }
-        if (!Objects.equals(this.listeens, other.listeens)) {
-            return false;
-        }
+        
         return true;
     }
 
-    public Cours(int id, int idcl, String nomcours, String duree, String listeens, int idenfant, int idenseignant) {
+    public Cours(int id, int idcl, String nomcours, String duree, int idenfant, int idenseignant) {
         this.id = id;
         this.idcl = idcl;
         this.nomcours = nomcours;
         this.duree = duree;
-        this.listeens = listeens;
+        
         this.idenfant = idenfant;
         this.idenseignant = idenseignant;
     }
 
-public Cours(int idcl, String nomcours, String duree, String listeens, int idenfant, int idenseignant) {
+public Cours(int idcl, String nomcours, String duree, int idenfant, int idenseignant) {
         
         this.idcl = idcl;
         this.nomcours = nomcours;
         this.duree = duree;
-        this.listeens = listeens;
+        
         this.idenfant = idenfant;
         this.idenseignant = idenseignant;
     }
@@ -133,13 +130,7 @@ public Cours(int idcl, String nomcours, String duree, String listeens, int idenf
         this.duree = duree;
     }
 
-    public String getListeens() {
-        return listeens;
-    }
-
-    public void setListeens(String listeens) {
-        this.listeens = listeens;
-    }
+   
 
     public int getIdenfant() {
         return idenfant;

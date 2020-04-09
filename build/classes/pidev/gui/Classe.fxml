@@ -60,7 +60,7 @@
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="nbtxt" prefHeight="30.0" prefWidth="240.0" promptText="Nombre d'enfant">
+            <TextField fx:id="nbtxt" onAction="#saveedit" prefHeight="30.0" prefWidth="240.0" promptText="Nombre d'enfant">
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
@@ -78,7 +78,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="saveedit" mnemonicParsing="false" text="Modifier" />
+            <Button fx:id="saveedit" mnemonicParsing="false" onAction="#saveedit" text="Modifier" />
             <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
                <VBox.margin>
                   <Insets bottom="15.0" left="80.0" right="25.0" />
@@ -121,8 +121,8 @@
                <contextMenu>
                   <ContextMenu>
                     <items>
-                      <MenuItem fx:id="supprimer" mnemonicParsing="false" text="Supprimer" />
-                      <MenuItem fx:id="modifier" mnemonicParsing="false" text="modifier" />
+                      <MenuItem fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+                      <MenuItem fx:id="modifier" mnemonicParsing="false" onAction="#modifier" text="modifier" />
                     </items>
                   </ContextMenu>
                </contextMenu>

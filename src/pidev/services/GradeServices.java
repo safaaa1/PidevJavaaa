@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pidev.entites.Grade;
 import pidev.utils.ConnectionBD;
 
@@ -25,14 +27,14 @@ Connection cnx = ConnectionBD.getInstance().getCnx();
 
 
     public void ajouter(Grade g) {
-         String req="insert into grade (idgr,nbrclasse,nbrenfgr,nomgr) values(?,?,?,?);";
+         String req="insert into grade (nbrclasse,nbrenfgr,nomgr) values(?,?,?);";
         
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(1, g.getIdgr());
-            pst.setInt(2, g.getNbrclasse());
-            pst.setInt(3, g.getNbrenfgr());
-            pst.setString(4, g.getNomgr());
+            
+            pst.setInt(1, g.getNbrclasse());
+            pst.setInt(2, g.getNbrenfgr());
+            pst.setString(3, g.getNomgr());
             pst.executeUpdate();
             System.err.println("Grade Ajoutee ...");
         } catch (SQLException ex) {
@@ -71,7 +73,7 @@ Connection cnx = ConnectionBD.getInstance().getCnx();
         }  }
 
     public List<Grade> afficher() {
-       List<Grade> list = new ArrayList<>();
+       ObservableList <Grade> list =FXCollections.observableArrayList();
        String req ="select * from grade";
            
         try {

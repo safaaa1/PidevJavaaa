@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pidev.entites.Cours;
 import pidev.utils.ConnectionBD;
 
@@ -24,17 +26,17 @@ public class CoursServices implements IService<Cours> {
     Connection cnx = ConnectionBD.getInstance().getCnx();
     
     public void ajouter(Cours t) {
-       String req="insert into cours (idcl,nomcours,duree,listeens,idenfant,idenseignant) values(?,?,?,?,?,?);";
+       String req="insert into cours (idcl,nomcours,duree,idenfant,idenseignant) values(?,?,?,?,?);";
         
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
           
-            pst.setInt(2, t.getIdcl());
-            pst.setString(3, t.getNomcours());
-            pst.setString(4, t.getDuree());
-            pst.setString(5, t.getListeens());
-            pst.setInt(6, t.getIdenfant());
-            pst.setInt(7, t.getIdenseignant());
+            pst.setInt(1, t.getIdcl());
+            pst.setString(2, t.getNomcours());
+            pst.setString(3, t.getDuree());
+            
+            pst.setInt(4, t.getIdenfant());
+            pst.setInt(5, t.getIdenseignant());
             pst.executeUpdate();
             System.err.println("cours Ajoutee ...");
         } catch (SQLException ex) {
@@ -57,15 +59,15 @@ public class CoursServices implements IService<Cours> {
     
     public void modifier(Cours t) {
         try {
-            String requete = "UPDATE cours SET idcl=?,nomcours=?,duree=?,listeens=?,idenfant=?,idenseignant=? WHERE id=?";
+            String requete = "UPDATE cours SET idcl=?,nomcours=?,duree=?,idenfant=?,idenseignant=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(7, t.getId());
+            pst.setInt(6, t.getId());
             pst.setInt(1, t.getIdcl());
             pst.setString(2, t.getNomcours());
             pst.setString(3, t.getDuree());
-            pst.setString(4, t.getListeens());
-            pst.setInt(5, t.getIdenfant());
-            pst.setInt(6, t.getIdenseignant());
+            
+            pst.setInt(4, t.getIdenfant());
+            pst.setInt(5, t.getIdenseignant());
             pst.executeUpdate();
             System.out.println("cours modifiée !");
 
@@ -75,14 +77,16 @@ public class CoursServices implements IService<Cours> {
 
    
     public List<Cours> afficher() {
-        List<Cours> list = new ArrayList<>();
+      //List<Cours> list = new ArrayList<>();
+      
+      ObservableList <Cours> list =FXCollections.observableArrayList();
        String req ="select * from cours";
            
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-            Cours c = new Cours(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getInt(7));
+            Cours c = new Cours(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6));
              list.add(c);
             }
         } catch (SQLException ex) {

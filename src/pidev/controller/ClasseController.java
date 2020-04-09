@@ -9,8 +9,10 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -80,28 +83,8 @@ public class ClasseController implements Initializable {
         @Override
     public void initialize(URL location, ResourceBundle resources) {
         viewClasse();
-        viewGrade();
-        ClasseServices se = new ClasseServices();
-    table.setItems((ObservableList<Classe>) se.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("idcl"));
-    colnb.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("nbrenfcl"));
-    colgr.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("idgr"));
-    colnom.setCellValueFactory(new PropertyValueFactory<Classe,String>("nomclasse"));
-    
-    List<Classe> arr=new ArrayList<>();
-    
-    arr=se.afficher();
-    
-     ObservableList<Classe> ovbservableList= FXCollections.observableArrayList(arr);
-         table.setItems(ovbservableList);
-    
-        
-       
-        
-        
-        
-        
-    }
+        viewGrade();  
+   }
    
     public void viewClasse(){
     ClasseServices se = new ClasseServices();
@@ -129,6 +112,8 @@ public class ClasseController implements Initializable {
     cbcl.setItems(data2);
     
     }
+    
+    
     public void insertClasse(ActionEvent event){
         if(!nomtxt.getText().equals("")&&!nbtxt.getText().equals("")){
             ClasseServices se = new ClasseServices();
@@ -153,6 +138,82 @@ public class ClasseController implements Initializable {
         }
 
     }
+    
+     @FXML
+         private void modifier(ActionEvent event){
+           selectionner();
+   
+    }
 
+ String selectionner()
+    {
+          data=table.getSelectionModel().getSelectedItems();
+            String id;
+           id=data.get(0).getNomclasse();
+            System.out.println(id);
+            nbtxt.setText(String.valueOf(data.get(0).getNbrenfcl()));
+            nomtxt.setText(data.get(0).getNomclasse());
+            return id;
+    }
+    
+    @FXML
+    void saveedit(ActionEvent event) {
+             Connection cnx = ConnectionBD.getInstance().getCnx();
+             
+         try {
+            String requete = "UPDATE Classe SET Nbrenfcl=?,idgr=?,Nomclasse=? WHERE Idcl=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+                        Grade dm =cbcl.getSelectionModel().getSelectedItem();
+
+            pst.setInt(4, getid()); 
+            
+            pst.setInt(1, Integer.parseInt(nbtxt.getText()));
+            pst.setInt(2,dm.getIdgr());
+            pst.setString(3, nomtxt.getText());
+            pst.executeUpdate();
+            System.out.println("Classe modifiée !");
+            viewClasse();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } 
+    }
+
+ int getid()
+    {
+        data=table.getSelectionModel().getSelectedItems();
+            int id;
+          return  id=data.get(0).getIdcl();
+    }
+    @FXML
+    void supprimer(ActionEvent event) {
+    Classe m = table.getSelectionModel().getSelectedItem();
+
+    if (m == null) {
+    Alert alert = new Alert(AlertType.WARNING);
+
+    alert.setAlertType(Alert.AlertType.WARNING);
+
+     // set content text
+     alert.setContentText(" Choix invalide ");
+
+     // show the dialog
+     alert.show();
+  }
+     else{
+           ClasseServices se =new ClasseServices();
+       Classe e =new Classe(m.getIdcl());
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Confirmation ");
+      alert.setHeaderText(null);
+      alert.setContentText("Vous voulez vraiment supprimer ce Classe ");
+      Optional<ButtonType> action = alert.showAndWait();
+      if (action.get() == ButtonType.OK) {
+         se.supprimer(e);
+         viewClasse();
+
+      }
+    }
+} 
     
 }

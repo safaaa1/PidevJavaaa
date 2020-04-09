@@ -66,6 +66,25 @@ public class Grade {
         this.nbrenfgr = nbrenfgr;
         this.nomgr = nomgr;
     }
+    
+        public Grade(int nbrclasse, int nbrenfgr, String nomgr) {
+        
+        this.nbrclasse = nbrclasse;
+        this.nbrenfgr = nbrenfgr;
+        this.nomgr = nomgr;
+        
+    }
+ 
+        public Grade(int idgr) {
+        
+       this.idgr = idgr;
+        
+    }
+    public Grade() {
+        
+        
+    }
+        
 
 
 

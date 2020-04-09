@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="pidev.controller.InscriptionContineController">
+    <stylesheets>
+        <URL value="@/pidev/style/inscriptioncontine.css" />
+    </stylesheets>
+   <children>
+      <TitledPane animated="false" layoutX="3.0" prefHeight="400.0" prefWidth="600.0" text="Inscription Contine">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="400.0" fitWidth="606.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Jardin-enfant.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="61.0" layoutY="50.0" prefHeight="17.0" prefWidth="36.0" text="Nom" textFill="#fffdfd" />
+                  <Label layoutX="57.0" layoutY="106.0" text="Prenom" textFill="WHITE" />
+                  <Label layoutX="61.0" layoutY="170.0" text="E-Mail" textFill="WHITE" />
+                  <Label layoutX="56.0" layoutY="239.0" text="Mot de passe" textFill="WHITE" />
+                  <PasswordField layoutX="199.0" layoutY="235.0" />
+                  <PasswordField layoutX="199.0" layoutY="302.0" />
+                  <Label layoutX="56.0" layoutY="306.0" text="Confirmer MDP" textFill="WHITE" />
+                  <TextField layoutX="199.0" layoutY="175.0" />
+                  <TextField layoutX="199.0" layoutY="111.0" />
+                  <TextField layoutX="199.0" layoutY="46.0" />
+                  <Button layoutX="440.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Inscriez Vous" />
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

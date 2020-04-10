@@ -5,6 +5,8 @@
  */
 package pidev.entites;
 
+import java.sql.Date;
+
 /**
  *
  * @author Moetaz Jebri
@@ -13,17 +15,33 @@ public class Abonnement {
     private int IdAbn;
     private int Idenf;
     private String NomParent;
-    private String NomEnfant;
-    private String Date;
+    private Date date;
     private String Typepay;
 
-    public Abonnement(int IdAbn, int Idenf, String NomParent, String NomEnfant, String Date, String Typepay) {
+    public Abonnement(int IdAbn, int Idenf, String NomParent,  Date date, String Typepay) {
         this.IdAbn = IdAbn;
         this.Idenf = Idenf;
         this.NomParent = NomParent;
-        this.NomEnfant = NomEnfant;
-        this.Date = Date;
+        
+        this.date = date;
         this.Typepay = Typepay;
+    }
+        public Abonnement(int Idenf, String NomParent, Date date, String Typepay) {
+        
+      this.Idenf = Idenf;
+        this.NomParent = NomParent;
+     
+        this.date = date;
+        this.Typepay = Typepay;
+          
+    }
+        public Abonnement() {
+        
+       
+    }
+    public Abonnement(int IdAbn) {
+        
+       this.IdAbn=IdAbn;
     }
     
     public int getIdAbn() {
@@ -50,20 +68,16 @@ public class Abonnement {
         this.NomParent = NomParent;
     }
 
-    public String getNomEnfant() {
-        return NomEnfant;
+
+
+
+
+    public Date getDate() {
+        return date;
     }
 
-    public void setNomEnfant(String NomEnfant) {
-        this.NomEnfant = NomEnfant;
-    }
-
-    public String getDate() {
-        return Date;
-    }
-
-    public void setDate(String Date) {
-        this.Date = Date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getTypepay() {
@@ -76,7 +90,7 @@ public class Abonnement {
 
     @Override
     public String toString() {
-        return "Abonnement{" + "IdAbn=" + IdAbn + ", Idenf=" + Idenf + ", NomParent=" + NomParent + ", NomEnfant=" + NomEnfant + ", Date=" + Date + ", Typepay=" + Typepay + '}';
+        return "Abonnement{" + "IdAbn=" + IdAbn + ", Idenf=" + Idenf + ", NomParent=" + NomParent  + ", Date=" + date + ", Typepay=" + Typepay + '}';
     }
 
     

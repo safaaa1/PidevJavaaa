@@ -23,7 +23,7 @@ public class ContineService {
     Connection cnx = ConnectionBD.getInstance().getCnx();
     
     public void ajouter (Contine c){
-        String req = "insert into contine (IdC, Nom,  Menu,  date, PlatDuJours,  Nbenf,  Idenf, IdAb, Nombrenf)values ('"+c.getIdC()+"','"+c.getNom()+"','"+c.getMenu()+"','"+c.getDate()+"','"+c.getPlatDuJours()+"','"+c.getNbenf()+"','"+c.getIdAb()+"','"+c.getNombrenf()+"');";
+        String req = "insert into cont (Id,Nom,Menu,  date, PlatDuJours,  Nbenf,  Idenf, IdAb, Nombrenf)values ('"+c.getIdC()+"','"+c.getNom()+"','"+c.getMenu()+"','"+c.getDate()+"','"+c.getPlatDuJours()+"','"+c.getNbenf()+"','"+c.getIdAb()+"','"+c.getNombrenf()+"');";
         try{
             Statement st = cnx.createStatement();
             st.executeUpdate(req);

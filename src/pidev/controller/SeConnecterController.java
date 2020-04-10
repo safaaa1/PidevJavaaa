@@ -63,13 +63,8 @@ public class SeConnecterController implements Initializable {
             System.out.println("authentification reussite ");
             
             idUtilisateur = utilisateur.getId();
-            if (utilisateur.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/EventFront.fxml"));
-                Parent root = loader.load();
-                EventFrontController eventFrontController = loader.getController();
-                eventFrontController.setUtilisateur(utilisateur);
-                mdp.getScene().setRoot(root);
-            }else if(testRole.equals(responsable)){
+            
+             if(testRole.equals(responsable)){
                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                 Stage secondStage = new Stage();

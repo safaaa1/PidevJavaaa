@@ -38,6 +38,32 @@ public class GestionUtilisateur {
         } catch (SQLException ex) {
         }
     }
+ 
+ 
+ 
+ 
+ 
+ public void ajouterAdmin(Utilisateur utilisateur) {
+        String requete = "insert into Utilisateurs (username,username_canonical,email,email_canonical,password,nom,prenom,roles,enabled) values (?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pst;
+        try {
+            pst = ConnectionBD.getInstance().getCnx().prepareStatement(requete);
+
+            pst.setString(1, utilisateur.getUsername());//
+            pst.setString(2, utilisateur.getUsername());//
+            pst.setString(3, utilisateur.getEmail());//
+            pst.setString(4, utilisateur.getEmail());//
+            pst.setString(5, utilisateur.getPassword());//
+            pst.setString(6, utilisateur.getNomUser());//
+            pst.setString(7, utilisateur.getPrenomUser());//
+            pst.setString(8, "a:1:{i:0;s:16:\\\"ROLE_RESPONSABLE\\\";}");//
+            pst.setInt(9, 1);
+
+            pst.executeUpdate();
+            System.out.println("success");
+        } catch (SQLException ex) {
+        }
+    }
 
     public boolean mailExiste(String mail) throws SQLException {
         String req = "select * from User where email =?";

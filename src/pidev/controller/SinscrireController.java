@@ -38,7 +38,6 @@ import tray.notification.TrayNotification;
  * @author safa
  */
 public class SinscrireController implements Initializable {
-    ObservableList<String> rolesList=FXCollections.observableArrayList("admin","parent","medecin","enseignant");
     @FXML
     private TextField prenom;
     @FXML
@@ -49,8 +48,6 @@ public class SinscrireController implements Initializable {
     private TextField numTel;
     @FXML
     private TextField mdp;
-       @FXML
-private ChoiceBox rolesBox;
                
        
     Boolean verificationNom = false;
@@ -70,7 +67,6 @@ private ChoiceBox rolesBox;
         // TODO
         System.out.println("Sign in");
         numTelTest.setVisible(false);
-        rolesBox.setItems(rolesList);
     }
 
     @FXML
@@ -127,10 +123,9 @@ private ChoiceBox rolesBox;
             utilisateur.setPassword(mdpCrypte1);
             utilisateur.setNomUser(nom.getText());
             utilisateur.setPrenomUser(prenom.getText());
-            utilisateur.setRoles((String) rolesBox.getValue());
 
             GestionUtilisateur gestionUtilisateur = new GestionUtilisateur();
-            gestionUtilisateur.ajouterClient(utilisateur);
+            gestionUtilisateur.ajouterAdmin(utilisateur);
             
             TrayNotification tray = new TrayNotification("Successfully",
                     "Sign in done", NotificationType.INFORMATION);
@@ -168,6 +163,17 @@ private ChoiceBox rolesBox;
         }
     }
 
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
     @FXML
     private void controlNumero(KeyEvent event) {
         verificationNumTel = false;

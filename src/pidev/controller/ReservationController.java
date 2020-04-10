@@ -57,23 +57,11 @@ public class ReservationController implements Initializable {
     @FXML
     private Button button;
     @FXML
-    private Button Petsitter;
-    @FXML
-    private Button buttonRefuge;
-    @FXML
-    private Button evenement;
-    @FXML
     private Button annonceBtn;
     @FXML
     private Button parc;
     @FXML
     private Button userName;
-    @FXML
-    private Pane paneProfil;
-    @FXML
-    private Button btn11;
-    @FXML
-    private Button btn1;
     @FXML
     private AnchorPane anchorEvent;
     @FXML
@@ -92,6 +80,8 @@ public class ReservationController implements Initializable {
     @FXML
     private TableColumn<ReservationUtilisateur, String> prenomUser;
     public static  String DEST = "file:///C:/simple_table6.pdf";
+    @FXML
+    private Button btn_goBack;
 
     /**
      * Initializes the controller class.
@@ -155,9 +145,6 @@ Utilisateur utilisateur;
     
         public ObservableList<ReservationUtilisateur> data=FXCollections.observableArrayList();
 
-    @FXML
-    private void onClickEvenementAction(ActionEvent event) {
-    }
 
    
 
@@ -174,9 +161,6 @@ Utilisateur utilisateur;
     private void showPaneProfil(MouseEvent event) {
     }
 
-    @FXML
-    private void connexionAction(ActionEvent event) {
-    }
 
     @FXML
     private void hidePaneProfil(MouseEvent event) {

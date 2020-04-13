@@ -148,6 +148,7 @@ public class DossierMedicalController implements Initializable {
             pst.executeUpdate();
             System.out.println("Dossier modifiée !");
             viewDossierMedical();
+            clearFields();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -160,4 +161,13 @@ public class DossierMedicalController implements Initializable {
             int id;
           return  id=data.get(0).getIdDM();
     }
+ 
+ private void clearFields(){
+ contenutxt.clear();
+ titretxt.clear();
+ }
+ @FXML
+  void reset(ActionEvent event){
+  clearFields();
+  }
 }

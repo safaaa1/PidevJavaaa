@@ -76,11 +76,11 @@ public class ServiceEnfant implements IService<Enfant>{
 ObservableList <Enfant> list =FXCollections.observableArrayList();
 
         try {
-            String requete = "SELECT * FROM enfant";
+            String requete = "SELECT enfant.id, enfant.nom,enfant.age ,dossier_medical.titre FROM `enfant`,dossier_medical WHERE dossier_medical.id=enfant.id_dossier;";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Enfant(rs.getInt(1), rs.getString(2), rs.getInt(3),rs.getInt(4)));
+                list.add(new Enfant(rs.getInt(1),rs.getString(2), rs.getInt(3), rs.getString(4)));
             }
 
         } catch (SQLException ex) {

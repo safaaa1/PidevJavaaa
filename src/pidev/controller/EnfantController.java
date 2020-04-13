@@ -20,7 +20,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -31,6 +33,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javax.swing.JOptionPane;
 import pidev.entites.DossierMedical;
 import pidev.entites.Enfant;
@@ -51,14 +54,13 @@ public class EnfantController implements Initializable {
     private ComboBox<DossierMedical> cbdm;
     @FXML
     private TableView<Enfant> table;
-    @FXML
-    private TableColumn<Enfant,Integer> colid;
+
     @FXML
     private TableColumn<Enfant,String> colnom;
     @FXML
     private TableColumn<Enfant,Integer> colage;
     @FXML
-    private TableColumn<Enfant,Integer> coldm;
+    private TableColumn<Enfant,String> coldm;
     @FXML
     private MenuItem supprimer;
     
@@ -66,8 +68,21 @@ public class EnfantController implements Initializable {
     private TextField filterField;
     @FXML
     private Button saveedit;
+
     public ObservableList<Enfant> data=FXCollections.observableArrayList();
         public ObservableList<DossierMedical> data2=FXCollections.observableArrayList();
+    @FXML
+    private BorderPane sakhta;
+    @FXML
+    private Button save;
+    @FXML
+    private Button reset;
+    @FXML
+    private Button logout;
+    @FXML
+    private MenuItem modifier;
+    @FXML
+    private TableColumn<?, ?> colmodifier;
 
     
         @Override
@@ -77,6 +92,7 @@ public class EnfantController implements Initializable {
         viewDossier();
         filter();
     }
+    @FXML
         public void filter(){
      ServiceEnfant se = new ServiceEnfant();
          data = FXCollections.observableArrayList(se.afficher());
@@ -103,13 +119,24 @@ public class EnfantController implements Initializable {
             });
     }
     
+       @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+    }  
+        
+        
+        
+        
     public void viewEnfant(){
     ServiceEnfant se = new ServiceEnfant();
     table.setItems((ObservableList<Enfant>) se.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("id"));
+    //colid.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("idEnfant"));
     colnom.setCellValueFactory(new PropertyValueFactory<Enfant,String>("nom"));
     colage.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("age"));
-    coldm.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("id_dossier"));
+    coldm.setCellValueFactory(new PropertyValueFactory<Enfant,String>("titre"));
 
     }
     public void viewDossier(){
@@ -133,6 +160,7 @@ public class EnfantController implements Initializable {
     }
     
     
+    @FXML
     public void insertEnfant(ActionEvent event){
         if(!nomtxt.getText().equals("")&&!agetxt.getText().equals("")){
             ServiceEnfant se = new ServiceEnfant();
@@ -147,6 +175,7 @@ public class EnfantController implements Initializable {
                nomtxt.setText("");
                agetxt.setText("");
                viewEnfant();
+               clearFields();
 
         }else{
         Alert alert = new Alert(AlertType.WARNING);
@@ -219,6 +248,7 @@ public class EnfantController implements Initializable {
             pst.executeUpdate();
            // System.out.println("Enfant modifiée !");
             viewEnfant();
+            clearFields();
                          Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
            // alert.setHeaderText("Look, an Information Dialog");
@@ -236,40 +266,17 @@ public class EnfantController implements Initializable {
             int id;
           return  id=data.get(0).getIdEnfant();
     }
-
-/*
-    public void filter(){
-     ServiceEnfant se = new ServiceEnfant();
-         data = FXCollections.observableArrayList(se.afficher());
-            FilteredList<Enfant> filterdata = new FilteredList<>(data, e -> true);
-            filterField.setOnKeyReleased(e -> {
-                filterField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-                    filterdata.setPredicate((Predicate<? super Enfant>) type -> {
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-                         if((type.getNom().contains(newValue)) || (type.getNom().toLowerCase().contains(newValue))) 
-                                  
-                                {
-                            return true;
-                            
-                        }
-                        return false;
-                    });
-                });
-                SortedList<Enfant> sorteddata = new SortedList<>(filterdata);
-                data = sorteddata;  
-                table.setItems(data);
-       
-  
-            });
-    }    
- */
-
-    
+ 
+ private void clearFields(){
+     nomtxt.clear();
+     agetxt.clear();
+     cbdm.getSelectionModel().clearSelection();
+ }
+     @FXML
+    void reset(ActionEvent event) {
+    	clearFields();
     }
-
-
     
     
-
+    
+}

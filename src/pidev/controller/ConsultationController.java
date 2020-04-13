@@ -40,6 +40,7 @@ import pidev.utils.ConnectionBD;
 public class ConsultationController implements Initializable{
     @FXML
     private ComboBox<Medecin> cbmed;
+    private ObservableList<Consultation> listt;
 
     @FXML
     private ComboBox<Enfant> cbenf;
@@ -52,35 +53,37 @@ public class ConsultationController implements Initializable{
     private TableView<Consultation> table;
 
     @FXML
-    private TableColumn<Consultation, Integer> colid;
+    private TableColumn<Consultation, String> colmed;
 
     @FXML
-    private TableColumn<Consultation, Integer> colmed;
-
-    @FXML
-    private TableColumn<Consultation, Integer> colenf;
+    private TableColumn<Consultation, String> colenf;
 
     @FXML
     private TableColumn<Consultation, Date> coldate;
+    @FXML
+    private TableColumn<Consultation, Integer> colid;
+    
         public ObservableList<Consultation> data=FXCollections.observableArrayList();
         public ObservableList<Medecin> data2=FXCollections.observableArrayList();
         public ObservableList<Enfant> data3=FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        viewConsultation();
+       
         viewMedecin();
         viewEnfant();
+     viewConsultation();  
     }
      public void viewConsultation(){
     ServiceConsultation se = new ServiceConsultation();
     table.setItems((ObservableList<Consultation>) se.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Consultation,Integer>("idCons"));
-    colmed.setCellValueFactory(new PropertyValueFactory<Consultation,Integer>("idMed"));
-    colenf.setCellValueFactory(new PropertyValueFactory<Consultation,Integer>("idEnf"));
+    //colid.setCellValueFactory(new PropertyValueFactory<Consultation,Integer>("idCons"));
+    colmed.setCellValueFactory(new PropertyValueFactory<Consultation,String>("nomMed"));
+    colenf.setCellValueFactory(new PropertyValueFactory<Consultation,String>("nomEnf"));
     coldate.setCellValueFactory(new PropertyValueFactory<Consultation,Date>("dateCons"));
 
     }
+     
     public void viewMedecin(){
     try{
       Connection cnx = ConnectionBD.getInstance().getCnx();
@@ -138,6 +141,7 @@ public class ConsultationController implements Initializable{
               /* nomtxt.setText("");
                agetxt.setText("");*/
                viewConsultation();
+               //clearFields();
 
         }else{
         Alert alert = new Alert(AlertType.WARNING);
@@ -173,6 +177,7 @@ public class ConsultationController implements Initializable{
       Optional<ButtonType> action = alert.showAndWait();
       if (action.get() == ButtonType.OK) {
          se.supprimer(e);
+          
          viewConsultation();
 
       }
@@ -188,11 +193,12 @@ public class ConsultationController implements Initializable{
     {
           data=table.getSelectionModel().getSelectedItems();
             int id;
-           id=data.get(0).getIdCons();
+           id=data.get(0).getIdEnf();
             System.out.println(id);
             
-          //  cbmed.setValue(data.get(0).getIdMed());
+            //cbmed.setValue(data.get(0).getIdMed());
             //agetxt.setText(String.valueOf(data.get(0).getAge()));
+            
             dpdate.setValue(data.get(0).getDateCons().toLocalDate());
             return id;
     }
@@ -220,7 +226,8 @@ public class ConsultationController implements Initializable{
             pst.setDate(3,datecons);
             pst.executeUpdate();
              viewConsultation();
-           // System.out.println("consultation modifiée !");
+            // clearFields();
+            System.out.println("consultation modifiée !");
               Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
            // alert.setHeaderText("Look, an Information Dialog");
@@ -231,5 +238,15 @@ public class ConsultationController implements Initializable{
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         } 
+    }
+    
+    private void clearFields(){
+       cbmed.getSelectionModel().clearSelection(); 
+       cbenf.getSelectionModel().clearSelection();
+       dpdate.getEditor().clear();
+    }
+    @FXML
+    void reset(ActionEvent event) {
+    	clearFields();
     }
 }

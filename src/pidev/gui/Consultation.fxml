@@ -58,12 +58,12 @@
             </HBox>
             <ComboBox fx:id="cbmed" prefHeight="30.0" prefWidth="240.0" promptText="Selectionner Medecin">
                <VBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="25.0" />
+                  <Insets bottom="30.0" left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
             <ComboBox fx:id="cbenf" prefHeight="30.0" prefWidth="240.0" promptText="Selectionner enfant">
                <VBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="25.0" />
+                  <Insets bottom="30.0" left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
             <DatePicker fx:id="dpdate" prefHeight="30.0" prefWidth="240.0">
@@ -73,7 +73,7 @@
             </DatePicker>
             <Button fx:id="save" mnemonicParsing="false" onAction="#insertConsultation" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="sauvegarder" textFill="#f8f6f6">
                <VBox.margin>
-                  <Insets bottom="20.0" left="80.0" right="25.0" />
+                  <Insets bottom="30.0" left="80.0" right="25.0" />
                </VBox.margin>
                <font>
                   <Font size="16.0" />
@@ -83,14 +83,6 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
-               <VBox.margin>
-                  <Insets bottom="15.0" left="80.0" right="25.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </left>
@@ -116,10 +108,9 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
                 <TableColumn fx:id="colmed" prefWidth="200.0" text="Nom medecin" />
                   <TableColumn fx:id="colenf" prefWidth="200.0" text="Nom enfant" />
-                  <TableColumn fx:id="coldate" maxWidth="1.7976931348623157E308" prefWidth="250.0" text="Date Consultation" />
+                  <TableColumn fx:id="coldate" maxWidth="1.7976931348623157E308" prefWidth="284.0" text="Date Consultation" />
               </columns>
                <contextMenu>
                   <ContextMenu>

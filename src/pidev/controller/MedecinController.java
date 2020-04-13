@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,17 +16,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import pidev.entites.Medecin;
 import pidev.services.ServiceMedecin;
 import pidev.utils.ConnectionBD;
@@ -35,6 +40,15 @@ import pidev.utils.ConnectionBD;
  * @author yanisinfo
  */
 public class MedecinController implements Initializable {
+
+    @FXML
+    private Button logout;
+    @FXML
+    private MenuItem supprimer;
+    @FXML
+    private MenuItem modifier;
+    @FXML
+    private BorderPane sakhta;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -99,6 +113,18 @@ public class MedecinController implements Initializable {
 
 
     }
+        
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+    }  
+        
+        
+        
+    @FXML
     public void insertMedecin(ActionEvent event){
     if(!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")&&!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")){
         ServiceMedecin se = new ServiceMedecin();
@@ -115,6 +141,7 @@ public class MedecinController implements Initializable {
            emailtxt.setText("");
            teltxt.setText("");
            viewMedecin();
+           clearFields();
 
     }else{
     Alert alert = new Alert(AlertType.WARNING);
@@ -188,6 +215,7 @@ public class MedecinController implements Initializable {
             pst.executeUpdate();
             System.out.println("Medecin modifiée !");
             viewMedecin();
+            clearFields();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -228,5 +256,15 @@ public class MedecinController implements Initializable {
             numTelTest.setText("Il faut 8 chiffres");
             verificationNumTel = false;
         }
+    }
+    private void clearFields(){
+        nomtxt.clear();
+        prenomtxt.clear();
+        teltxt.clear();
+        emailtxt.clear();
+    }
+    @FXML
+    void reset(ActionEvent event) {
+    	clearFields();
     }
 }

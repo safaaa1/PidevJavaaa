@@ -16,6 +16,7 @@ public class Enfant{
     private String nom;
     private int age;
     private int id_dossier;
+    private String titre;
 
     public Enfant(int idEnfant,String nom, int age,int id_dossier)
     {
@@ -23,6 +24,13 @@ public class Enfant{
         this.nom=nom;
         this.age=age;
         this.id_dossier=id_dossier;
+    }
+    public Enfant(int idEnfant,String nom, int age,String titre)
+    {
+        this.idEnfant=idEnfant;
+        this.nom=nom;
+        this.age=age;
+        this.titre=titre;
     }
     public Enfant(String nom, int age,int id_dossier)
     {
@@ -102,6 +110,14 @@ public class Enfant{
             return false;
         }
         return true;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     @Override

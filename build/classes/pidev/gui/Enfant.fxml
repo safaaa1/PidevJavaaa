@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.EnfantController">
+<BorderPane fx:id="sakhta" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.EnfantController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -57,22 +57,22 @@
             </HBox>
             <TextField fx:id="nomtxt" prefHeight="30.0" prefWidth="240.0" promptText="Nom">
                <VBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="25.0" />
+                  <Insets bottom="30.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
             <TextField fx:id="agetxt" prefHeight="30.0" prefWidth="240.0" promptText="Age">
                <VBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="25.0" />
+                  <Insets bottom="30.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
             <ComboBox fx:id="cbdm" prefHeight="30.0" prefWidth="240.0" promptText="Selectionner Dossier Medical">
                <VBox.margin>
-                  <Insets bottom="20.0" left="25.0" right="25.0" />
+                  <Insets bottom="30.0" left="25.0" right="25.0" />
                </VBox.margin>
             </ComboBox>
             <Button fx:id="save" mnemonicParsing="false" onAction="#insertEnfant" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="sauvegarder" textFill="#f8f6f6">
                <VBox.margin>
-                  <Insets bottom="20.0" left="80.0" right="25.0" />
+                  <Insets bottom="30.0" left="80.0" right="25.0" />
                </VBox.margin>
                <font>
                   <Font size="16.0" />
@@ -82,14 +82,6 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
-               <VBox.margin>
-                  <Insets bottom="15.0" left="80.0" right="25.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </left>
@@ -103,7 +95,7 @@
                         <Insets left="200.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                      <HBox.margin>
                         <Insets left="180.0" right="5.0" top="10.0" />
                      </HBox.margin>
@@ -115,11 +107,9 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
                 <TableColumn fx:id="colnom" prefWidth="150.0" text="Nom" />
                   <TableColumn fx:id="colage" prefWidth="146.0" text="Age" />
-                  <TableColumn fx:id="coldm" prefWidth="284.0" text="Dossier Medical" />
-                  <TableColumn fx:id="colmodifier" minWidth="6.0" prefWidth="77.0" text="edit" />
+                  <TableColumn fx:id="coldm" prefWidth="346.0" text="Dossier Medical" />
               </columns>
                <contextMenu>
                   <ContextMenu>

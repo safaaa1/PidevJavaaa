@@ -76,11 +76,13 @@ public class ServiceConsultation implements IService<Consultation> {
 ObservableList <Consultation> list =FXCollections.observableArrayList();
 
         try {
-            String requete = "SELECT * FROM consultation";
+           // String requete = "select * from consultation";
+            
+            String requete = "select consultation.id_const, medcin.nom,enfant.nom ,consultation.date_const from enfant,medcin ,consultation where consultation.id_medecin=medcin.id and enfant.id=consultation.id_enfant";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Consultation(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getDate(4)));
+                list.add(new Consultation(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getDate(4)));
             }
 
         } catch (SQLException ex) {

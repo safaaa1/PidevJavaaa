@@ -68,10 +68,10 @@ public class Main extends Application {
      dm.afficher().forEach(System.out::println); */
      
      //test consultation
-    /* ServiceConsultation sc = new ServiceConsultation();
-     Date dateS=Date.valueOf("1999-04-09");
+     /*ServiceConsultation sc = new ServiceConsultation();
+     Date dateS=Date.valueOf("2000-04-09");
 
-     Consultation c = new Consultation(4,18,30,dateS);
+     Consultation c = new Consultation(15,25,39,dateS);
      sc.modifier(c);
      sc.afficher().forEach(System.out::println); */
 

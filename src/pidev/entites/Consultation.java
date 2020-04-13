@@ -16,16 +16,45 @@ public class Consultation {
     private int idEnf;
     private int idMed;
     private Date dateCons;
+    private String nomEnf;
+    private String nomMed;
     
+    public Consultation(int idCons,int idMed, int idEnf,Date dateCons,String nomEnf,String nomMed){
+    this.idCons=idCons;  
+    this.idMed=idMed;
+    this.idEnf=idEnf;
+    this.dateCons=dateCons;
+    this.nomEnf=nomEnf;
+    this.nomMed=nomMed;
+    }
     public Consultation(int idCons,int idMed, int idEnf,Date dateCons){
     this.idCons=idCons;  
     this.idMed=idMed;
     this.idEnf=idEnf;
     this.dateCons=dateCons;
+   
+    }
+    public Consultation(int idMed,int idEnf,Date dateCons,String nomEnf){    
+    this.idMed=idMed;
+    this.idEnf=idEnf;
+    this.dateCons=dateCons;
+    this.nomEnf=nomEnf;
     }
     public Consultation(int idMed,int idEnf,Date dateCons){    
     this.idMed=idMed;
     this.idEnf=idEnf;
+    this.dateCons=dateCons;
+    
+    }
+    public Consultation(String nomMed,String nomEnf,Date dateCons){
+    this.nomMed=nomMed;
+    this.nomEnf=nomEnf;
+    this.dateCons=dateCons;
+    }
+    public Consultation(int idCons,String nomMed,String nomEnf,Date dateCons){
+        this.idCons=idCons;
+    this.nomMed=nomMed;
+    this.nomEnf=nomEnf;
     this.dateCons=dateCons;
     }
     public Consultation(int idCons){
@@ -33,6 +62,8 @@ public class Consultation {
     }
     public Consultation(){}
 
+    
+    
     public int getIdCons() {
         return idCons;
     }
@@ -63,6 +94,22 @@ public class Consultation {
 
     public void setDateCons(Date dateCons) {
         this.dateCons = dateCons;
+    }
+
+    public String getNomEnf() {
+        return nomEnf;
+    }
+
+    public void setNomEnf(String nomEnf) {
+        this.nomEnf = nomEnf;
+    }
+
+    public String getNomMed() {
+        return nomMed;
+    }
+
+    public void setNomMed(String nomMed) {
+        this.nomMed = nomMed;
     }
 
     @Override

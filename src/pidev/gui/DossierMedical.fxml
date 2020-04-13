@@ -77,7 +77,7 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
+            <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
                <VBox.margin>
                   <Insets bottom="15.0" left="80.0" right="25.0" />
                </VBox.margin>

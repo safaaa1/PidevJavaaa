@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.MedecinController">
+<BorderPane fx:id="sakhta" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.MedecinController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -90,7 +90,7 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
+            <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
                <VBox.margin>
                   <Insets bottom="15.0" left="80.0" right="25.0" />
                </VBox.margin>
@@ -111,7 +111,7 @@
                         <Insets left="200.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                      <HBox.margin>
                         <Insets left="180.0" right="5.0" top="10.0" />
                      </HBox.margin>

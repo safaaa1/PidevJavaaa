@@ -64,8 +64,7 @@ public class SalaireController implements Initializable {
     private MenuItem supprimer;
     @FXML
     private MenuItem modifier;
-    @FXML
-    private TableColumn<Salaire, Integer> colid;
+   
     @FXML
     private TableColumn<Salaire, Integer> colchiffre;
     @FXML
@@ -82,7 +81,7 @@ public class SalaireController implements Initializable {
 
     public void viewSalaire(){
         ObservableList<Salaire> observableArrayList = FXCollections.observableArrayList(se.read());
-        colid.setCellValueFactory(new PropertyValueFactory<Salaire,Integer>("id"));
+       
         colchiffre.setCellValueFactory(new PropertyValueFactory<Salaire,Integer>("chiffre"));
         colprime.setCellValueFactory(new PropertyValueFactory<Salaire,Integer>("prime"));
         coldate.setCellValueFactory(new PropertyValueFactory<Salaire,Date>("date"));

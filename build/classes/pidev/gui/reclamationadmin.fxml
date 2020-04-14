@@ -58,7 +58,6 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
                 <TableColumn fx:id="colnom" text="Nom" />
                   <TableColumn fx:id="coltitre" text="Titre" />
                   <TableColumn fx:id="colemail" prefWidth="150.0" text="E-mail" />

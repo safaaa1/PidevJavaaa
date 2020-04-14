@@ -1,24 +1,23 @@
 /*package pidev.services;
 
-import com.nexmo.client.NexmoClient;
-import com.nexmo.client.sms.MessageStatus;
-import com.nexmo.client.sms.SmsSubmissionResponse;
-import com.nexmo.client.sms.messages.TextMessage;
-
 import static pidev.services.Until.configureLogging;
 import static pidev.services.Until.envVar;
+
+
+
 
 public class SendMessage {
 
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-        String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
-        String TO_NUMBER = envVar("TO_NUMBER");
+        String NEXMO_API_KEY = envVar("372d5729");
+        String NEXMO_API_SECRET = envVar("n3FnzJypbJxuwj5G");
+        String TO_NUMBER = envVar("+216899579");
         String NEXMO_BRAND_NAME = envVar("NEXMO_NUMBER");
 
-        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey("372d5729").apiSecret("n3FnzJypbJxuwj5G").build();
+        
 
         TextMessage message = new TextMessage(NEXMO_BRAND_NAME,
                 TO_NUMBER,
@@ -32,5 +31,8 @@ public class SendMessage {
         } else {
             System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
+
     }
+
 }*/
+

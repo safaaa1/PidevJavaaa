@@ -115,7 +115,6 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
                 <TableColumn fx:id="colchiffre" prefWidth="173.0" text="Chiffre" />
                   <TableColumn fx:id="colprime" prefWidth="169.0" text="Prime" />
                   <TableColumn fx:id="coldate" prefWidth="300.0" text="Date" />

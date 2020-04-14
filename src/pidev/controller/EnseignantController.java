@@ -5,6 +5,14 @@
  */
 package pidev.controller;
 
+
+
+
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,15 +34,40 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import pidev.entites.Enseignant;
 import pidev.entites.Salaire;
 import pidev.services.EnseignantService;
 import pidev.utils.ConnectionBD;
+
+
+
+
+import javafx.collections.ObservableList;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.chart.*;
+import javafx.collections.FXCollections;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -43,7 +76,9 @@ import pidev.utils.ConnectionBD;
  */
 public class EnseignantController implements Initializable {
 
-
+    @FXML
+    private AnchorPane containerAdmin;
+    
     @FXML
     private TextField nomtxt;
 
@@ -63,6 +98,8 @@ public class EnseignantController implements Initializable {
     private Button saveedit;
    @FXML
     private TextField filterField;
+       @FXML
+    private Label numTelTest;
 
     @FXML
     private Button viewEnseignant;
@@ -70,8 +107,7 @@ public class EnseignantController implements Initializable {
     @FXML
     private TableView<Enseignant> table;
 
-    @FXML
-    private TableColumn<Enseignant, Integer> colid;
+  
 
     @FXML
     private TableColumn<Enseignant, String> colnom;
@@ -98,6 +134,7 @@ public class EnseignantController implements Initializable {
     private MenuItem supprimer;
     @FXML
     private MenuItem modifier;
+    boolean verificationNumTel=false;
     @FXML
     private TableColumn<Enseignant, Integer> salaire;
     /**
@@ -105,11 +142,53 @@ public class EnseignantController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //   float sum= 1;    
         viewEnseignant();
         viewSalaire();
-    
+
        filter();
+        // TODO
+        System.out.println("espace admin");
+        List<PieChart.Data> l = new ArrayList<>();
+        EnseignantService ps = new EnseignantService();
+        float sum=ps.sumsalaire();
+        if(sum==0)sum=1;
+       /* ps.getAllEnseignant().stream().forEach(p->{
+            
+            l.add(new PieChart.Data(p.getNom(),p.getSalaire_montant()*100/sum));
+        });*/
+        for(Enseignant p :  ps.getAllEnseignant()){
+            System.out.println("");
+            
+            l.add(new PieChart.Data(p.getNom(),p.getSalaire_montant()*100/sum));
+        }
+        
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        l
+                );
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Statistique Enseignant");
+        chart.setLabelLineLength(10);
+        chart.setLegendSide(Side.LEFT);
+        final Label caption = new Label("");
+        caption.setTextFill(Color.BLACK);
+        caption.setStyle("-fx-text-fill: black;");
+        caption.setStyle("-fx-font: 24 arial;");
+        for (final PieChart.Data data : chart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY()-110);
+                            caption.setText(String.valueOf(data.getPieValue()) + "%");
+                        }
+                    });
+        }
+        containerAdmin.getChildren().add(chart);
+        containerAdmin.getChildren().add(caption);
+    
+ 
     }
         
     public void filter(){
@@ -135,8 +214,8 @@ public class EnseignantController implements Initializable {
                 table.setItems(data);
        
   
-            });
-    }
+            });}
+    
          
     
         
@@ -144,8 +223,8 @@ public class EnseignantController implements Initializable {
     
         public void viewEnseignant(){
     EnseignantService se = new EnseignantService();
-    table.setItems((ObservableList<Enseignant>) se.read());
-    colid.setCellValueFactory(new PropertyValueFactory<Enseignant,Integer>("id"));
+   // table.setItems((ObservableList<Enseignant>) se.read());
+    
     colnom.setCellValueFactory(new PropertyValueFactory<Enseignant,String>("nom"));
     colprenom.setCellValueFactory(new PropertyValueFactory<Enseignant,String>("prenom"));
     colemail.setCellValueFactory(new PropertyValueFactory<Enseignant,String>("email"));
@@ -177,7 +256,7 @@ public class EnseignantController implements Initializable {
 
     }
     @FXML
-    private void insertEnseignant(ActionEvent event) {
+    private void insertEnseignant(ActionEvent event)  {
            
         if(!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")&&!emailtxt.getText().equals("")&&!teltxt.getText().equals("")){
             EnseignantService se = new EnseignantService();
@@ -194,16 +273,38 @@ public class EnseignantController implements Initializable {
                emailtxt.setText("");
                teltxt.setText("");
                viewEnseignant();
+   /*            
+   NexmoClient client = NexmoClient.builder().apiKey("372d5729").apiSecret("n3FnzJypbJxuwj5G").build();
+  TextMessage message = new TextMessage("JUNIOR",
+                   "+21626899579",
+                    "félicitation, vous ete ajouté avec succé, bienvenu  !"
+            );
+  try{
+    SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+  if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+    System.out.println("Message sent successfully.");
+} else {
+    System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+}
+        }catch (NoClassDefFoundError ex) {
+            System.err.println(ex.getMessage());
+        } */   }        
 
-        }else{
+        else{
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning");
         //alert.setHeaderText("Look, a Warning Dialog");
         alert.setContentText("verifier vos parametres ");
         alert.showAndWait();
         }
+        }
 
-    }
+    
+
+
+    
+
+    
     
     
 
@@ -293,6 +394,44 @@ public class EnseignantController implements Initializable {
           return  id=data.get(0).getId();
     
     }
+     @FXML
+    private void controlNumero(KeyEvent event) {
+        verificationNumTel = false;
+        if (teltxt.getText().trim().length() == 8) {
+            boolean test = true;
+            for (int i = 1; i < teltxt.getText().trim().length() && test; i++) {
+                char ch = teltxt.getText().charAt(i);
+                if (Character.isLetter(ch)) {
+                    test = false;
+                }
+            }
+            if (test) {
+                System.out.println("taille num est valide");
+                numTelTest.setVisible(false);
+                verificationNumTel = true;
+            }
+        } else {
+            System.out.println("taille num non valide");
+            numTelTest.setVisible(true);
+            numTelTest.setText("Il faut 8 chiffres");
+            verificationNumTel = false;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+    
+    
+    
 }
 
     

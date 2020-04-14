@@ -92,6 +92,10 @@ public class Reponse {
         this.description = description;
     }
 
+    public Reponse(String description) {
+        this.description = description;
+    }
+
 
     
 

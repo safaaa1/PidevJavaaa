@@ -137,6 +137,22 @@ import pidev.utils.ConnectionBD;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public String getrep(int id) {
+          ObservableList <Reponse> list =FXCollections.observableArrayList();
+
+        try {
+            String req = "SELECT description FROM reponse where id="+id;
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet rs = pst.executeQuery();
+             while (rs.next())   return rs.getString("description");
+      
+        }
+        catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return "Pas de reponse";
+    }
 
 
 

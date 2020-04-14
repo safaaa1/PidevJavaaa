@@ -96,12 +96,12 @@ public class EnseignantService {
                  int salaire_id=rs.getInt("e.salaire_id");
                  if(salaire_id!=0)
                  {
-                      String req2="Select chiffre from salaire where id="+salaire_id;
+                      String req2="Select chiffre,prime from salaire where id="+salaire_id;
                    PreparedStatement pst2 = cnx.prepareStatement(req2);
                     ResultSet rs2 = pst2.executeQuery();
                     while(rs2.next())
                     {
-                     montant=rs2.getInt("chiffre");   
+                     montant=rs2.getInt("chiffre")+rs2.getInt("prime");   
                     }
                  }
                  Enseignant e=new Enseignant(id,nom,prenom,email,tel,salaire_id,montant);
@@ -131,5 +131,51 @@ public class EnseignantService {
         return list;
     }
     
+    public List<Enseignant> getAllEnseignant(){
+        List<Enseignant> ListP = new ArrayList<>();
+        try {
+            String requete = "SELECT id,nom,prenom,email,tel,salaire_id FROM enseignant";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()){
+                Enseignant p = new Enseignant();
+                p.setId(rs.getInt(1));
+                p.setNom(rs.getString(2));
+                p.setPrenom(rs.getString(3));
+                p.setEmail(rs.getString(4));
+                p.setTel(rs.getInt(5));
+                p.setSalaire_id(rs.getInt(6));
+                
+                   String requete2 = "SELECT chiffre,prime FROM salaire where id="+p.getSalaire_id();
+                    PreparedStatement pst2 = cnx.prepareStatement(requete2);
+                    ResultSet rs2 = pst2.executeQuery();
+                    while(rs2.next()){
+                        p.setSalaire_montant(rs2.getInt(1)+rs2.getInt(2));      
+                        break; 
+                    }
+                //p.setSalaire_montant(rs.getInt(7));
+
+                
+                ListP.add(p);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+return ListP;
+    }
     
+    public float sumsalaire(){
+        try {
+            String requete = "SELECT sum(chiffre),sum(prime) FROM salaire";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+             while(rs.next()){
+                 return(rs.getInt(1)+rs.getInt(2));
+             }   
+        } 
+        catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return 0;
+    }
 }

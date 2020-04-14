@@ -7,6 +7,9 @@
 package pidev.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,7 +25,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pidev.entites.Reclamations;
+import pidev.entites.Reponse;
+import pidev.entites.Salaire;
 import pidev.services.ReclamationsService;
+import pidev.services.ReponseService;
+import pidev.utils.ConnectionBD;
 
 /**
  * FXML Controller class
@@ -34,8 +41,7 @@ public class ReclamationadminController extends ReclamationController {
     private TableView<Reclamations> table;
          @FXML
     private MenuItem supprimer;
-      @FXML
-    private TableColumn<Reclamations, Integer> colid;
+
     @FXML
     private TableColumn<Reclamations, String> colnom;
     @FXML
@@ -47,11 +53,11 @@ public class ReclamationadminController extends ReclamationController {
     @FXML
     private TableColumn<Reclamations, String> coldesc;
     @FXML
-    private TableColumn<Reclamations, Integer> colreponse;
+    private TableColumn<Reclamations, String> colreponse;
    // @FXML
     //private ComboBox<Reponse> colrep;
        public ObservableList<Reclamations> data=FXCollections.observableArrayList();
-      // public ObservableList<Reponse> data2=FXCollections.observableArrayList();
+       public ObservableList<Reponse> data2=FXCollections.observableArrayList();
     @FXML
     private Button viewReclamation;
 
@@ -63,19 +69,23 @@ public class ReclamationadminController extends ReclamationController {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         viewReclamations();
+        
     }    
+
      public void viewReclamations(){
     ReclamationsService se = new ReclamationsService();
     //table.setItems((ObservableList<Reclamations>) se.read());
        ObservableList<Reclamations> observableArrayList = 
            FXCollections.observableArrayList(se.read());
-    colid.setCellValueFactory(new PropertyValueFactory<Reclamations,Integer>("id"));
+        se.read().forEach(System.out::print);
+        
+        
     colnom.setCellValueFactory(new PropertyValueFactory<Reclamations,String>("nom"));
     coltitre.setCellValueFactory(new PropertyValueFactory<Reclamations,String>("titre"));
     coltel.setCellValueFactory(new PropertyValueFactory<Reclamations,Integer>("tel"));
     colemail.setCellValueFactory(new PropertyValueFactory<Reclamations,String>("email"));
     coldesc.setCellValueFactory(new PropertyValueFactory<Reclamations,String>("description"));
-    colreponse.setCellValueFactory(new PropertyValueFactory<Reclamations,Integer>("reponseid"));
+    colreponse.setCellValueFactory(new PropertyValueFactory<Reclamations,String>("reponse"));
     
     
   table.setItems((ObservableList<Reclamations>) se.read());

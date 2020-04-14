@@ -26,32 +26,30 @@ import pidev.utils.ConnectionBD;
  * @author islem
  */
 public class ReclamationsService {
+
     Connection cnx = ConnectionBD.getInstance().getCnx();
-  
-    
-     public void add(Reclamations reclamations){
-      
-                
-            
+
+    public void add(Reclamations reclamations) {
+
         String req = "insert into reclamations (nom, titre, email, tel, description) values(?, ?, ?, ?, ?);";
-        
+
         try {
-                PreparedStatement pst = cnx.prepareStatement(req);
-               
-               // pst.setObject(6, null);
-                pst.setString(1, reclamations.getNom());
-                pst.setString(2, reclamations.getTitre());
-                pst.setString(3, reclamations.getEmail());
-                pst.setInt(4, reclamations.getTel());
-                pst.setString(5, reclamations.getDescription());
-             //   pst.setInt(6, reclamations.getReponseid());
-                pst.executeUpdate();
-                System.out.println("reclamations crée!");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            PreparedStatement pst = cnx.prepareStatement(req);
+
+            // pst.setObject(6, null);
+            pst.setString(1, reclamations.getNom());
+            pst.setString(2, reclamations.getTitre());
+            pst.setString(3, reclamations.getEmail());
+            pst.setInt(4, reclamations.getTel());
+            pst.setString(5, reclamations.getDescription());
+            //   pst.setInt(6, reclamations.getReponseid());
+            pst.executeUpdate();
+            System.out.println("reclamations crée!");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-     
+
     /**
      *
      * @param r
@@ -73,8 +71,8 @@ public class ReclamationsService {
             System.err.println(ex.getMessage());
         }
     }
-    
-        public void Delete(Reclamations r) {
+
+    public void Delete(Reclamations r) {
         try {
             String req = "DELETE FROM Reclamations WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(req);
@@ -86,36 +84,36 @@ public class ReclamationsService {
             System.err.println(ex.getMessage());
         }
     }
-    
-    public List<Reclamations> read() {
-       // List<Reclamations> list = new ArrayList<>();
-       ObservableList <Reclamations> list =FXCollections.observableArrayList();
-ObservableList <Reclamations> list2 =FXCollections.observableArrayList();
 
+    public List<Reclamations> read() {
+        // List<Reclamations> list = new ArrayList<>();
+        ObservableList<Reclamations> list = FXCollections.observableArrayList();
+//ObservableList <Reclamations> list2 =FXCollections.observableArrayList();
+        ReponseService rps = new ReponseService();
         try {
             String req = "SELECT id,nom,titre,email,tel,description,reponse_id FROM reclamations";
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs = pst.executeQuery();
-             while (rs.next()) {
-                 
-                     
-                 
-                list.add(new Reclamations(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getInt(5), rs.getString(4),  rs.getString(6), rs.getInt(7)));
+            while (rs.next()) {
+
+                Reclamations r = new Reclamations(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5), rs.getString(4), rs.getString(6), rs.getInt(7));
+                r.setReponse(rps.getrep(r.getReponseid()));
+                list.add(r);
             }
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        }
+        }/*
             for(Reclamations r:list){
                 if(r.getReponseid()==0){
                     r.setReponse("Pas du Reponse");
                     System.out.println(r);
                 }
                 list2.add(r);
-            }
-        return list2;
+            }*/
+        return list;
     }
-/*
+    /*
               ObservableList <Reclamations> list =FXCollections.observableArrayList();
 
 
@@ -153,4 +151,3 @@ ObservableList <Reclamations> list2 =FXCollections.observableArrayList();
         return list;
     }*/
 }
-    

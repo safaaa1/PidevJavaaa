@@ -32,13 +32,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/Reclamation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/reclamationadmin.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        /*
-        EnseignantService se=new EnseignantService();
-        se.read();*/
+    
         
     
     }
@@ -47,40 +45,9 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
-     //
-     
-      /*
-        ReclamationsService sp1 = new ReclamationsService();
-        Reclamations r = new Reclamations( 47,"islllllllll","lo","eem@gmail.com",56745678,"jihdfk");
-       // sp1.Update(r); 
-        sp1.add(r);
-        //sp1.Delete(r);
-        sp1.read().forEach(System.out::println);
-      
-      /*
-       ReponseService sp2 = new ReponseService();
-        Reponse rp = new Reponse( 54,"islem","salouma","iiiisleeeem@gmail.com",26745678,"jihdfk");
-       //sp2.add(rp,46);
-        sp2.Delete(rp);
-       sp2.read().forEach(System.out::println);
-       /*
-       //test enseignant
-       EnseignantService sp1 = new EnseignantService();
-       Enseignant e = new Enseignant("youssef","lou","iem@gmail.com",26745678,12,3000);
-       sp1.add(e);
-       sp1.read().forEach(System.out::println);
-       */
-      
-       //test salaire
-       /*SalaireService sp = new SalaireService();
-       Salaire s = new Salaire(15,1000,100,new Date());
-        sp.add(s,12);
-        //sp1.Update(s);
-       //sp1.delete(s);
-        System.out.println("e5dm ");
-       sp.read().forEach(System.out::println);
-      */ 
-       
-    
-}}
+       launch(args);
+        /*
+        EnseignantService rr = new EnseignantService();
+       rr.sumsalaire();*/
+}
+}

@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/controller/ReponseController.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/entites/Salaire.java</file>
+            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/entites/Enseignant.java</file>
             <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/controller/EnseignantController.java</file>
             <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/services/EnseignantService.java</file>
-            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/controller/SalaireController.java</file>
-            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/gui/Salaire.fxml</file>
             <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/test/Main.java</file>
-            <file>file:/C:/Users/islem/OneDrive/Documents/NetBeansProjects/junior/PidevJavaaa/src/pidev/gui/Reponse.fxml</file>
         </group>
     </open-files>
 </project-private>

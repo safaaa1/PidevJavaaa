@@ -74,8 +74,7 @@ public class ReponseController implements Initializable {
     @FXML
     private MenuItem modifier;
     
-    @FXML
-    private TableColumn<Reponse, Integer> colid;
+
     
     @FXML
     private TableColumn<Reponse, String> colnom;
@@ -123,7 +122,7 @@ public class ReponseController implements Initializable {
     //table.setItems((ObservableList<Reponse>) se.read());
     ObservableList<Reponse> observableArrayList = 
            FXCollections.observableArrayList(se.read());
-    colid.setCellValueFactory(new PropertyValueFactory<Reponse,Integer>("id"));
+  
     colnom.setCellValueFactory(new PropertyValueFactory<Reponse,String>("nom"));
     coltitre.setCellValueFactory(new PropertyValueFactory<Reponse,String>("titre"));
     colemail.setCellValueFactory(new PropertyValueFactory<Reponse,String>("email"));
@@ -144,7 +143,7 @@ public class ReponseController implements Initializable {
         if(!nomtxt.getText().equals("")&&!titretxt.getText().equals("")&&!emailtxt.getText().equals("")&&!teltxt.getText().equals("")&&!desctxt.getText().equals("")){
             ReponseService se = new ReponseService();
            // Reponse dm =colrep.getSelectionModel().getSelectedItem();
-        se.add(new Reponse(nomtxt.getText(),titretxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText()),desctxt.getText()),46);
+        se.add(new Reponse(nomtxt.getText(),titretxt.getText(),emailtxt.getText(),Integer.parseInt(teltxt.getText()),desctxt.getText()),52);
       
            
             Alert alert = new Alert(AlertType.INFORMATION);

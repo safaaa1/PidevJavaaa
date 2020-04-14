@@ -5,6 +5,12 @@
  */
 package pidev.test;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import javafx.application.Application;
@@ -31,7 +37,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/Consultation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/Enfant.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -40,8 +46,8 @@ public class Main extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws FileNotFoundException, DocumentException {
+       launch(args);
        
         //Test Medecin
        /* ServiceMedecin se = new ServiceMedecin();
@@ -74,6 +80,16 @@ public class Main extends Application {
      Consultation c = new Consultation(15,25,39,dateS);
      sc.modifier(c);
      sc.afficher().forEach(System.out::println); */
-
+     
+        //test PDF
+        /*
+        System.out.println("begin pdf generate");
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("C:/Users/yanisinfo/Desktop/test.pdf"));
+        document.open();
+        document.add(new Paragraph("hello"));
+       // document.add(new Paragraph(e.toString()));
+        document.close();
+        System.out.println("end pdf generate");*/
 }
 }

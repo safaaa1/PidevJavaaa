@@ -5,6 +5,8 @@
  */
 package pidev.controller;
 
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -29,16 +31,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
 import pidev.entites.DossierMedical;
 import pidev.entites.Enfant;
 import pidev.services.ServiceEnfant;
 import pidev.utils.ConnectionBD;
+import pidev.utils.pdf;
+import static pidev.utils.pdf.pdf2;
 
 /**
  * FXML Controller class
@@ -61,6 +67,8 @@ public class EnfantController implements Initializable {
     private TableColumn<Enfant,Integer> colage;
     @FXML
     private TableColumn<Enfant,String> coldm;
+    @FXML
+    private TableColumn imprimerFacteur;
     @FXML
     private MenuItem supprimer;
     
@@ -137,6 +145,54 @@ public class EnfantController implements Initializable {
     colnom.setCellValueFactory(new PropertyValueFactory<Enfant,String>("nom"));
     colage.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("age"));
     coldm.setCellValueFactory(new PropertyValueFactory<Enfant,String>("titre"));
+    
+    
+    
+    
+    Callback<TableColumn<Enfant, String>, TableCell<Enfant, String>> cellFactoryImprimer = (param) -> {
+
+    final TableCell<Enfant, String> cell = new TableCell<Enfant, String>() {
+
+        @Override
+        public void updateItem(String item, boolean empty) {
+
+           // super.updateItem(item, empty);
+          //  if (empty) {
+               // setGraphic(null);
+               // setText(null);
+          //  } else {//if(4>9){
+                final Button test = new Button("Imprimer");
+                test.setOnAction(event -> {
+                    Enfant p = getTableView().getItems().get(getIndex());
+                    try {
+                        pdf.pdf(p);
+                    } catch (FileNotFoundException ex) {
+                        System.out.print(ex);                   
+                    } catch (DocumentException ex) {
+                       System.out.print(ex); 
+                    }
+                    //refresh();
+
+                });
+
+                setGraphic(test);
+                setText(null);
+                //}
+
+            }
+    
+        //return null;
+
+    };
+            return cell;
+        };
+        imprimerFacteur.setCellFactory(cellFactoryImprimer);
+    
+    
+    
+    
+    
+    
 
     }
     public void viewDossier(){
@@ -161,12 +217,13 @@ public class EnfantController implements Initializable {
     
     
     @FXML
-    public void insertEnfant(ActionEvent event){
+    public void insertEnfant(ActionEvent event) throws FileNotFoundException, DocumentException{
         if(!nomtxt.getText().equals("")&&!agetxt.getText().equals("")){
             ServiceEnfant se = new ServiceEnfant();
             DossierMedical dm =cbdm.getSelectionModel().getSelectedItem();
         se.ajouter(new Enfant(nomtxt.getText(),Integer.parseInt(agetxt.getText()),dm.getIdDM()));
-           
+         Enfant m = table.getSelectionModel().getSelectedItem();  
+          Enfant e =new Enfant(m.getIdEnfant());
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
            // alert.setHeaderText("Look, an Information Dialog");
@@ -176,6 +233,8 @@ public class EnfantController implements Initializable {
                agetxt.setText("");
                viewEnfant();
                clearFields();
+               pdf.pdf(e);
+               
 
         }else{
         Alert alert = new Alert(AlertType.WARNING);
@@ -212,6 +271,7 @@ public class EnfantController implements Initializable {
       if (action.get() == ButtonType.OK) {
          se.supprimer(e);
          viewEnfant();
+         
 
       }
     }

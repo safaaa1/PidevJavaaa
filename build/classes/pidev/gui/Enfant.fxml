@@ -109,7 +109,8 @@
               <columns>
                 <TableColumn fx:id="colnom" prefWidth="150.0" text="Nom" />
                   <TableColumn fx:id="colage" prefWidth="146.0" text="Age" />
-                  <TableColumn fx:id="coldm" prefWidth="346.0" text="Dossier Medical" />
+                  <TableColumn fx:id="coldm" prefWidth="177.0" text="Dossier Medical" />
+                  <TableColumn fx:id="imprimerFacteur" prefWidth="244.0" text="Imprimer Dossier Medical" />
               </columns>
                <contextMenu>
                   <ContextMenu>

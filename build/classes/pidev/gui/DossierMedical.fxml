@@ -77,14 +77,6 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="80.0" right="25.0" />
                </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" onAction="#reset" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
-               <VBox.margin>
-                  <Insets bottom="15.0" left="80.0" right="25.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </left>
@@ -93,14 +85,9 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="640.0">
                <children>
-                  <TextField fx:id="recherchetxt" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
-                     <HBox.margin>
-                        <Insets left="200.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </TextField>
                   <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                      <HBox.margin>
-                        <Insets left="180.0" right="5.0" top="10.0" />
+                        <Insets left="600.0" top="10.0" />
                      </HBox.margin>
                      <effect>
                         <DropShadow />
@@ -110,9 +97,9 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colid" prefWidth="42.0" text="ID" />
                 <TableColumn fx:id="coltitre" prefWidth="165.0" text="Titre" />
-                  <TableColumn fx:id="colcontenu" prefWidth="477.0" text="Contenu" />
+                  <TableColumn fx:id="colcontenu" prefWidth="295.0" text="Contenu" />
+                  <TableColumn fx:id="imprimerFacteur" prefWidth="257.0" text="Imprimer Dossier" />
               </columns>
                <contextMenu>
                   <ContextMenu>

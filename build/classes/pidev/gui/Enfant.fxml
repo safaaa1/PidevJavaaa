@@ -124,6 +124,15 @@
                   <Insets left="5.0" right="10.0" />
                </VBox.margin>
             </TableView>
+            <HBox prefHeight="58.0" prefWidth="700.0">
+               <children>
+                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#pdfAction" prefHeight="30.0" prefWidth="150.0" text="Imprimer">
+                     <HBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

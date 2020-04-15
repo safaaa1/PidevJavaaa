@@ -5,9 +5,15 @@
  */
 package pidev.controller;
 
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +22,8 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -76,7 +84,7 @@ public class EnfantController implements Initializable {
     private TextField filterField;
     @FXML
     private Button saveedit;
-
+    
     public ObservableList<Enfant> data=FXCollections.observableArrayList();
         public ObservableList<DossierMedical> data2=FXCollections.observableArrayList();
     @FXML
@@ -84,14 +92,11 @@ public class EnfantController implements Initializable {
     @FXML
     private Button save;
     @FXML
-    private Button reset;
-    @FXML
     private Button logout;
     @FXML
     private MenuItem modifier;
     @FXML
-    private TableColumn<?, ?> colmodifier;
-
+    private Button pdf;
     
         @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -134,7 +139,15 @@ public class EnfantController implements Initializable {
         Parent root = loader.load();
         sakhta.getChildren().setAll(root);
     }  
-        
+      Enfant e=new Enfant();  
+
+    public Enfant getE() {
+        return e;
+    }
+
+    public void setE(Enfant e) {
+        this.e = e;
+    }
         
         
         
@@ -146,55 +159,15 @@ public class EnfantController implements Initializable {
     colage.setCellValueFactory(new PropertyValueFactory<Enfant,Integer>("age"));
     coldm.setCellValueFactory(new PropertyValueFactory<Enfant,String>("titre"));
     
+    }  
     
     
-    
-    Callback<TableColumn<Enfant, String>, TableCell<Enfant, String>> cellFactoryImprimer = (param) -> {
-
-    final TableCell<Enfant, String> cell = new TableCell<Enfant, String>() {
-
-        @Override
-        public void updateItem(String item, boolean empty) {
-
-           // super.updateItem(item, empty);
-          //  if (empty) {
-               // setGraphic(null);
-               // setText(null);
-          //  } else {//if(4>9){
-                final Button test = new Button("Imprimer");
-                test.setOnAction(event -> {
-                    Enfant p = getTableView().getItems().get(getIndex());
-                    try {
-                        pdf.pdf(p);
-                    } catch (FileNotFoundException ex) {
-                        System.out.print(ex);                   
-                    } catch (DocumentException ex) {
-                       System.out.print(ex); 
-                    }
-                    //refresh();
-
-                });
-
-                setGraphic(test);
-                setText(null);
-                //}
-
-            }
-    
-        //return null;
-
-    };
-            return cell;
-        };
-        imprimerFacteur.setCellFactory(cellFactoryImprimer);
+       
+   
     
     
+   
     
-    
-    
-    
-
-    }
     public void viewDossier(){
     try{
       Connection cnx = ConnectionBD.getInstance().getCnx();
@@ -233,7 +206,7 @@ public class EnfantController implements Initializable {
                agetxt.setText("");
                viewEnfant();
                clearFields();
-               pdf.pdf(e);
+            //   pdf.pdf(e);
                
 
         }else{
@@ -245,6 +218,85 @@ public class EnfantController implements Initializable {
         }
 
     }
+   Alert alert = new Alert(Alert.AlertType.NONE); 
+  @FXML
+    void pdfAction(ActionEvent event) {
+           Enfant ss = table.getSelectionModel().getSelectedItem();
+        if (ss == null) {
+
+              alert.setAlertType(Alert.AlertType.WARNING);
+           
+              alert.setContentText(" Choix invalide ");
+           
+              alert.show();
+                       }
+        else {
+                                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation ");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Voulez-vous vraiment fichier pdf pour cette réunion?");
+                                    Optional<ButtonType> action = alert.showAndWait();
+                                    if (action.get() == ButtonType.OK) {
+                                      pdf(ss);
+
+                                    }
+        }
+           
+    }
+     void pdf(Enfant m )
+     {
+
+try {
+           //Path 
+         OutputStream file = new FileOutputStream(new File("C:/Users/yanisinfo/Desktop/junior/Enfants.pdf"));
+
+            Document document = new Document();
+
+            PdfWriter.getInstance(document, file);
+          
+            document.open();
+            ServiceEnfant sP =new ServiceEnfant();
+             document.add(new Paragraph("------------------------------------------------------------BIENVENU-------------------------------------------------------"));
+             document.add(new Paragraph("Nom d'enfant :"+ sP.getById(m.getIdEnfant())));
+             System.out.println(sP.getById(m.getIdEnfant()));
+             document.add(new Paragraph("**************************************************************************"));
+             document.add(new Paragraph(" Age:  "+m.getAge()));
+             document.add(new Paragraph(" Titre du Dossier Medical:  "+m.getTitre()));
+             document.add(new Paragraph("*************"
+                                       + "**************************"));
+            // document.add(new Paragraph(" Description:  "+m.getDescription()));
+             
+/*
+             PdfPTable my_first_table = new PdfPTable(3);
+             PdfPCell table_cell;
+             table_cell=new PdfPCell(new Phrase("aza"));
+              my_first_table.addCell(table_cell);
+              table_cell=new PdfPCell(new Phrase("zaazd"));
+               my_first_table.addCell(table_cell);
+               table_cell=new PdfPCell(new Phrase(5));
+                my_first_table.addCell(table_cell);
+        
+             // my_first_table.addCell(table_cell);
+              // document.add(new Paragraph(getquantite(4)));
+
+           document.add( my_first_table);    
+
+  */
+            document.close();
+             
+            file.close();
+
+
+        } catch (Exception e) {
+
+
+            e.printStackTrace();
+
+
+     }
+    
+     }
+    
         @FXML
     void supprimer(ActionEvent event) {
     Enfant m = table.getSelectionModel().getSelectedItem();
@@ -332,8 +384,7 @@ public class EnfantController implements Initializable {
      agetxt.clear();
      cbdm.getSelectionModel().clearSelection();
  }
-     @FXML
-    void reset(ActionEvent event) {
+     void reset(ActionEvent event) {
     	clearFields();
     }
     

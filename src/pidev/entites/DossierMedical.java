@@ -93,4 +93,8 @@ public class DossierMedical {
         return titre;
     }
 
+    public String toString2() {
+        return "contenu: " + contenu + "     titre: " + titre ;
+    }
+
 }

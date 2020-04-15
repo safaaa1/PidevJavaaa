@@ -88,5 +88,42 @@ ObservableList <Enfant> list =FXCollections.observableArrayList();
         }
 
         return list;
-    }    
+    }  
+    
+       
+   /* public ObservableList<Enfant> afficher2() {
+ObservableList <Enfant> list =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT enfant.id, enfant.nom,enfant.age ,dossier_medical.titre FROM `enfant`,dossier_medical WHERE dossier_medical.id=enfant.id_dossier;";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new Enfant(rs.getInt(1),rs.getString(2), rs.getInt(3), rs.getString(4)));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    } */
+    public Enfant getById(int id) {
+		 Enfant pp = new Enfant();
+
+        try {
+            String requete = "SELECT * FROM enfant where id="+id+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                pp = new Enfant(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return pp;
+	}
+
 }

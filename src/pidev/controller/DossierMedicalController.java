@@ -31,12 +31,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import pidev.entites.DossierMedical;
 import pidev.services.ServiceDossierMedical;
 
 import pidev.utils.ConnectionBD;
 import pidev.utils.pdf;
 import static pidev.utils.pdf.pdf2;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 
 /**
@@ -98,11 +102,9 @@ public class DossierMedicalController implements Initializable {
                     } catch (DocumentException ex) {
                         Logger.getLogger(DossierMedicalController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    // alert.setHeaderText("Look, an Information Dialog");
-                    alert.setContentText("information imprimer !");
-                    alert.showAndWait();
+        TrayNotification tray = new TrayNotification("Done","Le dossier est imprimer ! ", NotificationType.INFORMATION);
+          tray.setAnimationType(AnimationType.SLIDE);
+          tray.showAndDismiss(Duration.seconds(5));
 
                 });
 

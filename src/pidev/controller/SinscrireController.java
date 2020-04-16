@@ -11,12 +11,15 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -35,7 +38,7 @@ import tray.notification.TrayNotification;
  * @author safa
  */
 public class SinscrireController implements Initializable {
-
+    ObservableList<String> rolesList=FXCollections.observableArrayList("admin","parent","medecin","enseignant");
     @FXML
     private TextField prenom;
     @FXML
@@ -45,16 +48,23 @@ public class SinscrireController implements Initializable {
     @FXML
     private TextField numTel;
     @FXML
-    private TextField mdp;
-   
+    private TextField mdpp;
+       @FXML
+private ChoiceBox rolesBox;
+               
+       
     Boolean verificationNom = false;
     Boolean verificationPrenom = false;
     Boolean verificationEmail = false;
-    Boolean verificationNumTel = false;
     Boolean verificationMdp = false;
+    Boolean verificationNumTel = false;
+
     @FXML
     private Label numTelTest;
-    
+   
+    @FXML
+    private PasswordField mdp;
+
 
     /**
      * Initializes the controller class.
@@ -62,9 +72,9 @@ public class SinscrireController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println("S'inscrire");
+        System.out.println("Sign in");
         numTelTest.setVisible(false);
-        
+        rolesBox.setItems(rolesList);
     }
 
     @FXML
@@ -121,12 +131,13 @@ public class SinscrireController implements Initializable {
             utilisateur.setPassword(mdpCrypte1);
             utilisateur.setNomUser(nom.getText());
             utilisateur.setPrenomUser(prenom.getText());
+            utilisateur.setRoles((String) rolesBox.getValue());
 
             GestionUtilisateur gestionUtilisateur = new GestionUtilisateur();
             gestionUtilisateur.ajouterClient(utilisateur);
             
             TrayNotification tray = new TrayNotification("Successfully",
-                    "Inscription Effectuée avec Succés", NotificationType.SUCCESS);
+                    "Sign in done", NotificationType.INFORMATION);
             tray.setAnimationType(AnimationType.SLIDE);
             tray.showAndDismiss(Duration.seconds(10));
 
@@ -214,6 +225,10 @@ public class SinscrireController implements Initializable {
             verificationMdp = true;
 
         }
+    }
+
+    @FXML
+    private void controlMDPP(KeyEvent event) {
     }
 
 }

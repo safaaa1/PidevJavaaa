@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,9 +34,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
+import static pidev.controller.MedecinController.isValid;
 import pidev.entites.Medecin;
 import pidev.services.ServiceMedecin;
 import pidev.utils.ConnectionBD;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -110,8 +118,6 @@ public class MedecinController implements Initializable {
     colprenom.setCellValueFactory(new PropertyValueFactory<Medecin,String>("prenom"));
     coltel.setCellValueFactory(new PropertyValueFactory<Medecin,Integer>("tel"));
     colemail.setCellValueFactory(new PropertyValueFactory<Medecin,String>("email"));
-
-
     }
         
     @FXML
@@ -122,26 +128,88 @@ public class MedecinController implements Initializable {
         sakhta.getChildren().setAll(root);
     }  
         
-        
-        
+         public static boolean isValid(String email)
+{
+  
+	if( email!=null && email.trim().length()>0 )
+	return email.matches("^[a-zA-Z0-9\\.\\-\\_]+@([a-zA-Z0-9\\-\\_\\.]+\\.)+([a-zA-Z]{2,4})$");
+	return false;
+}  
+         
+    public static boolean isNumber(String num)
+{
+  
+	if( num!=null && num.trim().length()>0 )
+	return num.matches("^[0-9]{8}$");
+	return false;
+}
+   /* public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    }*/
+     
+         
+         public static boolean checkEmail(String email) throws SQLException{
+        boolean memberIdExists = false;
+
+         Connection cnx = ConnectionBD.getInstance().getCnx();
+        Statement stm = cnx.createStatement();
+        ResultSet rst = stm.executeQuery("SELECT * FROM medcin WHERE email='"+email+"'");
+
+        String id;
+        if (rst.next()){
+            id = rst.getString("email");
+            if(id.equals(email)){
+                memberIdExists = true;
+            }
+        }
+        return memberIdExists;
+    }
+         
+         
+         
     @FXML
-    public void insertMedecin(ActionEvent event){
+    public void insertMedecin(ActionEvent event) throws SQLException{
+       
     if(!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")&&!nomtxt.getText().equals("")&&!prenomtxt.getText().equals("")){
+      // Medecin m = new Medecin();
+        if (isValid(emailtxt.getText())&&(!checkEmail(emailtxt.getText()))){
+         if(isNumber(teltxt.getText())){
         ServiceMedecin se = new ServiceMedecin();
       //  DossierMedical dm =cbdm.getSelectionModel().getSelectedItem();
     se.ajouter(new Medecin(nomtxt.getText(),Integer.parseInt(teltxt.getText()),prenomtxt.getText(),emailtxt.getText()));
 
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Information");
-       // alert.setHeaderText("Look, an Information Dialog");
-        alert.setContentText("Medecin ajouté !");
-        alert.showAndWait();
+   TrayNotification tray = new TrayNotification("Done","le Medecin est ajouté ", NotificationType.INFORMATION);
+          tray.setAnimationType(AnimationType.SLIDE);
+          tray.showAndDismiss(Duration.seconds(5));
            nomtxt.setText("");
            prenomtxt.setText("");
            emailtxt.setText("");
            teltxt.setText("");
            viewMedecin();
            clearFields();
+         
+           }else{
+            Alert alert = new Alert(AlertType.WARNING);
+    alert.setTitle("Warning");
+    //alert.setHeaderText("Look, a Warning Dialog");
+    alert.setContentText("verifier votre numero de telephone ");
+    alert.showAndWait();
+        }
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+    alert.setTitle("Warning");
+    //alert.setHeaderText("Look, a Warning Dialog");
+    alert.setContentText("verifier votre email ");
+    alert.showAndWait();
+        }
 
     }else{
     Alert alert = new Alert(AlertType.WARNING);
@@ -236,7 +304,7 @@ public class MedecinController implements Initializable {
      
     @FXML
     private void controlNumero(KeyEvent event) {
-        verificationNumTel = false;
+       /* verificationNumTel = false;
         if (teltxt.getText().trim().length() == 8) {
             boolean test = true;
             for (int i = 1; i < teltxt.getText().trim().length() && test; i++) {
@@ -256,7 +324,7 @@ public class MedecinController implements Initializable {
             numTelTest.setText("Il faut 8 chiffres");
             verificationNumTel = false;
         }
-    }
+    */}
     private void clearFields(){
         nomtxt.clear();
         prenomtxt.clear();

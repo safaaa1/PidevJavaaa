@@ -107,10 +107,9 @@
             </HBox>
             <TableView fx:id="table" prefHeight="300.0" prefWidth="700.0">
               <columns>
-                <TableColumn fx:id="colnom" prefWidth="150.0" text="Nom" />
-                  <TableColumn fx:id="colage" prefWidth="146.0" text="Age" />
-                  <TableColumn fx:id="coldm" prefWidth="177.0" text="Dossier Medical" />
-                  <TableColumn fx:id="imprimerFacteur" prefWidth="244.0" text="Imprimer Dossier Medical" />
+                <TableColumn fx:id="colnom" prefWidth="205.0" text="Nom" />
+                  <TableColumn fx:id="colage" prefWidth="142.0" text="Age" />
+                  <TableColumn fx:id="coldm" prefWidth="337.0" text="Dossier Medical" />
               </columns>
                <contextMenu>
                   <ContextMenu>
@@ -126,9 +125,14 @@
             </TableView>
             <HBox prefHeight="58.0" prefWidth="700.0">
                <children>
-                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#pdfAction" prefHeight="30.0" prefWidth="150.0" text="Imprimer">
+                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#pdfs" prefHeight="30.0" prefWidth="150.0" styleClass="btnviolet" stylesheets="@../styles/Styles.css" text="imprimer liste des enfants" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="25.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#pdfAction" prefHeight="30.0" prefWidth="180.0" styleClass="btnviolet" stylesheets="@../styles/Styles.css" text="imprimer un enfant" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="50.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>

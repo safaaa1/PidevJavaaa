@@ -81,7 +81,7 @@ public class ServiceMedecin implements IService<Medecin>{
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+                list.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
             }
 
         } catch (SQLException ex) {
@@ -90,5 +90,5 @@ public class ServiceMedecin implements IService<Medecin>{
 
         return list;    
     }
-    
+
 }

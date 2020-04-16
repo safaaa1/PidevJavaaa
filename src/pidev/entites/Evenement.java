@@ -40,6 +40,9 @@ public class Evenement {
         this.dressCode = dressCode;
         this.image = image;
     }
+    public Evenement(int idEvent) {
+        this.idEvent=idEvent;
+    }
     
  public Evenement() {
     }

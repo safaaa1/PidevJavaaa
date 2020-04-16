@@ -8,6 +8,9 @@ package pidev.controller;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -46,6 +50,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
 import pidev.entites.DossierMedical;
 import pidev.entites.Enfant;
@@ -53,6 +58,9 @@ import pidev.services.ServiceEnfant;
 import pidev.utils.ConnectionBD;
 import pidev.utils.pdf;
 import static pidev.utils.pdf.pdf2;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -75,8 +83,7 @@ public class EnfantController implements Initializable {
     private TableColumn<Enfant,Integer> colage;
     @FXML
     private TableColumn<Enfant,String> coldm;
-    @FXML
-    private TableColumn imprimerFacteur;
+
     @FXML
     private MenuItem supprimer;
     
@@ -187,27 +194,43 @@ public class EnfantController implements Initializable {
     cbdm.setItems(data2);
 
     }
-    
+       public static boolean isNumber(String num)
+{
+  
+	if( num!=null && num.trim().length()>0 )
+	return num.matches("^[0-9]{1,2}$");
+	return false;
+} 
     
     @FXML
     public void insertEnfant(ActionEvent event) throws FileNotFoundException, DocumentException{
         if(!nomtxt.getText().equals("")&&!agetxt.getText().equals("")){
+            if(isNumber(agetxt.getText())){
             ServiceEnfant se = new ServiceEnfant();
             DossierMedical dm =cbdm.getSelectionModel().getSelectedItem();
         se.ajouter(new Enfant(nomtxt.getText(),Integer.parseInt(agetxt.getText()),dm.getIdDM()));
          Enfant m = table.getSelectionModel().getSelectedItem();  
-          Enfant e =new Enfant(m.getIdEnfant());
-            Alert alert = new Alert(AlertType.INFORMATION);
+         // Enfant e =new Enfant(m.getIdEnfant());
+          /*  Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
            // alert.setHeaderText("Look, an Information Dialog");
             alert.setContentText("Enfant ajouté !");
-            alert.showAndWait();
+            alert.showAndWait();*/
+            TrayNotification tray = new TrayNotification("Done","l'enfant est ajouté ", NotificationType.INFORMATION);
+          tray.setAnimationType(AnimationType.SLIDE);
+          tray.showAndDismiss(Duration.seconds(5));
                nomtxt.setText("");
                agetxt.setText("");
                viewEnfant();
                clearFields();
             //   pdf.pdf(e);
-               
+            }else{
+              Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        //alert.setHeaderText("Look, a Warning Dialog");
+        alert.setContentText("verifier l'age ");
+        alert.showAndWait();
+            }      
 
         }else{
         Alert alert = new Alert(AlertType.WARNING);
@@ -219,6 +242,7 @@ public class EnfantController implements Initializable {
 
     }
    Alert alert = new Alert(Alert.AlertType.NONE); 
+   
   @FXML
     void pdfAction(ActionEvent event) {
            Enfant ss = table.getSelectionModel().getSelectedItem();
@@ -231,24 +255,25 @@ public class EnfantController implements Initializable {
               alert.show();
                        }
         else {
-                                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                    alert.setTitle("Confirmation ");
-                                    alert.setHeaderText(null);
-                                    alert.setContentText("Voulez-vous vraiment fichier pdf pour cette réunion?");
-                                    Optional<ButtonType> action = alert.showAndWait();
-                                    if (action.get() == ButtonType.OK) {
-                                      pdf(ss);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+               alert.setTitle("Confirmation ");
+               alert.setHeaderText(null);
+               alert.setContentText("Voulez-vous vraiment fichier pdf pour cette enfant?");
+               Optional<ButtonType> action = alert.showAndWait();
+               if (action.get() == ButtonType.OK) {
+                 pdf(ss);
 
-                                    }
+               }
         }
            
     }
+   
      void pdf(Enfant m )
      {
 
 try {
            //Path 
-         OutputStream file = new FileOutputStream(new File("C:/Users/yanisinfo/Desktop/junior/Enfants.pdf"));
+         OutputStream file = new FileOutputStream(new File("C:/Users/yanisinfo/Desktop/junior/"+m.getIdEnfant()+" "+m.getNom()+".pdf"));
 
             Document document = new Document();
 
@@ -262,26 +287,25 @@ try {
              document.add(new Paragraph("**************************************************************************"));
              document.add(new Paragraph(" Age:  "+m.getAge()));
              document.add(new Paragraph(" Titre du Dossier Medical:  "+m.getTitre()));
-             document.add(new Paragraph("*************"
-                                       + "**************************"));
+             document.add(new Paragraph("**************************************************************************"));
             // document.add(new Paragraph(" Description:  "+m.getDescription()));
              
-/*
-             PdfPTable my_first_table = new PdfPTable(3);
+
+            /* PdfPTable my_first_table = new PdfPTable(3);
              PdfPCell table_cell;
              table_cell=new PdfPCell(new Phrase("aza"));
               my_first_table.addCell(table_cell);
               table_cell=new PdfPCell(new Phrase("zaazd"));
                my_first_table.addCell(table_cell);
                table_cell=new PdfPCell(new Phrase(5));
-                my_first_table.addCell(table_cell);
+                my_first_table.addCell(table_cell);*/
         
              // my_first_table.addCell(table_cell);
               // document.add(new Paragraph(getquantite(4)));
 
-           document.add( my_first_table);    
+         //  document.add( my_first_table);    
 
-  */
+  
             document.close();
              
             file.close();
@@ -293,9 +317,10 @@ try {
             e.printStackTrace();
 
 
+     
+        }
      }
-    
-     }
+     
     
         @FXML
     void supprimer(ActionEvent event) {
@@ -389,5 +414,76 @@ try {
     }
     
     
+     
+     
+     
+     
+     
+     
+      @FXML
+          private void pdfs() 
+             throws Exception{
+           try {
+              Class.forName("com.mysql.jdbc.Driver");
+                  Connection cnx = ConnectionBD.getInstance().getCnx();
+     Statement stmt = cnx.createStatement();
+                       /* Define the SQL query */
+                       ResultSet query_set = stmt.executeQuery("SELECT enfant.id, enfant.nom,enfant.age ,dossier_medical.titre FROM `enfant`,dossier_medical WHERE dossier_medical.id=enfant.id_dossier;");
+                       /* Step-2: Initialize PDF documents - logical objects */
+                       Document my_pdf_report = new Document();
+                       PdfWriter.getInstance(my_pdf_report, new FileOutputStream("C:/Users/yanisinfo/Desktop/junior/enfants.pdf"));
+                       my_pdf_report.open();            
+                       //we have four columns in our table
+                       PdfPTable my_report_table = new PdfPTable(3);
+                       //create a cell object
+                       PdfPCell table_cell;
+                        my_pdf_report.add(new Paragraph("------------------------------------------------------Liste Des Enfants-----------------------------------------------------"));
+                       my_pdf_report.add(new Paragraph(" "));
+                       my_pdf_report.add(new Paragraph(" "));
+                       
+                        my_report_table.addCell("Nom");
+                        my_report_table.addCell("Age");
+                        my_report_table.addCell("Titre du Dossier Medical");
+                       while (query_set.next()) {                
+                                      /* int dept_id = query_set.getInt("id");
+                                       table_cell=new PdfPCell(new Phrase(dept_id));
+                                       my_report_table.addCell(table_cell */
+                                       String dept_name=query_set.getString("nom");
+                                       table_cell=new PdfPCell(new Phrase(dept_name));
+                                       my_report_table.addCell(table_cell);
+                                       String manager_id=query_set.getString("age");
+                                       table_cell=new PdfPCell(new Phrase(manager_id));
+                                       my_report_table.addCell(table_cell);
+                                       String location_id=query_set.getString("titre");
+                                       table_cell=new PdfPCell(new Phrase(location_id));
+                                       my_report_table.addCell(table_cell);
+                                       }
+                       /* Attach report table to PDF */
+                       my_pdf_report.add(my_report_table);                       
+                       my_pdf_report.close();
+
+                       /* Close all DB related objects */
+                       query_set.close();
+                       stmt.close(); 
+                       cnx.close();  
+          TrayNotification tray = new TrayNotification("Done","La liste des Enfants est imprimée ! ", NotificationType.SUCCESS);
+          tray.setAnimationType(AnimationType.SLIDE);
+          tray.showAndDismiss(Duration.seconds(5));
+
+
+
+       } catch (FileNotFoundException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+       } catch (DocumentException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+       }
+     
+     
+     
+     
+          }  
+     
     
 }

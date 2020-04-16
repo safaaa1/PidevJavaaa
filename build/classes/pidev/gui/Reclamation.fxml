@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReclamationController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../1.png" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="502.0" prefWidth="300.0" styleClass="background2" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Contact us" textFill="#f8f6f6">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="180.0" top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="30.0" prefWidth="265.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="nomtxt" prefHeight="30.0" prefWidth="240.0" promptText="Nom">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="titretxt" prefHeight="30.0" prefWidth="240.0" promptText="Titre">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="emailtxt" prefHeight="30.0" prefWidth="240.0" promptText="E-mail">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="teltxt" onKeyTyped="#controlNumero" prefHeight="30.0" prefWidth="240.0" promptText="Téléphone">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="numTelTest" text="Label">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="desctxt" prefHeight="30.0" prefWidth="240.0" promptText="Description">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#insertReclamation" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="sauvegarder" textFill="#f8f6f6">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="80.0" right="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="80.0" right="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" left="300.0" top="50.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="640.0">
+                     <children>
+                        <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                           <HBox.margin>
+                              <Insets left="200.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+      <ImageView fitHeight="187.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
+         <image>
+            <Image url="@../../unnamed.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

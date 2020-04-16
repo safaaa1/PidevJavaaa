@@ -27,11 +27,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import pidev.entites.Consultation;
 import pidev.entites.Enfant;
 import pidev.entites.Medecin;
 import pidev.services.ServiceConsultation;
 import pidev.utils.ConnectionBD;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  *
@@ -91,7 +95,7 @@ public class ConsultationController implements Initializable{
       PreparedStatement stat = cnx.prepareStatement(sql);
       ResultSet rs = stat.executeQuery();
       while (rs.next()){
-        data2.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5)));
+        data2.add(new Medecin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
 
       }
       
@@ -133,11 +137,9 @@ public class ConsultationController implements Initializable{
 
         se.ajouter(new Consultation(m.getIdMedecin(),e.getIdEnfant(),datecons));
            
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information");
-           // alert.setHeaderText("Look, an Information Dialog");
-            alert.setContentText("Consultation ajoutéz !");
-            alert.showAndWait();
+  TrayNotification tray = new TrayNotification("Done","la Consultation est crée ", NotificationType.INFORMATION);
+          tray.setAnimationType(AnimationType.SLIDE);
+          tray.showAndDismiss(Duration.seconds(5));
               /* nomtxt.setText("");
                agetxt.setText("");*/
                viewConsultation();

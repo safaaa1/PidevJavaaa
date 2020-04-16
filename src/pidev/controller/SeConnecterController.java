@@ -39,18 +39,16 @@ public class SeConnecterController implements Initializable {
 
     public static int idUtilisateur;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        System.out.println("se connecter controller");
+        System.out.println("Bienvenue ");
     }
 
     @FXML
     public void connecter(ActionEvent actionEvent) throws SQLException, IOException {
-        System.out.println("se connecter action");
+        System.out.println(" Bienvenue");
 
         UtilisateurService utilisateurService = new UtilisateurService();
         Utilisateur utilisateur = new Utilisateur();
@@ -62,16 +60,17 @@ public class SeConnecterController implements Initializable {
         Boolean mdpCrypte = md.checkPassword(mdp.getText(), utilisateur.getPassword());
 
         if (mdpCrypte == true) {
-            System.out.println("authentification reussite");
+            System.out.println("authentification reussite ");
             
             idUtilisateur = utilisateur.getId();
             if (utilisateur.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/panelParent.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/EventFront.fxml"));
                 Parent root = loader.load();
-                EnfantController panelClientController = loader.getController();
+                EventFrontController eventFrontController = loader.getController();
+                eventFrontController.setUtilisateur(utilisateur);
                 mdp.getScene().setRoot(root);
             }else if(testRole.equals(responsable)){
-               FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev/gui/accueil.fxml"));
+               FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                 Stage secondStage = new Stage();
                 secondStage.setScene(new Scene(root));
@@ -89,7 +88,6 @@ public class SeConnecterController implements Initializable {
         }
 
     }
-    //ddddaaa
 
     @FXML
     public void sinscrire(ActionEvent actionEvent) throws IOException {

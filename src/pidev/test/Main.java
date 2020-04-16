@@ -37,7 +37,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/Enfant.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/DossierMedical.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -50,8 +50,9 @@ public class Main extends Application {
        launch(args);
        
         //Test Medecin
-       /* ServiceMedecin se = new ServiceMedecin();
-        Medecin m = new Medecin(18,"islem",12121212,"aaaaaa","anis2@gmail.com");
+      /* ServiceMedecin se = new ServiceMedecin(); 
+       se.
+        /*Medecin m = new Medecin(18,"islem",12121212,"aaaaaa","anis2@gmail.com");
         se.modifier(m);
         //se.ajouter(m);
        // se.supprimer(m);
@@ -91,5 +92,12 @@ public class Main extends Application {
        // document.add(new Paragraph(e.toString()));
         document.close();
         System.out.println("end pdf generate");*/
+        
+        
+      /*  int min = 1000;
+      int max = 9999;
+          System.out.println("Random value in int from "+min+" to "+max+ ":");
+      int random_int = (int)(Math.random() * (max - min + 1) + min);
+      System.out.println(random_int);*/
 }
 }

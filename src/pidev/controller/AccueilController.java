@@ -9,6 +9,7 @@ package pidev.controller;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,12 +19,17 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,8 +38,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import javax.mail.MessagingException;
 import pidev.entites.Evenement;
 import pidev.services.EvenementService;
+import pidev.utils.Mail;
+import javax.mail.MessagingException;
 
 
 /**
@@ -41,13 +50,11 @@ import pidev.services.EvenementService;
  * @author safa
  */
 public class AccueilController {
-
+ObservableList<String>  listt=FXCollections.observableArrayList("fun","sport","bricolage","peinture","dance");
     @FXML
     private AnchorPane anchorP;
     @FXML
     private Button evenement;
-    @FXML
-    private Button userName;
     @FXML
     private Pane pane;
     @FXML
@@ -61,7 +68,7 @@ public class AccueilController {
     @FXML
     private DatePicker dateEvent;
     @FXML
-    private TextField TypeEvent;
+    private ChoiceBox TypeEvent;
     @FXML
     private Button imageEvent;
     @FXML
@@ -72,13 +79,25 @@ public class AccueilController {
     private Button ajouterEvent;
     @FXML
     private ImageView iv;
+    @FXML
+    private Button button;
+    @FXML
+    private Button annonceBtn;
+    @FXML
+    private Button btn_goBack;
+    @FXML
+    private TextField TypeEventt;
 
+    @FXML
+    private void initialize(){
+            TypeEvent.setValue("loisir");
+
+       TypeEvent.setItems(listt); 
     
+    }
     
      public String handle(){
-        FileChooser fileChooser = new FileChooser();
-
-        //Set extension filter
+        FileChooser fileChooser = new FileChooser();//Set extension filter
         FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
         FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
@@ -110,8 +129,24 @@ public class AccueilController {
     }
 
     @FXML
-    private void CreateEvent(ActionEvent event) throws IOException {
+    private void CreateEvent(ActionEvent event) throws IOException, SQLException {
        
+       /* listt.removeAll(listt);
+        String a="loisir";
+         String b="sport";
+          String c="theatre";
+           String cc="bricolage";
+           String ccc="peinture";
+           String cccc="dance";
+           listt.addAll(a,b,c,cc,ccc,cccc);
+         TypeEvent.getItems().addAll(listt);
+        
+        */
+        
+        
+        
+        
+        
         
         EvenementService se= new EvenementService();
            LocalDate d = dateEvent.getValue();
@@ -130,7 +165,7 @@ public class AccueilController {
         
       
        
-        if (TypeEvent.getText().isEmpty()) {
+        if (TypeEvent.getValue().toString().isEmpty()) {
             Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir un type", ButtonType.OK);
         alert.showAndWait();
              i++;
@@ -148,9 +183,11 @@ public class AccueilController {
 
       if(i==0)
       { 
-       Evenement e=new Evenement(nomEvent.getText(),TypeEvent.getText(),dated,Integer.parseInt(nbrPlace.getText()),dressCode.getText(),imageEvent.getText());
+       Evenement e=new Evenement(nomEvent.getText(),(String)TypeEvent.getValue(),dated,Integer.parseInt(nbrPlace.getText()),dressCode.getText(),imageEvent.getText());
            
            se.add(e);
+            
+
          System.out.println("evenement ajouté");
          
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
@@ -160,7 +197,48 @@ public class AccueilController {
                   secondStage.show();}  
        }
 
+    @FXML
+    private void dashboard(ActionEvent event) throws IOException {
+    
+      System.out.println(" Accueil ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+    }
+    
+     @FXML
+    void LogOut(ActionEvent event) throws IOException {
+        System.out.println(" LogOut ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+    
+    }
+
     
     
+    @FXML
+    void GoToReserv(ActionEvent event) throws IOException {
+       System.out.println(" Afficher les reservations ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficherCommande.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+    }
+     @FXML
+    void goToParents(ActionEvent event) throws IOException {
+        System.out.println(" Afficher les parents ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/GestionParent.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+    }
+    
+    @FXML
+    void ListerEvent(ActionEvent event) throws IOException {
+     System.out.println(" Afficher les evenements ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+    }
+
     }
     

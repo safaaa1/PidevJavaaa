@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PidevJava.jar" size="668869" download="eager" />
+    <jar href="PidevJava.jar" size="681065" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
     <jar href="lib\Tutorial 56 - Pie Chart.jar" size="4027" download="eager" />
     <jar href="lib\client-4.0.1.jar" size="305386" download="eager" />

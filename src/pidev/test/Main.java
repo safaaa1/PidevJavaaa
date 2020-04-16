@@ -27,7 +27,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/AbonnementContine.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/seConnecterGuest.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -37,7 +37,7 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         launch(args);
+        launch(args);
        /* Inscription i =new Inscription (1,"moetaz","Jebri","hh","123","123");
         InscriptionService is = new InscriptionService();*/
         //is.ajouter(i);
@@ -49,7 +49,11 @@ public class Main extends Application {
         se.ajouter(a);
         se.afficher().forEach(System.out::println);*/
         
-        
+      /*int min = 100000;
+      int max = 999999;
+          System.out.println("Random value in int from "+min+" to "+max+ ":");
+      int random_int = (int)(Math.random() * (max - min + 1) + min);
+      System.out.println(random_int);*/
     }
     
 }

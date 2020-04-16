@@ -4,6 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/test/Main.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/MdpController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/SeConnecterController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/mdp.fxml</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/services/InscriptionService.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/InscriptionContineController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/ValiderCodeController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/utils/Mail.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/ValiderCode.fxml</file>
         </group>
     </open-files>
 </project-private>

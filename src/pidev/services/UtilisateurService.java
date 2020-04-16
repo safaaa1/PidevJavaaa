@@ -20,7 +20,7 @@ public class UtilisateurService {
 
         Utilisateur utilisateur = new Utilisateur();
 
-        String req = "Select * from Utilisateurs WHERE username='" + login + "'or email='" + login + "'";
+        String req = "Select * from Utilisateurs WHERE username='" + login + "'or password='" + login + "'";
         Statement statement = ConnectionBD.getInstance().getCnx().createStatement();
         ResultSet resultSet = statement.executeQuery(req);
 
@@ -32,5 +32,17 @@ public class UtilisateurService {
         }
         
         return utilisateur;
-    }  
+    }
+   
+      public Utilisateur seConnecter1(String login) throws SQLException {
+
+        Utilisateur utilisateur = new Utilisateur();
+
+        String req = "Select * from Utilisateurs WHERE username='" + login + "'";
+        Statement statement = ConnectionBD.getInstance().getCnx().createStatement();
+        ResultSet resultSet = statement.executeQuery(req);
+
+        
+        return utilisateur;
+    } 
 }

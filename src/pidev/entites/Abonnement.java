@@ -90,7 +90,7 @@ public class Abonnement {
 
     @Override
     public String toString() {
-        return "Abonnement{" + "IdAbn=" + IdAbn + ", Idenf=" + Idenf + ", NomParent=" + NomParent  + ", Date=" + date + ", Typepay=" + Typepay + '}';
+        return  NomParent ;
     }
 
     

@@ -31,8 +31,8 @@ public class Mail {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String monEmail = "safa.doghmani@esprit.tn";
-        String mdp = "";
+        String monEmail = "moetaz23@gmail.com";
+        String mdp = "oumaima2307";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
@@ -52,8 +52,45 @@ public class Mail {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(monMail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(monMail));
-        message.setSubject("");
-        message.setText("!");
+        message.setSubject("Verification de compte");
+        message.setText("Bonjour, \n Ce Mail pour verifier votre compte. \n Cordialment.");
         return message;
+    }
+    
+    private static Message prepareMessage2(Session session, String monMail) throws AddressException, MessagingException{
+        
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(monMail));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(monMail));
+        message.setSubject("Code de Verification"); 
+        message.setText("619588");
+        return message;
+    }
+    
+    
+    public static void sendMailC(String recepient) throws MessagingException {
+        System.out.println("begin mail send");
+
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        String monEmail = "moetaz23@gmail.com";
+        String mdp = "oumaima2307";
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(monEmail, mdp);
+            }
+            
+        });
+        
+        Message message = prepareMessage2(session, monEmail);
+        Transport.send(message);
+        System.out.println("message has been sent");
     }
 }

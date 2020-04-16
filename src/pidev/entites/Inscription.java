@@ -26,6 +26,22 @@ public class Inscription {
         this.Mdp = Mdp;
         this.CMdp = CMdp;
     }
+    
+    public Inscription(String Nom, String Prenom, String Mail, String Mdp, String CMdp) {
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.Mail = Mail;
+        this.Mdp = Mdp;
+        this.CMdp = CMdp;
+    }
+           public Inscription() {
+ 
+    }
+        public Inscription(int Idins) {
+        this.Idins=Idins;
+    }
+
+
 
     public int getIdins() {
         return Idins;

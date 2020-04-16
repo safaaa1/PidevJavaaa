@@ -5,6 +5,8 @@
  */
 package pidev.entites;
 
+import java.sql.Date;
+
 /**
  *
  * @author Moetaz Jebri
@@ -13,14 +15,13 @@ public class Contine {
     private int IdC;
     private String Nom;
     private String Menu;
-    private String date;
+    private Date date;
     private String PlatDuJours;
     private int Nbenf;
     private int Idenf;
     private int IdAb;
-    private int Nombrenf;
 
-    public Contine(int IdC, String Nom, String Menu, String date, String PlatDuJours, int Nbenf, int Idenf, int IdAb, int Nombrenf) {
+    public Contine(int IdC, String Nom, String Menu, Date date, String PlatDuJours, int Nbenf, int Idenf, int IdAb) {
         this.IdC = IdC;
         this.Nom = Nom;
         this.Menu = Menu;
@@ -29,9 +30,21 @@ public class Contine {
         this.Nbenf = Nbenf;
         this.Idenf = Idenf;
         this.IdAb = IdAb;
-        this.Nombrenf = Nombrenf;
     }
-    
+        public Contine(String Nom, String Menu, Date date, String PlatDuJours, int Nbenf, int Idenf, int IdAb) {
+        
+        this.Nom = Nom;
+        this.Menu = Menu;
+        this.date = date;
+        this.PlatDuJours = PlatDuJours;
+        this.Nbenf = Nbenf;
+        this.Idenf = Idenf;
+        this.IdAb = IdAb;
+    }
+    public Contine(int IdC)
+    {
+        this.IdC = IdC;
+    }
     
     public int getIdC() {
         return IdC;
@@ -57,11 +70,11 @@ public class Contine {
         this.Menu = Menu;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -97,17 +110,11 @@ public class Contine {
         this.IdAb = IdAb;
     }
 
-    public int getNombrenf() {
-        return Nombrenf;
-    }
-
-    public void setNombrenf(int Nombrenf) {
-        this.Nombrenf = Nombrenf;
-    }
+ 
 
     @Override
     public String toString() {
-        return "Contine{" + "IdC=" + IdC + ", Nom=" + Nom + ", Menu=" + Menu + ", date=" + date + ", PlatDuJours=" + PlatDuJours + ", Nbenf=" + Nbenf + ", Idenf=" + Idenf + ", IdAb=" + IdAb + ", Nombrenf=" + Nombrenf + '}';
+        return "Contine{" + "IdC=" + IdC + ", Nom=" + Nom + ", Menu=" + Menu + ", date=" + date + ", PlatDuJours=" + PlatDuJours + ", Nbenf=" + Nbenf + ", Idenf=" + Idenf + ", IdAb=" + IdAb + '}';
     }
 
     

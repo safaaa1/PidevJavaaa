@@ -45,7 +45,7 @@ public class AbonnementService {
     }
     
     public void modifier (Abonnement a){
-        String req = "update into abonne (Idenf,NomParent, Date, TypePay)values (?,?,?,?)";
+        String req = "update into abonne (Idenf,NomParent, Date, TypePay)values ('"+a.getIdenf()+"','"+a.getNomParent()+"','"+a.getDate()+"','"+a.getTypepay()+"')";
         try{
             Statement st = cnx.createStatement();
             st.executeUpdate(req);

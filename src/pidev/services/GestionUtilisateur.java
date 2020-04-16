@@ -66,7 +66,7 @@ public class GestionUtilisateur {
     }
 
     public boolean mailExiste(String mail) throws SQLException {
-        String req = "select * from User where email =?";
+        String req = "select * from Utilisateurs where email =?";
         PreparedStatement preparedStatement;
         preparedStatement = ConnectionBD.getInstance().getCnx().prepareStatement(req);
         preparedStatement.setString(1, mail);

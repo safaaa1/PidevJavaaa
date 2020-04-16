@@ -15,14 +15,14 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author safa
+ * @author Mohamed
  */
 public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/seConnecterParent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/pidev/gui/seConnecter.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

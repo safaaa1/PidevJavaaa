@@ -21,12 +21,15 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,7 +50,7 @@ import javax.mail.MessagingException;
  * @author safa
  */
 public class AccueilController {
-
+ObservableList<String>  listt=FXCollections.observableArrayList("fun","sport","bricolage","peinture","dance");
     @FXML
     private AnchorPane anchorP;
     @FXML
@@ -65,7 +68,7 @@ public class AccueilController {
     @FXML
     private DatePicker dateEvent;
     @FXML
-    private TextField TypeEvent;
+    private ChoiceBox TypeEvent;
     @FXML
     private Button imageEvent;
     @FXML
@@ -82,8 +85,16 @@ public class AccueilController {
     private Button annonceBtn;
     @FXML
     private Button btn_goBack;
+    @FXML
+    private TextField TypeEventt;
 
+    @FXML
+    private void initialize(){
+            TypeEvent.setValue("loisir");
+
+       TypeEvent.setItems(listt); 
     
+    }
     
      public String handle(){
         FileChooser fileChooser = new FileChooser();//Set extension filter
@@ -120,6 +131,22 @@ public class AccueilController {
     @FXML
     private void CreateEvent(ActionEvent event) throws IOException, SQLException {
        
+       /* listt.removeAll(listt);
+        String a="loisir";
+         String b="sport";
+          String c="theatre";
+           String cc="bricolage";
+           String ccc="peinture";
+           String cccc="dance";
+           listt.addAll(a,b,c,cc,ccc,cccc);
+         TypeEvent.getItems().addAll(listt);
+        
+        */
+        
+        
+        
+        
+        
         
         EvenementService se= new EvenementService();
            LocalDate d = dateEvent.getValue();
@@ -138,7 +165,7 @@ public class AccueilController {
         
       
        
-        if (TypeEvent.getText().isEmpty()) {
+        if (TypeEvent.getValue().toString().isEmpty()) {
             Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir un type", ButtonType.OK);
         alert.showAndWait();
              i++;
@@ -156,7 +183,7 @@ public class AccueilController {
 
       if(i==0)
       { 
-       Evenement e=new Evenement(nomEvent.getText(),TypeEvent.getText(),dated,Integer.parseInt(nbrPlace.getText()),dressCode.getText(),imageEvent.getText());
+       Evenement e=new Evenement(nomEvent.getText(),(String)TypeEvent.getValue(),dated,Integer.parseInt(nbrPlace.getText()),dressCode.getText(),imageEvent.getText());
            
            se.add(e);
             
@@ -208,13 +235,10 @@ public class AccueilController {
     @FXML
     void ListerEvent(ActionEvent event) throws IOException {
      System.out.println(" Afficher les evenements ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenements.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
         Parent root = loader.load();
         anchorP.getChildren().setAll(root);
     }
 
-    @FXML
-    private void goToAnn(ActionEvent event) {
-    }
     }
     

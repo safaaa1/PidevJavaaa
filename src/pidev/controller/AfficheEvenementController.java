@@ -57,12 +57,8 @@ import pidev.utils.ConnectionBD;
  */
 public class AfficheEvenementController implements Initializable {
 
-    @FXML
-    private Button parc;
         public ObservableList<Evenement> data=FXCollections.observableArrayList();
 
-    @FXML
-    private Button userName;
     @FXML
     private TableColumn<Evenement, String> nom;
     @FXML
@@ -71,6 +67,10 @@ public class AfficheEvenementController implements Initializable {
     private TableColumn<Evenement, String> dressCode;
     @FXML
     private TableColumn<Evenement, String> image;
+     @FXML
+    private TableColumn<Evenement, Integer> id;
+   
+    
     @FXML
     private TableView<Evenement> tableSafa;
     @FXML
@@ -88,9 +88,19 @@ public class AfficheEvenementController implements Initializable {
     private TableColumn modifierEvent;
 
     @FXML
-    private TableColumn<Evenement, Integer> id;
+    private Button parc;
+    @FXML
+    private Button parc1;
+    @FXML
+    private Button button;
+    @FXML
+    private Button userName;
+    @FXML
+    private Button annonceBtn;
     @FXML
     private Button btn_goBack;
+    @FXML
+    private AnchorPane conatiner_client;
 
     /**
      * Initializes the controller class.
@@ -124,7 +134,6 @@ public String handle(){
         return filePath;
     }  
      
-    @FXML
     private void afficherAccueil(ActionEvent event) throws IOException{
         System.out.println(" Accueil ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
@@ -132,18 +141,6 @@ public String handle(){
         containerEvent.getChildren().setAll(root);
     }
   
-    @FXML
-    private void AfficherParc(ActionEvent event) {
-    }
-
-    @FXML
-    private void showPaneProfil(MouseEvent event) {
-    }
-
-
-    @FXML
-    private void hidePane(MouseEvent event) {
-    }
   
     public void getAllEvent(ActionEvent actionEvent) throws IOException {
         System.out.println("afficher liste des evenements");
@@ -188,6 +185,7 @@ public String handle(){
                     if (empty) {
                         setGraphic(null);
                         setText(null);
+                        
                     } else {
                         final Button test = new Button("Supprimer");
                         test.setOnAction(event -> {
@@ -345,7 +343,6 @@ public String handle(){
           return  id=data.get(0).getIdEvent();
     }
 
-    @FXML
     private void GoBack(ActionEvent event) throws IOException {
         System.out.println(" Retour ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/accueil.fxml"));
@@ -353,16 +350,16 @@ public String handle(){
         containerEvent.getChildren().setAll(root);
     }
 
-      @FXML
-    void Dashboard(ActionEvent event) throws IOException {
+    @FXML
+      void Dashboard(ActionEvent event) throws IOException {
        System.out.println(" accueil ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
         Parent root = loader.load();
         containerEvent.getChildren().setAll(root);
     
     } 
-     @FXML
-    void ListerEvent(ActionEvent event) throws IOException {
+    @FXML
+     void ListerEvent(ActionEvent event) throws IOException {
       System.out.println(" liste des evenements ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
         Parent root = loader.load();
@@ -376,8 +373,8 @@ public String handle(){
         Parent root = loader.load();
         containerEvent.getChildren().setAll(root);
     }    
-     @FXML
-    void LogOut(ActionEvent event) throws IOException {
+    @FXML
+     void LogOut(ActionEvent event) throws IOException {
       System.out.println(" se deconnecter ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
         Parent root = loader.load();
@@ -391,6 +388,25 @@ public String handle(){
         Parent root = loader.load();
         containerEvent.getChildren().setAll(root);
     }   
+
+    @FXML
+    private void showPaneProfil(MouseEvent event) {
+    }
+
+    @FXML
+    private void stat(ActionEvent event) throws IOException {
+        
+        System.out.println(" Lister les evenements ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Stat.fxml"));
+        Parent root = loader.load();
+        containerEvent.getChildren().setAll(root); 
+    
+        
+    }
+
+    @FXML
+    private void hidePane(MouseEvent event) {
+    }
 }    
 
     

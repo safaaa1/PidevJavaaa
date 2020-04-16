@@ -38,6 +38,7 @@ import tray.notification.TrayNotification;
  * @author safa
  */
 public class SinscrireController implements Initializable {
+    ObservableList<String> rolesList=FXCollections.observableArrayList("admin","parent","medecin","enseignant");
     @FXML
     private TextField prenom;
     @FXML
@@ -47,17 +48,23 @@ public class SinscrireController implements Initializable {
     @FXML
     private TextField numTel;
     @FXML
-    private TextField mdp;
+    private TextField mdpp;
+       @FXML
+private ChoiceBox rolesBox;
                
        
     Boolean verificationNom = false;
     Boolean verificationPrenom = false;
     Boolean verificationEmail = false;
-    Boolean verificationNumTel = false;
     Boolean verificationMdp = false;
+    Boolean verificationNumTel = false;
+
     @FXML
     private Label numTelTest;
-    
+   
+    @FXML
+    private PasswordField mdp;
+
 
     /**
      * Initializes the controller class.
@@ -67,6 +74,7 @@ public class SinscrireController implements Initializable {
         // TODO
         System.out.println("Sign in");
         numTelTest.setVisible(false);
+        rolesBox.setItems(rolesList);
     }
 
     @FXML
@@ -123,9 +131,10 @@ public class SinscrireController implements Initializable {
             utilisateur.setPassword(mdpCrypte1);
             utilisateur.setNomUser(nom.getText());
             utilisateur.setPrenomUser(prenom.getText());
+            utilisateur.setRoles((String) rolesBox.getValue());
 
             GestionUtilisateur gestionUtilisateur = new GestionUtilisateur();
-            gestionUtilisateur.ajouterAdmin(utilisateur);
+            gestionUtilisateur.ajouterClient(utilisateur);
             
             TrayNotification tray = new TrayNotification("Successfully",
                     "Sign in done", NotificationType.INFORMATION);
@@ -163,17 +172,6 @@ public class SinscrireController implements Initializable {
         }
     }
 
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
     @FXML
     private void controlNumero(KeyEvent event) {
         verificationNumTel = false;
@@ -227,6 +225,10 @@ public class SinscrireController implements Initializable {
             verificationMdp = true;
 
         }
+    }
+
+    @FXML
+    private void controlMDPP(KeyEvent event) {
     }
 
 }

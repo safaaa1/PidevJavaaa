@@ -212,7 +212,6 @@ Utilisateur utilisateur;
                      System.out.println("envoi mail vers "+p.getEmail());
 
              Mail.sendMail(p.getEmail());
-
                             } catch (IOException ex) {
                                 Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (MessagingException ex) {

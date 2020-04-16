@@ -8,6 +8,7 @@ package pidev.entites;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -44,9 +45,7 @@ public class Evenement {
  public Evenement() {
     }
 
-    public Evenement(String string, String string0, int aInt, String string1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     public Evenement(int idEvent) {
     }
@@ -106,7 +105,7 @@ public class Evenement {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(String  image) {
         this.image = image;
     }
 

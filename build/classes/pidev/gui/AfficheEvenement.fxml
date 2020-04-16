@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.AfficheEvenementController">
+<AnchorPane id="AnchorPane" fx:id="conatiner_client" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.AfficheEvenementController">
        <children>
             <AnchorPane fx:id="containerEvent" layoutX="277.0" layoutY="64.0" prefHeight="645.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -141,8 +141,10 @@
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Button>
+            <Button layoutX="527.0" layoutY="131.0" mnemonicParsing="false" onAction="#stat" prefHeight="25.0" prefWidth="153.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Statistiques" />
 
          </children>
             </AnchorPane>
          </children>
       </AnchorPane>
+

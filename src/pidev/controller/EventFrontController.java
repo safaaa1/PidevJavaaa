@@ -99,6 +99,8 @@ public class EventFrontController implements Initializable {
     private TableColumn reserverEvent;
     public ObservableList<Evenement> data=FXCollections.observableArrayList();
     private ObservableList<Evenement> list;
+    @FXML
+    private TableColumn avis;
     
     
     
@@ -251,6 +253,92 @@ public class EventFrontController implements Initializable {
             return cell;
         };
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        Callback<TableColumn<Evenement, String>, TableCell<Evenement, String>> cellFactoryAvis = (param) -> {
+            
+            final TableCell<Evenement, String> cell = new TableCell<Evenement, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {//if(4>9){
+                        final Button test = new Button("avis");
+                        test.setOnAction(event -> {
+                           try {
+                                Evenement p = getTableView().getItems().get(getIndex());
+                                // selectionner();
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Avis.fxml"));
+                                Parent root = loader.load();
+                                AvisController controller =(AvisController) loader.getController();
+                                    controller.setUtilisateur(utilisateur);
+                                    controller.setIdEvent(p.getIdEvent());
+                                containerE.getChildren().setAll(root);
+                               // ModifierEventController modifierEventController=new ModifierEventController(p);
+                                // se.modifier(p);
+                                // try {
+                                //   refresh();
+                                // } catch (IOException ex) {
+                                //Logger.getLogger(ModifierEventController.class.getName()).log(Level.SEVERE, null, ex);
+                                //  }
+                            } catch (IOException ex) {
+                                Logger.getLogger(EventFrontController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                //AvisController controller =(AvisController) loader.getController();
+                                   // controller.remplirchamp(p);
+                              //  containerE.getChildren().setAll(root);
+                              
+                        });
+                        setGraphic(test);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        avis.setCellFactory(cellFactoryAvis);
         reserverEvent.setCellFactory(cellFactoryReserver);
         tableSafa.setItems(list);
         

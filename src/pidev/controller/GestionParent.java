@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,14 +27,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import javax.mail.MessagingException;
 import pidev.entites.Parentt;
+import pidev.services.GestionUtilisateur;
 import pidev.services.ParenttService;
 import pidev.utils.ConnectionBD;
 import pidev.utils.Mail;
@@ -55,15 +60,15 @@ public class GestionParent implements Initializable {
     @FXML
     private TextField input_email;
     @FXML
-    private TextField input_mdp;
+    private TextField input_mdpp;
+    
+    @FXML
+    private PasswordField input_mdp;
+
     @FXML
     private TextField input_tel;
     @FXML
     private Button save;
-    @FXML
-    private Button reset;
-    @FXML
-    private TextField recherchetxt;
     @FXML
     private TableView<Parentt> table;
     @FXML
@@ -78,8 +83,6 @@ public class GestionParent implements Initializable {
     private TableColumn<Parentt, String> column_email;
     @FXML
     private TableColumn<Parentt, String> column_mdp;
-    @FXML
-    private TableColumn colmodifier;
  @FXML
     private MenuItem supprimer;
  @FXML
@@ -87,22 +90,25 @@ public class GestionParent implements Initializable {
  
     public ObservableList<Parentt> data=FXCollections.observableArrayList();
     @FXML
-    private Button viewParent;
-    @FXML
     private TableColumn<Parentt, Integer> column_tel;
-   Boolean verificationNom = true;
-    Boolean verificationPrenom = true;
-    Boolean verificationEmail = true;
-    Boolean verificationNumTel = true;
-    Boolean verificationMdp = true;
+   Boolean verificationNom = false;
+    Boolean verificationPrenom = false;
+    Boolean verificationEmail = false;
+    Boolean verificationNumTel = false;
+    Boolean verificationMdp = false;
+   @FXML
     private Label numTelTest;
+    @FXML
+    private Button btn_goBack;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-              viewParent();
+                   numTelTest.setVisible(false);
+  
+        viewParent();
     }    
  public void viewParent(){
     ParenttService se = new ParenttService();
@@ -147,13 +153,7 @@ public class GestionParent implements Initializable {
             alert.setContentText("Veuillez remplir le telephone");
             alert.show();
 
-        } else if (verificationEmail == false) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("Warning");
-            alert.setContentText("Veuillez remplir l'email");
-            alert.show();
-        }else if ((verificationMdp == false)) {
+        } else if ((verificationMdp == false)) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -184,6 +184,86 @@ public class GestionParent implements Initializable {
       
     }}
 
+    
+    @FXML
+    private void controlNom(KeyEvent event) {
+
+        if (input_nom.getText().trim().equals("")) {
+            verificationNom = false;
+        } else {
+            verificationNom = true;
+        }
+
+    }
+
+    @FXML
+    private void controlPrenom(KeyEvent event) {
+        if (input_prenom.getText().trim().equals("")) {
+            verificationPrenom = false;
+        } else {
+            verificationPrenom = true;
+        }
+    }
+
+    @FXML
+    private void controlNumero(KeyEvent event) {
+        verificationNumTel = false;
+        if (input_tel.getText().trim().length() == 8) {
+            boolean test = true;
+            for (int i = 1; i < input_tel.getText().trim().length() && test; i++) {
+                char ch = input_tel.getText().charAt(i);
+                if (Character.isLetter(ch)) {
+                    test = false;
+                }
+            }
+            if (test) {
+                System.out.println("taille num est valide");
+                numTelTest.setVisible(false);
+                verificationNumTel = true;
+            }
+        } else {
+            System.out.println("taille num non valide");
+            numTelTest.setVisible(true);
+            numTelTest.setText("Il faut 8 chiffres");
+            verificationNumTel = false;
+        }
+    }
+    
+    @FXML
+    private void controlEmail(KeyEvent event) throws SQLException {
+        verificationEmail = false;
+        GestionUtilisateur gestionUtilisateur = new GestionUtilisateur();
+        if(gestionUtilisateur.mailExiste(input_email.getText())){
+            System.out.println("mail est unique");
+            String email_pattern = "^[a-zA-Z]+[a-zA-Z0-9\\._-]*[a-zA-Z0-9]@[a-zA-Z]+" + "[a-zA-Z0-9\\._-]*[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(email_pattern);
+            Matcher matcher = pattern.matcher(input_email.getText());
+
+            if (matcher.matches())
+                verificationEmail = true;
+        }
+        else
+            System.out.println("mail non valide");
+    }
+    
+    @FXML
+    private void controlMDP(KeyEvent event) {
+
+        if (input_mdp.getText().trim().equals("")) {
+
+            verificationMdp = false;
+
+        } else {
+
+            verificationMdp = true;
+
+        }
+    }
+
+    
+    
+    
+    
       @FXML
     void supprimer(ActionEvent event) {
     Parentt m = table.getSelectionModel().getSelectedItem();
@@ -275,6 +355,10 @@ se.supprimer(String.valueOf(m.getId()));
         Parent root = loader.load();
         container.getChildren().setAll(root);
     }    
+
+    @FXML
+    private void controlMDPP(KeyEvent event) {
+    }
 
     
     }

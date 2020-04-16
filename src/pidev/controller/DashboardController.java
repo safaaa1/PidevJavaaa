@@ -6,17 +6,26 @@
 package pidev.controller;
 
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import pidev.entites.Utilisateur;
+import pidev.utils.Session;
 
 /**
  * FXML Controller class
@@ -38,7 +47,9 @@ public class DashboardController implements Initializable {
     private AnchorPane container_client;
     @FXML
     private Button btn_goBack;
-    
+        Utilisateur u= Session.getLoggedInUser();
+    private Button btnprofil;
+
 
     /**
      * Initializes the controller class.
@@ -93,4 +104,7 @@ public class DashboardController implements Initializable {
         Parent root = loader.load();
         container_client.getChildren().setAll(root);
     }
+
+  
+
 }

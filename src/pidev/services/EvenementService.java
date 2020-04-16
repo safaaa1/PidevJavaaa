@@ -281,5 +281,79 @@ public class EvenementService {
     }  
      
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   public int CountParcByCateg(String c) throws SQLException {  
+     
+     int count=0;
+    String requete="SELECT count(*) from evenement where type='"+c+"'";
+    Statement st;
+    st = cnx.createStatement();
+   try {
+              st = cnx.createStatement(); 
+              ResultSet rs = st.executeQuery(requete);
+              while (rs.next()){
+            count = rs.getInt("count(*)");
+              }
+            } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            
+        }
+        return count;
+        
+
+      
+ } 
+    
+    
+    
+    
+    public int CountParc() throws SQLException {  
+     
+     int count=0;
+    String requete="SELECT count(*) from evenement ";
+    Statement st;
+    st = cnx.createStatement();
+      try {
+              st = cnx.createStatement(); 
+              ResultSet rs = st.executeQuery(requete);
+              while (rs.next()){
+            count = rs.getInt("count(*)");
+              }
+            } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            
+        }
+        return count;
+        
+
+      
+ }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

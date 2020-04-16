@@ -106,6 +106,7 @@
                   <TableColumn fx:id="dressCode" prefWidth="75.0" text="dressCode" />
                   <TableColumn fx:id="image" prefWidth="75.0" text="image" />
                   <TableColumn fx:id="reserverEvent" prefWidth="75.0" text="Reserver" />
+                  <TableColumn fx:id="avis" prefWidth="75.0" text="avis" />
               </columns>
             </TableView>
             

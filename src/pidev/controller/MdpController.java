@@ -56,7 +56,7 @@ public class MdpController implements Initializable {
             
             
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecterGuest.fxml"));
             Parent root = loader.load();
             SeConnecterGuestController SeConnecterController = loader.getController();
             border.getScene().setRoot(root);

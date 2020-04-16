@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 
 /**
@@ -31,6 +33,14 @@ public class AccueilContineController {
 
     @FXML
     private Button bc;
+    @FXML
+    private AnchorPane anchorP;
+    @FXML
+    private Button userName;
+    @FXML
+    private AnchorPane anchorEvent;
+    @FXML
+    private ImageView iv;
 
     /**
      * Initializes the controller class.
@@ -52,7 +62,6 @@ public class AccueilContineController {
         bic.getScene().setRoot(root);
     }
     
-    @FXML
     public void sinscrire1(ActionEvent actionEvent) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AbonnementContine.fxml"));
@@ -61,7 +70,6 @@ public class AccueilContineController {
         bac.getScene().setRoot(root);
     }
     
-    @FXML
     public void sinscrire2(ActionEvent actionEvent) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficherContine.fxml"));

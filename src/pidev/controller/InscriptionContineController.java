@@ -108,7 +108,7 @@ public class InscriptionContineController implements Initializable {
     }
      @FXML
     public void insertInscription(ActionEvent event) throws MessagingException{
-        if(!nomptxt.getText().equals("")&&!pretxt.getText().equals("")){
+        if(!nomptxt.getText().equals("")&&!pretxt.getText().equals("")&&(mdptxt.getText().equals(cmdptxt.getText()))){
             InscriptionService se = new InscriptionService();
          se.ajouter(new Inscription(nomptxt.getText(),pretxt.getText(),emailtxt.getText(),mdptxt.getText(),cmdptxt.getText()));
            

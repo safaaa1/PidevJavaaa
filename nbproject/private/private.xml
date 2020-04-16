@@ -5,13 +5,14 @@
         <group>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/test/Main.java</file>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/MdpController.java</file>
-            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/SeConnecterController.java</file>
-            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/mdp.fxml</file>
-            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/services/InscriptionService.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/sinscrireGuest.fxml</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/AfficherContineController.java</file>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/InscriptionContineController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/AbonnementContineController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/seConnecterGuest.fxml</file>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/ValiderCodeController.java</file>
+            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/controller/AfficheEvenementController.java</file>
             <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/utils/Mail.java</file>
-            <file>file:/C:/Users/Moetaz%20Jebri/Desktop/PIDEV/PidevJavaaa/src/pidev/gui/ValiderCode.fxml</file>
         </group>
     </open-files>
 </project-private>

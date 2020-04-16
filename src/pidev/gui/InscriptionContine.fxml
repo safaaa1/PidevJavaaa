@@ -100,7 +100,7 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="640.0">
                <children>
-                  <TextField fx:id="mot" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
+                  <TextField fx:id="mot" onKeyTyped="#chercher" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
                      <HBox.margin>
                         <Insets left="200.0" right="10.0" top="10.0" />
                      </HBox.margin>

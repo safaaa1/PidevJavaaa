@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,16 +19,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import pidev.entites.Classe;
 import pidev.entites.Grade;
 import pidev.services.ClasseServices;
@@ -56,16 +61,13 @@ public class ClasseController implements Initializable {
     @FXML
     private Button saveedit;
 
-    @FXML
-    private Button reset;
 
     @FXML
     private TextField recherchetxt;
         @FXML
     private TableView<Classe> table;
 
-    @FXML
-    private TableColumn<Classe, Integer> colid;
+   
 
     @FXML
     private TableColumn<Classe, String> colnom;
@@ -77,6 +79,16 @@ public class ClasseController implements Initializable {
     private TableColumn<Classe, String> colgr;
     public ObservableList<Classe> data=FXCollections.observableArrayList();
     public ObservableList<Grade> data2=FXCollections.observableArrayList();
+    @FXML
+    private BorderPane sakhta;
+    @FXML
+    private Button viewEnfant1;
+    @FXML
+    private Button viewEnfant;
+    @FXML
+    private MenuItem supprimer;
+    @FXML
+    private MenuItem modifier;
 
 
     
@@ -89,7 +101,7 @@ public class ClasseController implements Initializable {
     public void viewClasse(){
     ClasseServices se = new ClasseServices();
     table.setItems((ObservableList<Classe>) se.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("idcl"));
+    //colid.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("idcl"));
     colnb.setCellValueFactory(new PropertyValueFactory<Classe,Integer>("nbrenfcl"));
     colgr.setCellValueFactory(new PropertyValueFactory<Classe,String>("nomgr"));
     colnom.setCellValueFactory(new PropertyValueFactory<Classe,String>("nomclasse"));
@@ -114,6 +126,7 @@ public class ClasseController implements Initializable {
     }
     
     
+    @FXML
     public void insertClasse(ActionEvent event){
         if(!nomtxt.getText().equals("")&&!nbtxt.getText().equals("")){
             ClasseServices se = new ClasseServices();
@@ -215,5 +228,23 @@ public class ClasseController implements Initializable {
       }
     }
 } 
+
+   @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Ahmed.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
     
 }

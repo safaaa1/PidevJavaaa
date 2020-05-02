@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReclamationController">
+<AnchorPane fx:id="sakhta" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReclamationController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../1.png" />
+            <Image url="@../images/blog-2.jpg" />
          </image>
       </ImageView>
       <BorderPane prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -100,7 +100,7 @@
                <children>
                   <HBox prefHeight="50.0" prefWidth="640.0">
                      <children>
-                        <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                        <Button fx:id="viewEnfant" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="134.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                            <HBox.margin>
                               <Insets left="200.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -114,10 +114,10 @@
             </VBox>
          </center>
       </BorderPane>
-      <ImageView fitHeight="187.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
-         <image>
-            <Image url="@../../unnamed.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="viewEnfant1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Retour" prefHeight="26.0" prefWidth="134.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Retour" textFill="#e2ebea">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

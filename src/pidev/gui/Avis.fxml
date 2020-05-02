@@ -25,9 +25,6 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0" />
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0" />
-            <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="41.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="202.0" />
             <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="49.0">
                <children>
                   <Label alignment="TOP_CENTER" layoutX="126.0" layoutY="16.0" opacity="0.53" text="unior" textFill="#138fab9e" AnchorPane.leftAnchor="126.0" AnchorPane.topAnchor="16.0">
@@ -48,36 +45,11 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="23.0" layoutY="218.0">
-               <image>
-                  <Image url="@../images/event.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="38.0" layoutX="23.0" layoutY="155.0">
-               <image>
-                  <Image url="@../images/home.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="-4.0" layoutY="263.0" mnemonicParsing="false" onAction="#goToParents" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parents" textFill="WHITE">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="button" layoutX="31.0" layoutY="320.0" mnemonicParsing="false" onAction="#GoToReserv" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Reservations" textFill="WHITE">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="24.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/account.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="27.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/exit.png" />
-               </image>
-            </ImageView>
+            
+             
+           
+            
+           
          </children>
       </AnchorPane>
       <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="530.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -140,15 +112,9 @@
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="annonceBtn" layoutX="10.0" layoutY="386.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Avis" textFill="WHITE">
-         <font>
-            <Font name="Baskerville" size="20.0" />
-         </font>
-      </Button>
+     
       <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="35.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/favoris.png" />
-         </image>
+        
       </ImageView>
       <Button fx:id="btn_goBack" layoutX="551.0" layoutY="5.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="LogOut">
          <padding>

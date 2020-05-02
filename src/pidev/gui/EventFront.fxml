@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -49,7 +48,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="parc" layoutX="19.0" layoutY="182.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE">
+            <Button fx:id="parc" layoutX="19.0" layoutY="182.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" styleClass="btnblue" stylesheets="@../styles/Styles.css" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -109,9 +108,15 @@
                   <TableColumn fx:id="avis" prefWidth="75.0" text="avis" />
               </columns>
             </TableView>
-            
-            <TextField fx:id="mot" layoutX="164.0" layoutY="27.0" onKeyTyped="#chercher" promptText="recherche.." />
          </children>
             </AnchorPane>
+      <Button fx:id="btn_goBack1" layoutX="18.0" layoutY="17.0" mnemonicParsing="false" onAction="#Retour" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Retour">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
          </children>
       </AnchorPane>

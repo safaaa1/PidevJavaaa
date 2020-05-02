@@ -35,8 +35,6 @@ import pidev.utils.Session;
 public class DashboardController implements Initializable {
 
     @FXML
-    private Button GestEvent;
-    @FXML
     private Button GestReser;
     @FXML
     private Button GestPar;
@@ -49,6 +47,22 @@ public class DashboardController implements Initializable {
     private Button btn_goBack;
         Utilisateur u= Session.getLoggedInUser();
     private Button btnprofil;
+    @FXML
+    private Button GestReser1;
+    @FXML
+    private Button GestPar1;
+    @FXML
+    private Button GestPar11;
+    @FXML
+    private Button GestReser2;
+    @FXML
+    private Button GestReser21;
+    @FXML
+    private Button GestReser211;
+    @FXML
+    private Button GestDispo;
+    @FXML
+    private Button GestReser11;
 
 
     /**
@@ -58,33 +72,25 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void GestEvent(ActionEvent event) throws IOException {
+@FXML
+    private void GestDispo(ActionEvent event) throws IOException {
          System.out.println(" Ajouter un evenement ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/accueil.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
         Parent root = loader.load();
         container_client.getChildren().setAll(root);
     }
    
 
     @FXML
-    private void GestDispo(ActionEvent event) throws IOException {
+    private void GestReser(ActionEvent event) throws IOException {
         System.out.println(" Lister les evenements ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
-        Parent root = loader.load();
-        container_client.getChildren().setAll(root); 
-    }
-
-
-    @FXML
-    private void VoirCoteClient(ActionEvent event) throws IOException {
-        System.out.println(" Lister les reservations ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficherCommande.fxml"));
         Parent root = loader.load();
         container_client.getChildren().setAll(root); 
     }
 
+
+    
     @FXML
     private void Deconnexion(MouseEvent event) {
     }
@@ -101,6 +107,77 @@ public class DashboardController implements Initializable {
     private void LogOut(ActionEvent event) throws IOException {
         System.out.println(" Retour ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+    }
+
+
+    @FXML
+    private void GoToMed(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Anis.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+        
+    }
+
+    @FXML
+    private void GoToEnf(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Enfant.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+    }
+//badlouha
+    @FXML
+    private void GoToClasses(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Ahmed.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+    }
+
+    @FXML
+    private void GoToEns(ActionEvent event) throws IOException {
+         System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Enseignant.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+   
+        
+    }
+
+    @FXML
+    private void GoToSal(ActionEvent event) throws IOException {
+         System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Salaire.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void GoToResponse(ActionEvent event) throws IOException {
+         System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Reponse.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void GoToCantine(ActionEvent event) throws IOException {
+         System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficherContine.fxml"));
+        Parent root = loader.load();
+        container_client.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void GoTorec(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/reclamationadmin.fxml"));
         Parent root = loader.load();
         container_client.getChildren().setAll(root);
     }

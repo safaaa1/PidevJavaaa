@@ -5,8 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -18,27 +16,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="sakhta" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.EnfantController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
    <left>
       <VBox prefHeight="570.0" prefWidth="300.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -90,18 +67,26 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="640.0">
                <children>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Retour" textFill="#e2ebea">
+                     <HBox.margin>
+                        <Insets left="10.0" right="5.0" top="10.0" />
+                     </HBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
                   <TextField fx:id="filterField" onAction="#filter" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
                      <HBox.margin>
                         <Insets left="200.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
-                     <HBox.margin>
-                        <Insets left="180.0" right="5.0" top="10.0" />
-                     </HBox.margin>
+                  <Button fx:id="logout1" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                      <effect>
                         <DropShadow />
                      </effect>
+                     <HBox.margin>
+                        <Insets left="80.0" top="10.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
@@ -125,12 +110,12 @@
             </TableView>
             <HBox prefHeight="58.0" prefWidth="700.0">
                <children>
-                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#pdfs" prefHeight="30.0" prefWidth="150.0" styleClass="btnviolet" stylesheets="@../styles/Styles.css" text="imprimer liste des enfants" textFill="WHITE">
+                  <Button fx:id="pdf" mnemonicParsing="false" onAction="#pdfs" prefHeight="30.0" prefWidth="180.0" styleClass="btnred" stylesheets="@../styles/Styles.css" text="imprimer liste des enfants" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="25.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#pdfAction" prefHeight="30.0" prefWidth="180.0" styleClass="btnviolet" stylesheets="@../styles/Styles.css" text="imprimer un enfant" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#pdfAction" prefHeight="30.0" prefWidth="180.0" styleClass="btnred" stylesheets="@../styles/Styles.css" text="imprimer un enfant" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="50.0" top="10.0" />
                      </HBox.margin>

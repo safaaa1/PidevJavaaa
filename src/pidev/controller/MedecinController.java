@@ -57,6 +57,8 @@ public class MedecinController implements Initializable {
     private MenuItem modifier;
     @FXML
     private BorderPane sakhta;
+    @FXML
+    private Button logout1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,16 +84,12 @@ public class MedecinController implements Initializable {
     @FXML
     private Button saveedit;
 
-    @FXML
-    private Button reset;
 
     @FXML
     private TextField recherchetxt;
       @FXML
     private TableView<Medecin> table;
 
-    @FXML
-    private TableColumn<Medecin, Integer> colid;
 
     @FXML
     private TableColumn<Medecin,String> colnom;
@@ -113,7 +111,7 @@ public class MedecinController implements Initializable {
         public void viewMedecin(){
     ServiceMedecin sm = new ServiceMedecin();
     table.setItems((ObservableList<Medecin>) sm.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Medecin,Integer>("idMedecin"));
+//    colid.setCellValueFactory(new PropertyValueFactory<Medecin,Integer>("idMedecin"));
     colnom.setCellValueFactory(new PropertyValueFactory<Medecin,String>("nom"));
     colprenom.setCellValueFactory(new PropertyValueFactory<Medecin,String>("prenom"));
     coltel.setCellValueFactory(new PropertyValueFactory<Medecin,Integer>("tel"));
@@ -331,8 +329,16 @@ public class MedecinController implements Initializable {
         teltxt.clear();
         emailtxt.clear();
     }
-    @FXML
     void reset(ActionEvent event) {
     	clearFields();
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Anis.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
     }
 }

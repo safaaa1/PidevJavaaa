@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import pidev.entites.Grade;
 import pidev.services.GradeServices;
 import pidev.utils.ConnectionBD;
@@ -50,11 +54,6 @@ public class GradeController implements Initializable{
     @FXML
     private Button saveedit;
 
-    @FXML
-    private Button reset;
-
-    @FXML
-    private TextField recherchetxt;
 
     @FXML
     private Button viewEnfant;
@@ -62,8 +61,7 @@ public class GradeController implements Initializable{
     @FXML
     private TableView<Grade> table;
 
-    @FXML
-    private TableColumn<Grade, Integer> colid;
+   
 
     @FXML
     private TableColumn<Grade, String> colnom;
@@ -81,6 +79,10 @@ public class GradeController implements Initializable{
     private MenuItem modifier;
 
     public ObservableList<Grade> data =FXCollections.observableArrayList();
+    @FXML
+    private BorderPane sakhta;
+    @FXML
+    private Button viewEnfant1;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,13 +94,14 @@ public class GradeController implements Initializable{
     public void viewGrade(){
     GradeServices se = new GradeServices();
     table.setItems((ObservableList<Grade>) se.afficher());
-    colid.setCellValueFactory(new PropertyValueFactory<Grade,Integer>("idgr"));
+   // colid.setCellValueFactory(new PropertyValueFactory<Grade,Integer>("idgr"));
     colnb.setCellValueFactory(new PropertyValueFactory<Grade,Integer>("nbrclasse"));
     colgr.setCellValueFactory(new PropertyValueFactory<Grade,Integer>("nbrenfgr"));
     colnom.setCellValueFactory(new PropertyValueFactory<Grade,String>("nomgr"));
 
     }
     
+    @FXML
      public void insertGrade(ActionEvent event){
         if(!nbctxt.getText().equals("")&&!nbtxt.getText().equals("")&&!nomgtxt.getText().equals("")){
             GradeServices se = new GradeServices();
@@ -203,5 +206,23 @@ public class GradeController implements Initializable{
       }
     }
     }    
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Ahmed.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
     
 }

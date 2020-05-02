@@ -123,16 +123,11 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button fx:id="annonceBtn" layoutX="25.0" layoutY="384.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Avis" textFill="WHITE">
+            <Button fx:id="annonceBtn" layoutX="25.0" layoutY="384.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" textFill="WHITE">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="44.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/favoris.png" />
-               </image>
-            </ImageView>
             <Button fx:id="btn_goBack" layoutX="680.0" layoutY="3.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="LogOut">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

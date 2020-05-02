@@ -4,11 +4,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="520" prefWidth="520" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.PieChartController">
+<AnchorPane id="AnchorPane" fx:id="sakhta" prefHeight="520" prefWidth="520" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.PieChartController">
     <children>
         <Button id="button1" fx:id="button1" layoutX="87.0" layoutY="14.0" onAction="#handleButton1Action" text="Afficher les statistiques des livraisons par niveau" />
         
         <PieChart id="piechart" fx:id="piechart" layoutX="10" layoutY="110" />
+      <Button layoutX="454.0" layoutY="27.0" mnemonicParsing="false" onAction="#logout" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#fffbfb" />
+      <Button layoutX="454.0" layoutY="74.0" mnemonicParsing="false" onAction="#Retour" styleClass="background" stylesheets="@../styles/Styles.css" text="Retour" textFill="#f2ecec" />
          
     </children>
 </AnchorPane>

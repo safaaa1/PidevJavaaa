@@ -18,3 +18,15 @@
 .btnviolet{
 	-fx-background-color:  #34495e;
 }
+.btnyellow{
+	-fx-background-color:  #f6e58d;
+}
+.btnred{
+	-fx-background-color:  #eb4d4b;
+}
+.btnpink{
+	-fx-background-color:  #ff7979;
+}
+.btnblue{
+	-fx-background-color:  #dff9fb;
+}

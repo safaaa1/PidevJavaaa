@@ -8,13 +8,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReclamationadminController">
+<BorderPane fx:id="sakhta" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.ReclamationadminController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -41,18 +40,21 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="640.0">
                <children>
-                  <TextField fx:id="recherchetxt" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
+                  <Button fx:id="viewEnfant" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Retour" textFill="#e2ebea">
                      <HBox.margin>
-                        <Insets left="200.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
-                     <HBox.margin>
-                        <Insets left="180.0" right="5.0" top="10.0" />
+                        <Insets left="10.0" right="5.0" top="10.0" />
                      </HBox.margin>
                      <effect>
                         <DropShadow />
                      </effect>
+                  </Button>
+                  <Button fx:id="viewEnfant1" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <HBox.margin>
+                        <Insets left="800.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>

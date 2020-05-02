@@ -23,7 +23,7 @@
                         <Font name="Baskerville" size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button" layoutX="2.0" layoutY="340.0" mnemonicParsing="false" onAction="#MagasinButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Reservations" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="340.0">
+                  <Button fx:id="button" layoutX="2.0" layoutY="340.0" mnemonicParsing="false" onAction="#MagasinButtonAction" prefHeight="60.0" prefWidth="218.0" styleClass="btnblue" stylesheets="@../styles/Styles.css" text="Reservations" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="340.0">
                      <font>
                         <Font name="Baskerville" size="20.0" />
                      </font>
@@ -32,13 +32,8 @@
       
       
       
-                  <Button layoutX="2.0" layoutY="280.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parents" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="280.0">
+                  <Button layoutX="2.0" layoutY="280.0" mnemonicParsing="false" onAction="#goTo" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parents" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="280.0">
       
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="annonceBtn" layoutY="406.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Avis" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="406.0">
                      <font>
                         <Font name="Baskerville" size="20.0" />
                      </font>
@@ -56,11 +51,6 @@
                   <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="535.0">
                      <image>
                         <Image url="@../Image/annonce.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="30.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="422.0">
-                     <image>
-                        <Image url="@../images/favoris.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="32.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="357.0">

@@ -5,8 +5,6 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -17,28 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.SalaireController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
+<BorderPane fx:id="sakhta" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.controller.SalaireController">
    <left>
       <VBox prefHeight="570.0" prefWidth="300.0" styleClass="background" stylesheets="@../styles/Styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -78,18 +55,6 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="saveedit" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="btnGreen" stylesheets="@../styles/Styles.css" text="Modifier" textFill="#f2eeee">
-               <VBox.margin>
-                  <Insets bottom="20.0" left="80.0" right="25.0" />
-               </VBox.margin></Button>
-            <Button fx:id="reset" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: white;" text="Réinitialiser" textFill="#1b0909">
-               <VBox.margin>
-                  <Insets bottom="15.0" left="80.0" right="25.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </left>
@@ -98,14 +63,17 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="640.0">
                <children>
-                  <TextField fx:id="recherchetxt" prefHeight="30.0" prefWidth="230.0" promptText="Rechercher...">
+                  <Button fx:id="viewEnfant1" mnemonicParsing="false" onAction="#Retour" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Retour" textFill="#e2ebea">
+                     <effect>
+                        <DropShadow />
+                     </effect>
                      <HBox.margin>
-                        <Insets left="200.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" top="10.0" />
                      </HBox.margin>
-                  </TextField>
-                  <Button fx:id="viewEnfant" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
+                  </Button>
+                  <Button fx:id="viewEnfant" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="70.0" styleClass="background" stylesheets="@../styles/Styles.css" text="Logout" textFill="#e2ebea">
                      <HBox.margin>
-                        <Insets left="180.0" right="5.0" top="10.0" />
+                        <Insets left="540.0" right="5.0" top="10.0" />
                      </HBox.margin>
                      <effect>
                         <DropShadow />
@@ -123,7 +91,6 @@
                   <ContextMenu>
                     <items>
                       <MenuItem fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-                      <MenuItem fx:id="modifier" mnemonicParsing="false" text="modifier" />
                     </items>
                   </ContextMenu>
                </contextMenu>

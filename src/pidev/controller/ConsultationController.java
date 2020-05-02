@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,16 +18,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import pidev.entites.Consultation;
 import pidev.entites.Enfant;
@@ -52,8 +58,6 @@ public class ConsultationController implements Initializable{
     @FXML
     private DatePicker dpdate;
     @FXML
-    private TextField recherchetxt;
-    @FXML
     private TableView<Consultation> table;
 
     @FXML
@@ -64,12 +68,24 @@ public class ConsultationController implements Initializable{
 
     @FXML
     private TableColumn<Consultation, Date> coldate;
-    @FXML
-    private TableColumn<Consultation, Integer> colid;
     
         public ObservableList<Consultation> data=FXCollections.observableArrayList();
         public ObservableList<Medecin> data2=FXCollections.observableArrayList();
         public ObservableList<Enfant> data3=FXCollections.observableArrayList();
+    @FXML
+    private Button save;
+    @FXML
+    private Button saveedit;
+    @FXML
+    private Button viewEnfant1;
+    @FXML
+    private Button viewEnfant;
+    @FXML
+    private MenuItem supprimer;
+    @FXML
+    private MenuItem modifier;
+    @FXML
+    private BorderPane sakhta;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -128,6 +144,7 @@ public class ConsultationController implements Initializable{
 
     }
     
+    @FXML
     public void insertConsultation(ActionEvent event){
         if(!cbenf.getSelectionModel().isEmpty()&&!cbmed.getSelectionModel().isEmpty()&&!dpdate.getValue().equals(null)){
             ServiceConsultation se = new ServiceConsultation();
@@ -247,8 +264,28 @@ public class ConsultationController implements Initializable{
        cbenf.getSelectionModel().clearSelection();
        dpdate.getEditor().clear();
     }
-    @FXML
     void reset(ActionEvent event) {
     	clearFields();
     }
+  
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Anis.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
+    
+
+   
 }

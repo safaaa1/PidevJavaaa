@@ -70,6 +70,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.chart.*;
 import javafx.collections.FXCollections;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 /**
@@ -106,8 +107,6 @@ public class EnseignantController implements Initializable {
           @FXML
     private Label mailtest;
 
-    @FXML
-    private Button viewEnseignant;
 
     @FXML
     private TableView<Enseignant> table;
@@ -131,10 +130,6 @@ public class EnseignantController implements Initializable {
      public ObservableList<Enseignant> data=FXCollections.observableArrayList();
              public ObservableList<Salaire> data2=FXCollections.observableArrayList();
               //  ObservableList<PieChart> pieChartData = FXCollections.observableArrayList();
-
-     
-    @FXML
-    private Button reset;
     @FXML
     private MenuItem supprimer;
     @FXML
@@ -142,6 +137,12 @@ public class EnseignantController implements Initializable {
     boolean verificationNumTel=false;
     @FXML
     private TableColumn<Enseignant, Integer> salaire;
+    @FXML
+    private Button viewEnfant1;
+    @FXML
+    private Button viewEnfant;
+    @FXML
+    private BorderPane sakhta;
     /**
      * Initializes the controller class.
      */
@@ -196,6 +197,7 @@ public class EnseignantController implements Initializable {
  
     }
         
+    @FXML
     public void filter(){
      EnseignantService se = new EnseignantService();
          data = FXCollections.observableArrayList(se.read());
@@ -282,11 +284,11 @@ public class EnseignantController implements Initializable {
                teltxt.setText("");
                viewEnseignant();
                
-   /*            
+             
    NexmoClient client = NexmoClient.builder().apiKey("372d5729").apiSecret("n3FnzJypbJxuwj5G").build();
   TextMessage message = new TextMessage("JUNIOR",
                    "+21626899579",
-                    "félicitation, vous ete ajouté avec succé, bienvenu  !"
+                    "félicitation, vous ete ajouté avec succé, bienvenu à JUNIOR  !"
             );
   try{
     SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
@@ -297,7 +299,7 @@ public class EnseignantController implements Initializable {
 }
         }catch (NoClassDefFoundError ex) {
             System.err.println(ex.getMessage());
-        } */          
+        }          
             }else{
                    Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning");
@@ -459,6 +461,24 @@ public class EnseignantController implements Initializable {
             }
         }
         return memberIdExists;
+    }
+
+     @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
     }
     
 }

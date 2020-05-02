@@ -35,10 +35,13 @@ import pidev.utils.ConnectionBD;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.BorderPane;
 
 
 /**
@@ -100,9 +103,11 @@ public class ReponseController implements Initializable {
     @FXML
     private Button saveedit;
     @FXML
-    private Button reset;
-    @FXML
     private Button viewEnfant;
+    @FXML
+    private BorderPane sakhta;
+    @FXML
+    private Button viewEnfant1;
 
   
    
@@ -256,6 +261,24 @@ public class ReponseController implements Initializable {
       }
     }
     }   
+
+     @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
 
     
 }

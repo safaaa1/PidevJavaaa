@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import pidev.entites.Enseignant;
 import pidev.entites.Salaire;
 import pidev.services.EnseignantService;
@@ -51,19 +55,11 @@ public class SalaireController implements Initializable {
     @FXML
     private Button save;
     @FXML
-    private Button saveedit;
-    @FXML
-    private Button reset;
-    @FXML
-    private TextField recherchetxt;
-    @FXML
     private Button viewEnfant;
     @FXML
     private TableView<Salaire> table;
     @FXML
     private MenuItem supprimer;
-    @FXML
-    private MenuItem modifier;
    
     @FXML
     private TableColumn<Salaire, Integer> colchiffre;
@@ -73,6 +69,10 @@ public class SalaireController implements Initializable {
     private TableColumn<Salaire, Date> coldate;
 
      SalaireService se ;
+    @FXML
+    private Button viewEnfant1;
+    @FXML
+    private BorderPane sakhta;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
          se = new SalaireService();
@@ -155,7 +155,24 @@ public class SalaireController implements Initializable {
 	return num.matches("^[0-9]{1,5}$");
 	return false;
 }  
- 
+
+      @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
    
       
     

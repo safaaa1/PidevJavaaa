@@ -5,6 +5,7 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,7 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -29,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import pidev.entites.Abonnement;
 import pidev.entites.Enfant;
 import pidev.services.AbonnementService;
@@ -62,11 +66,6 @@ public class AbonnementContineController implements Initializable {
     @FXML
     private Button saveedit;
 
-    @FXML
-    private Button reset;
-
-    @FXML
-    private TextField filterField;
 
     @FXML
     private Button logout;
@@ -94,6 +93,10 @@ public class AbonnementContineController implements Initializable {
 
     public ObservableList<Abonnement> data=FXCollections.observableArrayList();
         public ObservableList<Enfant> data2=FXCollections.observableArrayList();
+    @FXML
+    private Button logout1;
+    @FXML
+    private BorderPane sakhta;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -236,5 +239,25 @@ public class AbonnementContineController implements Initializable {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         } 
+    }
+
+   
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        
+        System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard1.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+        
+        
+    }
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+         System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+        
     }
 }

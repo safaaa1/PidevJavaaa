@@ -393,7 +393,7 @@ public String handle(){
     @FXML
      void ListerEvent(ActionEvent event) throws IOException {
       System.out.println(" liste des evenements ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/AfficheEvenement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/accueil.fxml"));
         Parent root = loader.load();
         containerEvent.getChildren().setAll(root);
     }

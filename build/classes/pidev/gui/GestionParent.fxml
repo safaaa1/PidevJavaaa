@@ -31,7 +31,7 @@
       </BorderPane>
       <VBox layoutX="14.0" layoutY="45.0" prefHeight="503.0" prefWidth="320.0" style="-fx-background-color: rgba(17,149,175,0.3);" styleClass="background">
          <children>
-            <HBox prefHeight="30.0" prefWidth="265.0">
+            <HBox prefHeight="30.0" prefWidth="295.0">
                <VBox.margin>
                   <Insets bottom="40.0" left="25.0" />
                </VBox.margin>
@@ -104,6 +104,14 @@
          </contextMenu>
       </TableView>
       <Button fx:id="btn_goBack" layoutX="690.0" layoutY="13.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="LogOut">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_goBack1" layoutX="335.0" layoutY="5.0" mnemonicParsing="false" onAction="#Retour" prefHeight="38.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Retour">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

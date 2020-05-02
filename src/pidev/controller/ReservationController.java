@@ -57,8 +57,6 @@ public class ReservationController implements Initializable {
     @FXML
     private Button button;
     @FXML
-    private Button annonceBtn;
-    @FXML
     private Button parc;
     @FXML
     private Button userName;
@@ -115,7 +113,7 @@ public class ReservationController implements Initializable {
     }
 
     @FXML
-    private void goToVet(ActionEvent event) throws IOException {
+    private void goTo(ActionEvent event) throws IOException {
         System.out.println(" liste parents ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/GestionParent.fxml"));
         Parent root = loader.load();

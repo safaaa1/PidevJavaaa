@@ -6,15 +6,19 @@
 package pidev.controller;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import pidev.entites.Grade;
 import pidev.services.GradeServices;
 
@@ -30,6 +34,8 @@ public class PieChartController implements Initializable {
     private Button button1;
     @FXML
     private PieChart piechart;
+    @FXML
+    private AnchorPane sakhta;
 
     /**
      * Initializes the controller class.
@@ -65,7 +71,24 @@ public class PieChartController implements Initializable {
         piechart.setTitle("Statistiques des cours");
         piechart.setData(pieChartData);
     }
-        
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    } 
      
          
          

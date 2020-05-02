@@ -104,6 +104,8 @@ public class EnfantController implements Initializable {
     private MenuItem modifier;
     @FXML
     private Button pdf;
+    @FXML
+    private Button logout1;
     
         @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -139,13 +141,7 @@ public class EnfantController implements Initializable {
             });
     }
     
-       @FXML
-    private void logout(ActionEvent event) throws IOException {
-        System.out.println(" Retour ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
-        Parent root = loader.load();
-        sakhta.getChildren().setAll(root);
-    }  
+       
       Enfant e=new Enfant();  
 
     public Enfant getE() {
@@ -284,6 +280,8 @@ try {
              document.add(new Paragraph("------------------------------------------------------------BIENVENU-------------------------------------------------------"));
              document.add(new Paragraph("Nom d'enfant :"+ sP.getById(m.getIdEnfant())));
              System.out.println(sP.getById(m.getIdEnfant()));
+             document.add(new Paragraph("**************************************************************************"));
+             document.add(new Paragraph(" Nom:  "+m.getNom()));
              document.add(new Paragraph("**************************************************************************"));
              document.add(new Paragraph(" Age:  "+m.getAge()));
              document.add(new Paragraph(" Titre du Dossier Medical:  "+m.getTitre()));
@@ -484,6 +482,23 @@ try {
      
      
           }  
-     
+
+     @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Anis.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
     
 }

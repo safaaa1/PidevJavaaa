@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PidevJava.jar" size="2864968" download="eager" />
+    <jar href="PidevJava.jar" size="2882117" download="eager" />
     <jar href="lib\TrayNotification.jar" size="41019" download="eager" />
     <jar href="lib\Tutorial 56 - Pie Chart.jar" size="4027" download="eager" />
     <jar href="lib\client-5.2.1.jar" size="332373" download="eager" />
@@ -25,7 +25,7 @@
     <jar href="lib\java-mail-1.4.4.jar" size="494975" download="eager" />
     <jar href="lib\jfoenix-8.0.1.jar" size="2405715" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="lib\stripe-java-18.13.0.jar" size="3199839" download="eager" />
+    <jar href="lib\stripe-java-19.1.0.jar" size="2908316" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="PidevJava" >
     <param name="requiredFXVersion" value="8.0+"/>

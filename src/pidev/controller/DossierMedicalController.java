@@ -7,6 +7,7 @@ package pidev.controller;
 
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,17 +20,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import pidev.entites.DossierMedical;
@@ -54,12 +59,8 @@ public class DossierMedicalController implements Initializable {
     @FXML
     private TextArea contenutxt;
     @FXML
-    private TextField recherchetxt;
-    @FXML
     private TableView<DossierMedical> table;
 
-    @FXML
-    private TableColumn<DossierMedical, Integer> colid;
 
     @FXML
     private TableColumn<DossierMedical, String> coltitre;
@@ -70,6 +71,20 @@ public class DossierMedicalController implements Initializable {
     private TableColumn imprimerFacteur;
 
     public ObservableList<DossierMedical> data=FXCollections.observableArrayList();
+    @FXML
+    private Button save;
+    @FXML
+    private Button saveedit;
+    @FXML
+    private Button viewEnfant1;
+    @FXML
+    private Button viewEnfant;
+    @FXML
+    private MenuItem supprimer;
+    @FXML
+    private MenuItem modifier;
+    @FXML
+    private BorderPane sakhta;
 
     public void initialize(URL location, ResourceBundle resources) {
         viewDossierMedical();
@@ -124,6 +139,7 @@ public class DossierMedicalController implements Initializable {
     
 
     }
+    @FXML
     public void insertDossierMedical(ActionEvent event){
         if(!titretxt.getText().equals("")&&!contenutxt.getText().equals("")){
             ServiceDossierMedical se = new ServiceDossierMedical();
@@ -224,8 +240,25 @@ public class DossierMedicalController implements Initializable {
  contenutxt.clear();
  titretxt.clear();
  }
- @FXML
-  void reset(ActionEvent event){
+ void reset(ActionEvent event){
   clearFields();
   }
+
+     @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Anis.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+   
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        System.out.println(" Retour ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        sakhta.getChildren().setAll(root);
+      
+    }
 }

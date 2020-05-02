@@ -5,13 +5,16 @@
  */
 package pidev.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -41,8 +44,6 @@ public class AvisController implements Initializable {
     @FXML
     private Button evenement;
     @FXML
-    private Button button;
-    @FXML
     private Pane pane;
     @FXML
     private Button btn11;
@@ -54,8 +55,6 @@ public class AvisController implements Initializable {
     private TextArea description;
     @FXML
     private Button ajouter;
-    @FXML
-    private Button annonceBtn;
     @FXML
     private Button btn_goBack;
  @FXML
@@ -79,25 +78,31 @@ rate.setRating(3);
     }    
 
     @FXML
-    private void dashboard(ActionEvent event) {
+    private void dashboard(ActionEvent event) throws IOException {
+         System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard1.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
     }
 
     @FXML
-    private void ListerEvent(ActionEvent event) {
+    private void ListerEvent(ActionEvent event) throws IOException {
+         System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/EventFront.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
     }
 
-    @FXML
-    private void goToParents(ActionEvent event) {
-    }
-
-    @FXML
-    private void GoToReserv(ActionEvent event) {
-    }
 
     
 
     @FXML
-    private void LogOut(ActionEvent event) {
+    private void LogOut(ActionEvent event) throws IOException {
+         System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
+        Parent root = loader.load();
+        anchorP.getChildren().setAll(root);
+        
     }
 
     @FXML

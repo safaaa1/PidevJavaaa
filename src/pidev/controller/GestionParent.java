@@ -59,8 +59,6 @@ public class GestionParent implements Initializable {
     private TextField input_prenom;
     @FXML
     private TextField input_email;
-    @FXML
-    private TextField input_mdpp;
     
     @FXML
     private PasswordField input_mdp;
@@ -100,6 +98,8 @@ public class GestionParent implements Initializable {
     private Label numTelTest;
     @FXML
     private Button btn_goBack;
+    @FXML
+    private Button btn_goBack1;
     /**
      * Initializes the controller class.
      */
@@ -351,13 +351,18 @@ se.supprimer(String.valueOf(m.getId()));
  @FXML
     void LogOut(ActionEvent event) throws IOException {
       System.out.println(" accueil ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
         Parent root = loader.load();
         container.getChildren().setAll(root);
     }    
 
     @FXML
-    private void controlMDPP(KeyEvent event) {
+    private void Retour(ActionEvent event) throws IOException {
+        System.out.println(" accueil ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        Parent root = loader.load();
+        container.getChildren().setAll(root);
+  
     }
 
     

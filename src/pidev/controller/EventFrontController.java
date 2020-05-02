@@ -92,8 +92,6 @@ public class EventFrontController implements Initializable {
     private TableColumn<Evenement, String> dressCode;
     @FXML
     private TableColumn<Evenement, String> image;
-    @FXML
-    private TextField mot;
     int a;
     @FXML
     private TableColumn reserverEvent;
@@ -101,6 +99,8 @@ public class EventFrontController implements Initializable {
     private ObservableList<Evenement> list;
     @FXML
     private TableColumn avis;
+    @FXML
+    private Button btn_goBack1;
     
     
     
@@ -139,29 +139,30 @@ public class EventFrontController implements Initializable {
     @FXML
     private void afficherAccueil(ActionEvent event) throws IOException{
         System.out.println(" Accueil ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard1.fxml"));
         Parent root = loader.load();
-        containerEvent.getChildren().setAll(root);
+        containerE.getChildren().setAll(root);
     }
     
     @FXML
-    private void AfficherParc(ActionEvent event) {
+    private void AfficherParc(ActionEvent event) throws IOException {
+         System.out.println(" Accueil ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/EventFront.fxml"));
+        Parent root = loader.load();
+        containerE.getChildren().setAll(root);
     }
     
     @FXML
     private void GoBack(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/seConnecter.fxml"));
         Parent root = loader.load();
-        containerEvent.getChildren().setAll(root);
+        containerE.getChildren().setAll(root);
     }
     
     @FXML
     private void showPaneProfil(MouseEvent event) {
     }
     
-    @FXML
-    private void chercher(KeyEvent event) {
-    }
     
     @FXML
     private void hidePane(MouseEvent event) {
@@ -354,6 +355,17 @@ public class EventFrontController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/EventFront.fxml"));
         Parent root = loader.load();
         containerE.getChildren().setAll(root);
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+        
+        System.out.println("afficher mes events");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pidev/gui/Dashboard1.fxml"));
+        Parent root = loader.load();
+        containerE.getChildren().setAll(root);
+        
+        
     }
     
     
